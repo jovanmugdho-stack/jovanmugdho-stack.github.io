@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Jovan Mugdho | Portfolio</title>
-<meta name="description" content="Personal portfolio of Jovan Mugdho, Computer Science student at Andhra University.">
+<meta name="description" content="Jovan Mugdho - Computer Science Student at Andhra University.">
 
 <style>
 * {
@@ -31,6 +31,8 @@ body {
   line-height: 1.7;
 }
 
+/* NAVIGATION */
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -39,7 +41,7 @@ nav {
   background: #091a30;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 100;
   border-bottom: 1px solid #203653;
 }
 
@@ -60,6 +62,8 @@ nav a:hover {
   color: #60a5fa;
 }
 
+/* HERO SECTION */
+
 .hero {
   min-height: 85vh;
   padding: 75px 10%;
@@ -67,7 +71,8 @@ nav a:hover {
   align-items: center;
   justify-content: space-between;
   gap: 45px;
-  background: radial-gradient(circle at 80% 40%, #173c68, #071426 65%);
+  background:
+    radial-gradient(circle at 80% 40%, #173c68, #071426 65%);
 }
 
 .hero-content {
@@ -96,16 +101,26 @@ nav a:hover {
   margin-bottom: 25px;
 }
 
+/* CIRCULAR PROFILE PHOTO */
+
 .avatar {
   width: 280px;
   height: 280px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center 25%;
-  border: 5px solid #60a5fa;
-  box-shadow: 0 0 45px #2563eb55;
+
+  border: 9px solid #06152e;
+  outline: 3px solid #2563eb;
+
+  box-shadow:
+    0 0 0 8px rgba(6, 21, 46, 0.5),
+    0 0 40px rgba(37, 99, 235, 0.35);
+
   flex-shrink: 0;
 }
+
+/* BUTTONS */
 
 .btn {
   display: inline-block;
@@ -128,6 +143,8 @@ nav a:hover {
   border: 1px solid #60a5fa;
 }
 
+/* GENERAL SECTIONS */
+
 section {
   padding: 85px 10%;
 }
@@ -139,6 +156,8 @@ section {
   margin-bottom: 40px;
 }
 
+/* ABOUT */
+
 .about {
   max-width: 850px;
   margin: auto;
@@ -147,9 +166,11 @@ section {
   font-size: 17px;
 }
 
+/* CARDS */
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 22px;
 }
 
@@ -164,6 +185,7 @@ section {
 .card:hover {
   transform: translateY(-6px);
   border-color: #60a5fa;
+  box-shadow: 0 10px 30px #00000030;
 }
 
 .card h3 {
@@ -175,6 +197,8 @@ section {
   color: var(--muted);
 }
 
+/* SKILLS */
+
 .skill {
   display: inline-block;
   background: #19385e;
@@ -185,15 +209,19 @@ section {
   border: 1px solid #315b8c;
 }
 
+/* CONTACT */
+
 .contact {
   text-align: center;
-  background: linear-gradient(#071426,#102b4d);
+  background: linear-gradient(#071426, #102b4d);
 }
 
 .contact p {
   color: var(--muted);
   margin-bottom: 20px;
 }
+
+/* FOOTER */
 
 footer {
   text-align: center;
@@ -202,7 +230,10 @@ footer {
   border-top: 1px solid #203653;
 }
 
-@media(max-width:750px) {
+/* MOBILE RESPONSIVE */
+
+@media(max-width: 750px) {
+
   nav {
     flex-direction: column;
     gap: 12px;
@@ -216,6 +247,7 @@ footer {
   .hero {
     flex-direction: column-reverse;
     text-align: center;
+    padding: 65px 7%;
   }
 
   .avatar {
@@ -226,14 +258,21 @@ footer {
   section {
     padding: 65px 7%;
   }
+
+  .hero h1 {
+    font-size: 42px;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- NAVIGATION -->
+
 <nav>
   <div class="logo">Jovan.</div>
+
   <div>
     <a href="#home">Home</a>
     <a href="#about">About</a>
@@ -244,24 +283,43 @@ footer {
   </div>
 </nav>
 
+<!-- HOME -->
+
 <header class="hero" id="home">
+
   <div class="hero-content">
+
     <div class="tag">WELCOME TO MY PORTFOLIO</div>
+
     <h1>Hello, I'm <span>Jovan Mugdho</span></h1>
+
     <p>
       B.Tech Computer Science Student at Andhra University.
       Passionate about Technology, Programming and Artificial Intelligence.
     </p>
+
     <a href="#about" class="btn">Discover More</a>
+
     <a href="#contact" class="btn outline">Contact Me</a>
+
   </div>
 
-  <img class="avatar" src="profile.jpeg" alt="Jovan Mugdho">
+  <img
+    class="avatar"
+    src="profile.jpeg"
+    alt="Jovan Mugdho"
+  >
+
 </header>
 
+<!-- ABOUT -->
+
 <section id="about">
+
   <h2 class="title">About Me</h2>
+
   <div class="about">
+
     <p>
       Hello! I'm Jovan Mugdho, a Computer Science and Engineering
       student at Andhra University, India.
@@ -273,24 +331,38 @@ footer {
       and Web Development. My goal is to continuously learn,
       build meaningful projects and grow as a developer.
     </p>
+
   </div>
+
 </section>
 
+<!-- EDUCATION -->
+
 <section id="education">
+
   <h2 class="title">Education</h2>
+
   <div class="grid">
+
     <div class="card">
       <h3>B.Tech - Computer Science</h3>
       <p>Andhra University</p>
       <p>Visakhapatnam, India</p>
       <p>Currently Pursuing</p>
     </div>
+
   </div>
+
 </section>
 
+<!-- SKILLS -->
+
 <section id="skills">
+
   <h2 class="title">My Skills</h2>
+
   <div style="text-align:center">
+
     <span class="skill">C Programming</span>
     <span class="skill">Java</span>
     <span class="skill">Python</span>
@@ -298,53 +370,98 @@ footer {
     <span class="skill">CSS</span>
     <span class="skill">Problem Solving</span>
     <span class="skill">Web Development</span>
+
   </div>
+
 </section>
 
+<!-- PROJECTS -->
+
 <section id="projects">
+
   <h2 class="title">My Projects</h2>
+
   <div class="grid">
+
     <div class="card">
       <h3>Personal Portfolio</h3>
-      <p>A personal website to introduce myself and showcase my work.</p>
+      <p>
+        A personal website to introduce myself and showcase my work.
+      </p>
     </div>
 
     <div class="card">
       <h3>Upcoming Projects</h3>
-      <p>Exploring ideas in Artificial Intelligence and Web Development.</p>
+      <p>
+        Exploring ideas in Artificial Intelligence and Web Development.
+      </p>
     </div>
+
   </div>
+
 </section>
 
-<section>
+<!-- INTERESTS -->
+
+<section id="interests">
+
   <h2 class="title">My Interests</h2>
+
   <div class="grid">
+
     <div class="card">
       <h3>Artificial Intelligence</h3>
       <p>Exploring intelligent technologies and the future of AI.</p>
     </div>
+
     <div class="card">
       <h3>Technology</h3>
       <p>Learning new technologies and digital innovation.</p>
     </div>
+
     <div class="card">
       <h3>Music</h3>
       <p>Enjoying music and expressing creativity through it.</p>
     </div>
+
   </div>
+
 </section>
+
+<!-- CONTACT -->
 
 <section class="contact" id="contact">
+
   <h2 class="title">Let's Connect</h2>
-  <p>Have an idea or want to connect? Feel free to reach out.</p>
-  <a href="mailto:YOUR_EMAIL@gmail.com" class="btn">Email Me</a>
-  <a href="https://github.com/jovanmugdho-stack"
-     target="_blank" class="btn outline">GitHub</a>
+
+  <p>
+    Have an idea or want to connect?
+    Feel free to reach out.
+  </p>
+
+  <a href="mailto:YOUR_EMAIL@gmail.com" class="btn">
+    Email Me
+  </a>
+
+  <a
+    href="https://github.com/jovanmugdho-stack"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="btn outline"
+  >
+    GitHub
+  </a>
+
 </section>
 
+<!-- FOOTER -->
+
 <footer>
+
   <p>© 2026 Jovan Mugdho. All Rights Reserved.</p>
+
   <p>Designed with passion.</p>
+
 </footer>
 
 </body>
