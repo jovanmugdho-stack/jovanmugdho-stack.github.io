@@ -4,8 +4,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Jovan Mugdho | Portfolio</title>
-<meta name="description" content="Jovan Mugdho - B.Tech CSE Student, Technology Enthusiast and Aspiring AI Developer.">
+<meta name="description" content="Personal portfolio of Jovan Mugdho, Computer Science student at Andhra University.">
 
 <style>
 * {
@@ -26,7 +27,7 @@
 body {
   font-family: Arial, sans-serif;
   background: var(--bg);
-  color: #f8fafc;
+  color: white;
   line-height: 1.7;
 }
 
@@ -35,7 +36,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 20px 8%;
-  background: rgba(7,20,38,.95);
+  background: #091a30;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -43,15 +44,15 @@ nav {
 }
 
 .logo {
-  font-size: 23px;
+  font-size: 25px;
   font-weight: bold;
   color: #60a5fa;
 }
 
 nav a {
-  color: white;
   text-decoration: none;
-  margin-left: 22px;
+  color: white;
+  margin-left: 18px;
   font-size: 14px;
 }
 
@@ -61,22 +62,28 @@ nav a:hover {
 
 .hero {
   min-height: 85vh;
+  padding: 75px 10%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 40px;
-  padding: 80px 10%;
-  background: radial-gradient(circle at 80% 40%, #173c68, #071426 60%);
+  gap: 45px;
+  background: radial-gradient(circle at 80% 40%, #173c68, #071426 65%);
 }
 
 .hero-content {
   max-width: 650px;
 }
 
+.tag {
+  color: #60a5fa;
+  letter-spacing: 3px;
+  font-size: 13px;
+}
+
 .hero h1 {
   font-size: clamp(40px, 6vw, 65px);
   line-height: 1.15;
-  margin: 15px 0;
+  margin: 20px 0;
 }
 
 .hero h1 span {
@@ -85,64 +92,51 @@ nav a:hover {
 
 .hero p {
   color: var(--muted);
-  font-size: 18px;
+  font-size: 17px;
   margin-bottom: 25px;
 }
 
-.tag {
-  color: #93c5fd;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  font-size: 13px;
+.avatar {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 25%;
+  border: 5px solid #60a5fa;
+  box-shadow: 0 0 45px #2563eb55;
+  flex-shrink: 0;
 }
 
 .btn {
   display: inline-block;
-  padding: 12px 25px;
   background: var(--blue);
   color: white;
   text-decoration: none;
+  padding: 12px 25px;
   border-radius: 30px;
-  margin: 7px 8px 7px 0;
+  margin: 5px;
   transition: .3s;
 }
 
 .btn:hover {
+  transform: translateY(-4px);
   background: #2563eb;
-  transform: translateY(-3px);
 }
 
-.btn-outline {
+.outline {
   background: transparent;
   border: 1px solid #60a5fa;
-}
-
-.object-fit: cover;
-object-position: center 25%; {
-  width: 260px;
-  height: 260px;
-  border-radius: 50%;
-  background: linear-gradient(135deg,#2563eb,#0f2748);
-  border: 5px solid #60a5fa;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 75px;
-  font-weight: bold;
-  color: white;
-  box-shadow: 0 0 50px #2563eb55;
-  flex-shrink: 0;
 }
 
 section {
   padding: 85px 10%;
 }
 
-.section-title {
+.title {
   text-align: center;
+  color: #93c5fd;
   font-size: 35px;
   margin-bottom: 40px;
-  color: #93c5fd;
 }
 
 .about {
@@ -161,9 +155,9 @@ section {
 
 .card {
   background: var(--card);
-  padding: 27px;
-  border-radius: 17px;
+  padding: 28px;
   border: 1px solid #244366;
+  border-radius: 17px;
   transition: .3s;
 }
 
@@ -185,15 +179,15 @@ section {
   display: inline-block;
   background: #19385e;
   color: #bfdbfe;
-  padding: 9px 17px;
+  padding: 10px 20px;
   margin: 7px;
-  border-radius: 20px;
+  border-radius: 25px;
   border: 1px solid #315b8c;
 }
 
 .contact {
   text-align: center;
-  background: linear-gradient(180deg,#071426,#102b4d);
+  background: linear-gradient(#071426,#102b4d);
 }
 
 .contact p {
@@ -208,27 +202,25 @@ footer {
   border-top: 1px solid #203653;
 }
 
-@media(max-width:700px) {
+@media(max-width:750px) {
   nav {
     flex-direction: column;
     gap: 12px;
   }
 
   nav a {
-    margin: 0 7px;
+    margin: 0 6px;
     font-size: 12px;
   }
 
   .hero {
     flex-direction: column-reverse;
     text-align: center;
-    padding: 65px 7%;
   }
 
   .avatar {
-    width: 180px;
-    height: 180px;
-    font-size: 55px;
+    width: 210px;
+    height: 210px;
   }
 
   section {
@@ -254,21 +246,21 @@ footer {
 
 <header class="hero" id="home">
   <div class="hero-content">
-    <div class="tag">Welcome to my portfolio</div>
+    <div class="tag">WELCOME TO MY PORTFOLIO</div>
     <h1>Hello, I'm <span>Jovan Mugdho</span></h1>
     <p>
       B.Tech Computer Science Student at Andhra University.
       Passionate about Technology, Programming and Artificial Intelligence.
     </p>
     <a href="#about" class="btn">Discover More</a>
-    <a href="#contact" class="btn btn-outline">Contact Me</a>
+    <a href="#contact" class="btn outline">Contact Me</a>
   </div>
 
- <img class="avatar" src="profile.jpeg" alt="Jovan Mugdho">
+  <img class="avatar" src="profile.jpeg" alt="Jovan Mugdho">
 </header>
 
 <section id="about">
-  <h2 class="section-title">About Me</h2>
+  <h2 class="title">About Me</h2>
   <div class="about">
     <p>
       Hello! I'm Jovan Mugdho, a Computer Science and Engineering
@@ -285,19 +277,19 @@ footer {
 </section>
 
 <section id="education">
-  <h2 class="section-title">Education</h2>
+  <h2 class="title">Education</h2>
   <div class="grid">
     <div class="card">
-      <h3>B.Tech - CSE</h3>
+      <h3>B.Tech - Computer Science</h3>
       <p>Andhra University</p>
       <p>Visakhapatnam, India</p>
-      <p>Currently pursuing</p>
+      <p>Currently Pursuing</p>
     </div>
   </div>
 </section>
 
 <section id="skills">
-  <h2 class="section-title">My Skills</h2>
+  <h2 class="title">My Skills</h2>
   <div style="text-align:center">
     <span class="skill">C Programming</span>
     <span class="skill">Java</span>
@@ -310,33 +302,31 @@ footer {
 </section>
 
 <section id="projects">
-  <h2 class="section-title">My Projects</h2>
+  <h2 class="title">My Projects</h2>
   <div class="grid">
     <div class="card">
       <h3>Personal Portfolio</h3>
-      <p>A personal website to introduce myself, showcase my interests and share my work.</p>
+      <p>A personal website to introduce myself and showcase my work.</p>
     </div>
 
     <div class="card">
       <h3>Upcoming Projects</h3>
-      <p>Exploring new ideas in programming, Artificial Intelligence and Web Development.</p>
+      <p>Exploring ideas in Artificial Intelligence and Web Development.</p>
     </div>
   </div>
 </section>
 
-<section id="interests">
-  <h2 class="section-title">My Interests</h2>
+<section>
+  <h2 class="title">My Interests</h2>
   <div class="grid">
     <div class="card">
       <h3>Artificial Intelligence</h3>
       <p>Exploring intelligent technologies and the future of AI.</p>
     </div>
-
     <div class="card">
       <h3>Technology</h3>
-      <p>Learning about new technologies and digital innovation.</p>
+      <p>Learning new technologies and digital innovation.</p>
     </div>
-
     <div class="card">
       <h3>Music</h3>
       <p>Enjoying music and expressing creativity through it.</p>
@@ -345,11 +335,11 @@ footer {
 </section>
 
 <section class="contact" id="contact">
-  <h2 class="section-title">Let's Connect</h2>
+  <h2 class="title">Let's Connect</h2>
   <p>Have an idea or want to connect? Feel free to reach out.</p>
   <a href="mailto:YOUR_EMAIL@gmail.com" class="btn">Email Me</a>
   <a href="https://github.com/jovanmugdho-stack"
-     target="_blank" class="btn btn-outline">GitHub</a>
+     target="_blank" class="btn outline">GitHub</a>
 </section>
 
 <footer>
