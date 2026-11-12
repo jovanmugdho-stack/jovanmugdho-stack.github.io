@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jovan Mugdho | Portfolio</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,sans-serif;background:#f0f9ff;color:#17324d;line-height:1.7}
+header{padding:20px 8%;display:flex;justify-content:space-between;align-items:center;background:white;position:sticky;top:0}
+.logo{font-size:25px;font-weight:bold;color:#168bc5}
+nav a{margin-left:22px;text-decoration:none;color:#31536b}
+.hero{padding:100px 9%;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;background:linear-gradient(130deg,#dff4ff,#f0f9ff)}
+.hero h1{font-size:clamp(40px,6vw,65px);line-height:1.15;margin:15px 0}
+.hero h1 span{color:#159bd5}
+.hero p{max-width:550px;color:#58748a;font-size:18px}
+.btn{display:inline-block;background:#159bd5;color:white;padding:12px 23px;border-radius:30px;text-decoration:none;margin-top:15px}
+.avatar{width:230px;height:230px;border-radius:50%;background:#bceaff;display:grid;place-items:center;font-size:90px;color:#168bc5;border:8px solid white}
+section{padding:75px 9%}
+h2{font-size:35px;color:#168bc5}
+.card{background:white;padding:25px;border-radius:18px;box-shadow:0 8px 25px #b6d9e833}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px}
+.card h3{margin-top:0}
+.card p{color:#627d91}
+.skills span{display:inline-block;background:#d9f2ff;color:#167eaf;padding:9px 15px;border-radius:20px;margin:6px}
+.contact{background:#dff4ff}
+footer{text-align:center;padding:25px;background:#173d5c;color:white}
+a:hover{opacity:.8}
+@media(max-width:600px){
+header{padding:15px;flex-wrap:wrap}
+nav{width:100%;margin-top:12px}
+nav a{margin:0 12px 0 0;font-size:14px}
+.hero{padding:65px 7%}
+section{padding:55px 7%}
+.avatar{width:170px;height:170px;font-size:65px}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">Jovan Mugdho.</div>
+<nav>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<div class="hero">
+<div>
+<p>HELLO, WELCOME TO MY PORTFOLIO</p>
+<h1>Hi, I'm Jovan<br><span>Mugdho.</span></h1>
+<p>Computer Science student at Andhra University. Interested in AI, software development, technology and creative ideas.</p>
+<a class="btn" href="#projects">Explore My Work</a>
+</div>
+<div class="avatar">JM</div>
+</div>
+
+<section id="about">
+<h2>About Me</h2>
+<div class="card">
+<p>I'm Jovan Mugdho, a B.Tech Computer Science and Engineering student at Andhra University, Visakhapatnam.</p>
+<p>I enjoy learning programming, exploring Artificial Intelligence and building useful digital projects. My goal is to use technology to solve real-world problems, especially challenges like flooding in Bangladesh.</p>
+<p>Outside technology, I enjoy playing guitar, music, photography and travelling.</p>
+</div>
+</section>
+
+<section id="skills">
+<h2>My Skills & Interests</h2>
+<div class="card skills">
+<span>C Programming</span>
+<span>Java</span>
+<span>HTML & CSS</span>
+<span>Web Development</span>
+<span>Artificial Intelligence</span>
+<span>Creative Thinking</span>
+</div>
+</section>
+
+<section id="projects">
+<h2>My Projects</h2>
+<div class="grid">
+<div class="card"><h3>Music Website</h3><p>A creative website for music and musical interests.</p></div>
+<div class="card"><h3>Travel Journal</h3><p>A collection of travel photographs and memories.</p></div>
+<div class="card"><h3>AI for Flood Awareness</h3><p>An idea exploring how AI can support flood awareness in Bangladesh.</p></div>
+</div>
+</section>
+
+<section id="contact" class="contact">
+<h2>Let's Connect</h2>
+<div class="card">
+<p>Have an idea or want to collaborate? Feel free to connect.</p>
+<p>GitHub: <a href="https://github.com/jovanmugdho-stack">jovanmugdho-stack</a></p>
+<p>Email: Add your email address here.</p>
+</div>
+</section>
+
+<footer>© 2026 Jovan Mugdho | All Rights Reserved</footer>
+</body>
+</html>
