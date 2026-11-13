@@ -4,7 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <meta name="description" content="Personal portfolio of Jovan Mugdho, a Computer Science and Engineering student interested in technology and AI.">
+
   <title>Jovan Mugdho | Portfolio</title>
 
   <style>
@@ -89,7 +91,7 @@
       color: var(--light-blue);
     }
 
-    /* Hero section */
+    /* Hero */
 
     .hero {
       min-height: 88vh;
@@ -167,19 +169,17 @@
       height: 280px;
       border-radius: 50%;
       object-fit: cover;
-
-      /* Face positioning */
       object-position: center 20%;
-
       border: 8px solid #0b1d37;
       outline: 3px solid var(--blue);
       box-shadow: 0 0 45px rgba(59, 130, 246, 0.3);
     }
 
-    /* Common sections */
+    /* Common Sections */
 
     section {
       padding: 85px 0;
+      scroll-margin-top: 80px;
     }
 
     .section-title {
@@ -272,25 +272,50 @@
 
     .interest-card {
       text-align: center;
-      padding: 30px 15px;
+      padding: 30px 20px;
       background: var(--surface);
       border-radius: 12px;
       border: 1px solid rgba(255,255,255,0.07);
+      transition: 0.3s;
+    }
+
+    .interest-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--blue);
+      background: var(--surface-light);
     }
 
     .interest-card .symbol {
-      font-size: 32px;
+      font-size: 38px;
       margin-bottom: 12px;
     }
 
     .interest-card h3 {
       color: var(--light-blue);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .interest-card p {
       color: var(--muted);
       font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .music-button {
+      display: inline-block;
+      background: transparent;
+      border: 1px solid var(--blue);
+      color: var(--light-blue);
+      padding: 9px 17px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .music-button:hover {
+      background: var(--blue);
+      color: white;
     }
 
     /* Contact */
@@ -314,9 +339,10 @@
       font-size: 13px;
     }
 
-    /* Mobile responsive */
+    /* Mobile Responsive */
 
     @media (max-width: 768px) {
+
       nav {
         flex-direction: column;
         padding: 15px 0;
@@ -358,6 +384,7 @@
     }
 
     @media (max-width: 400px) {
+
       .nav-links {
         gap: 10px;
       }
@@ -375,15 +402,20 @@
         margin-left: 5px;
       }
     }
+
   </style>
 </head>
 
 <body>
 
   <!-- Navigation -->
+
   <header>
     <nav class="container">
-      <a href="#home" class="logo">Jovan<span>.</span></a>
+
+      <a href="#home" class="logo">
+        Jovan<span>.</span>
+      </a>
 
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
@@ -391,16 +423,21 @@
         <li><a href="#education">Education</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#interests">My Interests</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
+
     </nav>
   </header>
 
-  <!-- Home -->
   <main>
+
+    <!-- Home -->
+
     <section class="hero container" id="home">
 
       <div class="hero-content">
+
         <p class="welcome">Welcome to my portfolio</p>
 
         <h1>
@@ -417,26 +454,41 @@
         </p>
 
         <a href="#about" class="button">Explore More</a>
-        <a href="#contact" class="button button-outline">Contact Me</a>
+
+        <a href="#contact" class="button button-outline">
+          Contact Me
+        </a>
+
       </div>
 
       <div class="profile-area">
+
         <img
           class="avatar"
           src="Dp2.png"
           alt="Jovan Mugdho"
         >
+
       </div>
 
     </section>
 
     <!-- About -->
+
     <section id="about">
+
       <div class="container">
-        <h2 class="section-title">About <span>Me</span></h2>
-        <p class="section-subtitle">A little introduction</p>
+
+        <h2 class="section-title">
+          About <span>Me</span>
+        </h2>
+
+        <p class="section-subtitle">
+          A little introduction
+        </p>
 
         <div class="about-content">
+
           <p>
             Hello! I am Jovan Mugdho, a Computer Science and
             Engineering student at Andhra University.
@@ -450,41 +502,71 @@
             I believe in continuous learning and improving
             myself through new experiences.
           </p>
+
         </div>
+
       </div>
+
     </section>
 
     <!-- Education -->
+
     <section id="education">
+
       <div class="container">
-        <h2 class="section-title">My <span>Education</span></h2>
-        <p class="section-subtitle">My academic journey</p>
+
+        <h2 class="section-title">
+          My <span>Education</span>
+        </h2>
+
+        <p class="section-subtitle">
+          My academic journey
+        </p>
 
         <div class="card-grid">
 
           <div class="card">
+
             <h3>B.Tech in Computer Science & Engineering</h3>
+
             <p>Andhra University</p>
+
             <p>Currently pursuing my undergraduate degree.</p>
+
           </div>
 
           <div class="card">
+
             <h3>Higher Secondary Education</h3>
+
             <p>Science Background</p>
+
             <p>Completed higher secondary education in Bangladesh.</p>
+
           </div>
 
         </div>
+
       </div>
+
     </section>
 
     <!-- Skills -->
+
     <section id="skills">
+
       <div class="container">
-        <h2 class="section-title">My <span>Skills</span></h2>
-        <p class="section-subtitle">Things I am learning and exploring</p>
+
+        <h2 class="section-title">
+          My <span>Skills</span>
+        </h2>
+
+        <p class="section-subtitle">
+          Things I am learning and exploring
+        </p>
 
         <div class="skills">
+
           <span class="skill">C Programming</span>
           <span class="skill">HTML</span>
           <span class="skill">CSS</span>
@@ -492,97 +574,175 @@
           <span class="skill">Python</span>
           <span class="skill">Problem Solving</span>
           <span class="skill">Web Development</span>
+
         </div>
+
       </div>
+
     </section>
 
     <!-- Projects -->
+
     <section id="projects">
+
       <div class="container">
-        <h2 class="section-title">My <span>Projects</span></h2>
-        <p class="section-subtitle">Some of my work and ideas</p>
+
+        <h2 class="section-title">
+          My <span>Projects</span>
+        </h2>
+
+        <p class="section-subtitle">
+          Some of my work and ideas
+        </p>
 
         <div class="card-grid">
 
           <div class="card">
+
             <h3>Personal Portfolio Website</h3>
+
             <p>
               A personal website to introduce myself,
               showcase my interests and share my learning journey.
             </p>
+
           </div>
 
           <div class="card">
+
             <h3>Upcoming Projects</h3>
+
             <p>
               I am exploring programming and new technologies
               to build more interesting projects in the future.
             </p>
+
           </div>
 
         </div>
+
       </div>
+
     </section>
 
-    <!-- Interests -->
+    <!-- My Interests -->
+
     <section id="interests">
+
       <div class="container">
-        <h2 class="section-title">My <span>Interests</span></h2>
-        <p class="section-subtitle">What I love exploring</p>
+
+        <h2 class="section-title">
+          My <span>Interests</span>
+        </h2>
+
+        <p class="section-subtitle">
+          What I love exploring
+        </p>
 
         <div class="interest-grid">
 
+          <!-- Technology -->
+
           <div class="interest-card">
+
             <div class="symbol">💻</div>
+
             <h3>Technology</h3>
-            <p>Exploring new technologies and digital innovation.</p>
+
+            <p>
+              Exploring new technologies and digital innovation.
+            </p>
+
           </div>
 
+          <!-- Artificial Intelligence -->
+
           <div class="interest-card">
+
             <div class="symbol">🤖</div>
+
             <h3>Artificial Intelligence</h3>
-            <p>Learning about AI and its future possibilities.</p>
+
+            <p>
+              Learning about AI and its future possibilities.
+            </p>
+
           </div>
 
+          <!-- Music -->
+
           <div class="interest-card">
+
             <div class="symbol">🎸</div>
+
             <h3>Music</h3>
-            <p>Enjoying music, singing and playing guitar.</p>
+
+            <p>
+              Enjoying music, singing and playing guitar.
+              Music is one of my favourite interests.
+            </p>
+
+            <a
+              href="YOUR_MUSIC_WEBSITE_URL"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="music-button"
+            >
+              Visit My Music Website ↗
+            </a>
+
           </div>
 
         </div>
+
       </div>
+
     </section>
 
     <!-- Contact -->
+
     <section id="contact">
+
       <div class="container">
-        <h2 class="section-title">Contact <span>Me</span></h2>
-        <p class="section-subtitle">Let's connect</p>
+
+        <h2 class="section-title">
+          Contact <span>Me</span>
+        </h2>
+
+        <p class="section-subtitle">
+          Let's connect
+        </p>
 
         <div class="contact-content">
+
           <p>
             If you want to connect, discuss technology
             or share ideas, feel free to reach out.
           </p>
 
-          <!-- Replace this email with your own email -->
           <a
             href="mailto:YOUR_EMAIL@gmail.com"
             class="button"
           >
             Send Me an Email
           </a>
+
         </div>
+
       </div>
+
     </section>
 
   </main>
 
   <!-- Footer -->
+
   <footer>
+
     <p>© 2026 Jovan Mugdho. All Rights Reserved.</p>
+
     <p>Designed with passion and creativity.</p>
+
   </footer>
 
 </body>
