@@ -6,13 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Jovan Mugdho | Portfolio</title>
-
-<meta name="description" content="Official personal portfolio of Jovan Mugdho, CSE student at Andhra University, technology enthusiast and music lover.">
+<meta name="description" content="Jovan Mugdho - CSE student, technology enthusiast and music lover.">
 
 <style>
-
-/* ===== THEME COLORS ===== */
-
 :root {
     --bg: #071426;
     --card: #102440;
@@ -33,8 +29,6 @@ body.light {
     --border: #dce5ef;
 }
 
-/* ===== GLOBAL ===== */
-
 * {
     margin: 0;
     padding: 0;
@@ -47,10 +41,10 @@ body {
     color: var(--text);
     font-family: Arial, sans-serif;
     line-height: 1.7;
-    transition: background .3s, color .3s;
+    transition: .3s;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 
 header {
     position: sticky;
@@ -88,8 +82,6 @@ nav a:hover {
     color: var(--accent);
 }
 
-/* ===== THEME BUTTON ===== */
-
 #themeBtn {
     background: var(--card);
     border: 1px solid var(--border);
@@ -100,11 +92,13 @@ nav a:hover {
     font-size: 18px;
 }
 
-/* ===== HERO SECTION ===== */
+/* SECTIONS */
 
 section {
     padding: 85px 10%;
 }
+
+/* HERO */
 
 .hero {
     min-height: 88vh;
@@ -141,7 +135,7 @@ section {
     font-weight: bold;
 }
 
-/* ===== ANIMATED PROFILE BORDER ===== */
+/* PROFILE BORDER - THIN STATIC GLOW */
 
 .profile-wrapper {
     position: relative;
@@ -152,38 +146,11 @@ section {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    isolation: isolate;
-}
-
-.profile-wrapper::before {
-    content: "";
-    position: absolute;
-    inset: -5px;
-    border-radius: 50%;
-    background: conic-gradient(
-        from 0deg,
-        transparent 0deg,
-        #38bdf8 70deg,
-        #ffffff 110deg,
-        #087bff 180deg,
-        transparent 250deg,
-        #38bdf8 320deg,
-        transparent 360deg
-    );
-    animation: rotateBorder 3s linear infinite;
-    z-index: -1;
-}
-
-.profile-wrapper::after {
-    content: "";
-    position: absolute;
-    inset: -5px;
-    border-radius: 50%;
-    background: #38bdf8;
-    filter: blur(20px);
-    opacity: .25;
-    z-index: -2;
-    animation: glow 3s ease-in-out infinite alternate;
+    border: 2px solid #38bdf8;
+    box-shadow:
+        0 0 7px #38bdf8,
+        0 0 16px #38bdf855;
+    animation: softGlow 2.5s ease-in-out infinite alternate;
 }
 
 .profile {
@@ -191,21 +158,24 @@ section {
     height: 286px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid var(--bg);
     display: block;
+    border: 2px solid var(--bg);
 }
 
-@keyframes rotateBorder {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+@keyframes softGlow {
+    from {
+        box-shadow:
+            0 0 5px #38bdf8,
+            0 0 10px #38bdf833;
+    }
+    to {
+        box-shadow:
+            0 0 10px #38bdf8,
+            0 0 23px #38bdf877;
+    }
 }
 
-@keyframes glow {
-    from { opacity: .15; }
-    to { opacity: .55; }
-}
-
-/* ===== BUTTONS ===== */
+/* BUTTONS */
 
 .btn {
     display: inline-block;
@@ -224,7 +194,7 @@ section {
     box-shadow: 0 0 20px #38bdf877;
 }
 
-/* ===== SECTION HEADINGS ===== */
+/* HEADINGS */
 
 .section-title {
     text-align: center;
@@ -236,7 +206,7 @@ section {
     color: var(--accent);
 }
 
-/* ===== ABOUT ===== */
+/* ABOUT */
 
 .about-text {
     max-width: 850px;
@@ -246,7 +216,7 @@ section {
     font-size: 17px;
 }
 
-/* ===== CARDS ===== */
+/* CARDS */
 
 .card-container {
     display: grid;
@@ -278,7 +248,7 @@ section {
     color: var(--muted);
 }
 
-/* ===== SKILLS ===== */
+/* SKILLS */
 
 .skills {
     display: flex;
@@ -302,7 +272,7 @@ section {
     transform: translateY(-4px);
 }
 
-/* ===== MUSIC ===== */
+/* MUSIC */
 
 .music-card {
     text-align: center;
@@ -315,25 +285,32 @@ section {
     margin-bottom: 15px;
 }
 
-/* ===== CONTACT ===== */
+/* CONTACT */
 
 .contact {
     text-align: center;
 }
 
-.email-link {
+.contact-details {
+    margin: 25px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.contact-details a {
     color: var(--accent);
     text-decoration: none;
-    font-size: 18px;
-    display: inline-block;
-    margin: 15px 0;
+    font-size: 17px;
+    transition: .3s;
 }
 
-.email-link:hover {
-    text-decoration: underline;
+.contact-details a:hover {
+    text-shadow: 0 0 12px var(--accent);
 }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 
 footer {
     text-align: center;
@@ -343,7 +320,7 @@ footer {
     border-top: 1px solid var(--border);
 }
 
-/* ===== TAP GLOW ===== */
+/* TAP GLOW */
 
 a, button {
     -webkit-tap-highlight-color: transparent;
@@ -355,6 +332,8 @@ a:active, button:active {
     box-shadow: 0 0 18px #38bdf899;
     filter: brightness(1.2);
 }
+
+/* RIPPLE */
 
 .tap-ripple {
     position: fixed;
@@ -376,10 +355,9 @@ a:active, button:active {
     }
 }
 
-/* ===== MOBILE ===== */
+/* MOBILE */
 
 @media(max-width: 800px) {
-
     header {
         padding: 13px 5%;
     }
@@ -418,18 +396,15 @@ a:active, button:active {
     .hero h1 {
         font-size: 42px;
     }
-
 }
 
-@media(prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
+/* REDUCED MOTION */
 
-    .profile-wrapper::before,
-    .profile-wrapper::after,
-    .tap-ripple {
-        animation: none;
+@media(prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
     }
 }
 
@@ -441,7 +416,6 @@ a:active, button:active {
 <!-- HEADER -->
 
 <header>
-
     <div class="logo">JOVAN.</div>
 
     <nav>
@@ -453,11 +427,8 @@ a:active, button:active {
         <a href="#music">Music</a>
         <a href="#contact">Contact</a>
 
-        <button id="themeBtn" onclick="toggleTheme()">
-            ☀️
-        </button>
+        <button id="themeBtn" onclick="toggleTheme()">☀️</button>
     </nav>
-
 </header>
 
 <!-- HOME -->
@@ -465,35 +436,24 @@ a:active, button:active {
 <section class="hero" id="home">
 
     <div class="hero-content">
-
         <p class="intro">HELLO, WELCOME TO MY PORTFOLIO</p>
 
-        <h1>
-            I'm <span>Jovan Mugdho</span>
-        </h1>
+        <h1>I'm <span>Jovan Mugdho</span></h1>
 
         <p>
             A Computer Science Engineering student,
             technology enthusiast and music lover.
-
-            Exploring technology, creativity and
-            new possibilities.
+            Exploring technology, creativity and new possibilities.
         </p>
 
         <a href="#about" class="btn">Explore More</a>
-
         <a href="#contact" class="btn">Contact Me</a>
-
     </div>
 
-    <!-- PROFILE PHOTO -->
-
     <div class="profile-wrapper">
-
         <img src="Dp2.png"
              alt="Jovan Mugdho"
              class="profile">
-
     </div>
 
 </section>
@@ -501,13 +461,9 @@ a:active, button:active {
 <!-- ABOUT -->
 
 <section id="about">
-
-    <h2 class="section-title">
-        About <span>Me</span>
-    </h2>
+    <h2 class="section-title">About <span>Me</span></h2>
 
     <div class="about-text">
-
         <p>
             Hello! I'm Jovan Mugdho, a Computer Science
             Engineering student at Andhra University.
@@ -520,21 +476,15 @@ a:active, button:active {
             innovative ideas and developing my skills
             to build something meaningful.
         </p>
-
     </div>
-
 </section>
 
 <!-- EDUCATION -->
 
 <section id="education">
-
-    <h2 class="section-title">
-        My <span>Education</span>
-    </h2>
+    <h2 class="section-title">My <span>Education</span></h2>
 
     <div class="card-container">
-
         <div class="card">
             <h3>🎓 University</h3>
             <p>Andhra University</p>
@@ -549,42 +499,30 @@ a:active, button:active {
                 Artificial Intelligence and Technology.
             </p>
         </div>
-
     </div>
-
 </section>
 
 <!-- SKILLS -->
 
 <section id="skills">
-
-    <h2 class="section-title">
-        My <span>Skills</span>
-    </h2>
+    <h2 class="section-title">My <span>Skills</span></h2>
 
     <div class="skills">
-
         <div class="skill">HTML</div>
         <div class="skill">CSS</div>
         <div class="skill">C Programming</div>
         <div class="skill">Python (Learning)</div>
         <div class="skill">Web Development</div>
         <div class="skill">Problem Solving</div>
-
     </div>
-
 </section>
 
 <!-- INTERESTS -->
 
 <section id="interests">
-
-    <h2 class="section-title">
-        My <span>Interests</span>
-    </h2>
+    <h2 class="section-title">My <span>Interests</span></h2>
 
     <div class="card-container">
-
         <div class="card">
             <h3>💻 Technology</h3>
             <p>
@@ -617,21 +555,15 @@ a:active, button:active {
                 creative digital experiences.
             </p>
         </div>
-
     </div>
-
 </section>
 
 <!-- MUSIC COLLECTION -->
 
 <section id="music">
-
-    <h2 class="section-title">
-        My Music <span>Collection</span>
-    </h2>
+    <h2 class="section-title">My Music <span>Collection</span></h2>
 
     <div class="card music-card">
-
         <div class="music-icon">🎧</div>
 
         <h3>JOVAN'S MUSICA</h3>
@@ -650,50 +582,47 @@ a:active, button:active {
            class="btn">
             Explore My Music Website →
         </a>
-
     </div>
-
 </section>
 
 <!-- CONTACT -->
 
 <section id="contact">
-
-    <h2 class="section-title">
-        Get In <span>Touch</span>
-    </h2>
+    <h2 class="section-title">Get In <span>Touch</span></h2>
 
     <div class="contact">
-
         <p style="color:var(--muted)">
             Thank you for visiting my personal portfolio.
             Feel free to connect with me.
         </p>
 
-        <a class="email-link"
-           href="mailto:jovanmugdho@gmail.com">
-            ✉ jovanmugdho@gmail.com
-        </a>
+        <div class="contact-details">
 
-        <br>
+            <a href="mailto:jovanmugdho@gmail.com">
+                ✉️ jovanmugdho@gmail.com
+            </a>
 
-        <a href="mailto:jovanmugdho@gmail.com"
-           class="btn">
+            <a href="tel:+916302893745">
+                📞 +91 63028 93745
+            </a>
+
+        </div>
+
+        <a href="mailto:jovanmugdho@gmail.com" class="btn">
             Email Me
         </a>
 
+        <a href="tel:+916302893745" class="btn">
+            Call Me
+        </a>
     </div>
-
 </section>
 
 <!-- FOOTER -->
 
 <footer>
-
     <p>© 2026 Jovan Mugdho. All Rights Reserved.</p>
-
     <p>Designed with ❤️ by Jovan Mugdho</p>
-
 </footer>
 
 <!-- JAVASCRIPT -->
@@ -703,7 +632,6 @@ a:active, button:active {
 /* DARK / LIGHT MODE */
 
 function toggleTheme() {
-
     document.body.classList.toggle("light");
 
     const isLight =
@@ -716,7 +644,6 @@ function toggleTheme() {
         "portfolioTheme",
         isLight ? "light" : "dark"
     );
-
 }
 
 /* SAVE THEME */
@@ -725,14 +652,11 @@ const savedTheme =
     localStorage.getItem("portfolioTheme");
 
 if (savedTheme === "light") {
-
     document.body.classList.add("light");
-
     document.getElementById("themeBtn").innerHTML = "🌙";
-
 }
 
-/* TAP GLOW RIPPLE */
+/* TAP RIPPLE EFFECT */
 
 document.addEventListener("pointerdown", function(e) {
 
@@ -743,7 +667,6 @@ document.addEventListener("pointerdown", function(e) {
     const ripple = document.createElement("span");
 
     ripple.className = "tap-ripple";
-
     ripple.style.left = e.clientX + "px";
     ripple.style.top = e.clientY + "px";
 
