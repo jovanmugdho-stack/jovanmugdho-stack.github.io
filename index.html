@@ -5,407 +5,215 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Jovan Mugdho | Portfolio</title>
-<meta name="description" content="Jovan Mugdho - CSE student, technology enthusiast and music lover.">
+<title>Jovans 9:16 Video Converter</title>
 
 <style>
 :root {
-    --bg: #071426;
-    --card: #102440;
-    --text: #ffffff;
-    --muted: #a8b8cc;
-    --accent: #38bdf8;
-    --nav: #0a1c32;
-    --border: #243b59;
-}
-
-body.light {
-    --bg: #f1f5fb;
-    --card: #ffffff;
-    --text: #102440;
-    --muted: #53657b;
-    --accent: #087db5;
-    --nav: #ffffff;
-    --border: #dce5ef;
+  --orange: #ff7518;
+  --black: #090909;
+  --panel: #171717;
+  --ash: #999999;
+  --white: #ffffff;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
+  box-sizing: border-box;
 }
 
 body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: Arial, sans-serif;
-    line-height: 1.7;
-    transition: .3s;
+  margin: 0;
+  padding: 20px;
+  background: var(--black);
+  color: var(--white);
+  font-family: Arial, sans-serif;
 }
 
-/* HEADER */
+.container {
+  max-width: 520px;
+  margin: 20px auto;
+  background: var(--panel);
+  border: 1px solid #383838;
+  border-radius: 20px;
+  padding: 22px;
+}
 
 header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--nav);
-    border-bottom: 1px solid var(--border);
-    padding: 15px 8%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  text-align: center;
+  margin-bottom: 25px;
 }
 
 .logo {
-    font-size: 25px;
-    font-weight: bold;
-    color: var(--accent);
-    letter-spacing: 2px;
+  color: var(--orange);
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
-nav {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+.subtitle {
+  color: var(--ash);
+  font-size: 12px;
+  margin-top: 8px;
+  letter-spacing: 2px;
 }
-
-nav a {
-    color: var(--text);
-    text-decoration: none;
-    font-size: 14px;
-    transition: .3s;
-}
-
-nav a:hover {
-    color: var(--accent);
-}
-
-#themeBtn {
-    background: var(--card);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 9px 13px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-/* SECTIONS */
-
-section {
-    padding: 85px 10%;
-}
-
-/* HERO */
-
-.hero {
-    min-height: 88vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 50px;
-}
-
-.hero-content {
-    max-width: 650px;
-}
-
-.hero h1 {
-    font-size: clamp(38px, 6vw, 65px);
-    line-height: 1.2;
-    margin: 15px 0;
-}
-
-.hero h1 span {
-    color: var(--accent);
-}
-
-.hero p {
-    color: var(--muted);
-    font-size: 17px;
-    margin-bottom: 20px;
-}
-
-.intro {
-    color: var(--accent) !important;
-    letter-spacing: 3px;
-    font-size: 13px !important;
-    font-weight: bold;
-}
-
-/* PROFILE BORDER - THIN STATIC GLOW */
-
-.profile-wrapper {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    min-width: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 2px solid #38bdf8;
-    box-shadow:
-        0 0 7px #38bdf8,
-        0 0 16px #38bdf855;
-    animation: softGlow 2.5s ease-in-out infinite alternate;
-}
-
-.profile {
-    width: 286px;
-    height: 286px;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block;
-    border: 2px solid var(--bg);
-}
-
-@keyframes softGlow {
-    from {
-        box-shadow:
-            0 0 5px #38bdf8,
-            0 0 10px #38bdf833;
-    }
-    to {
-        box-shadow:
-            0 0 10px #38bdf8,
-            0 0 23px #38bdf877;
-    }
-}
-
-/* BUTTONS */
-
-.btn {
-    display: inline-block;
-    padding: 12px 25px;
-    background: var(--accent);
-    color: #071426;
-    text-decoration: none;
-    border-radius: 7px;
-    font-weight: bold;
-    margin: 5px;
-    transition: .3s;
-}
-
-.btn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 0 20px #38bdf877;
-}
-
-/* HEADINGS */
 
 .section-title {
-    text-align: center;
-    font-size: 35px;
-    margin-bottom: 40px;
+  font-size: 14px;
+  margin: 20px 0 10px;
+  color: var(--white);
 }
 
-.section-title span {
-    color: var(--accent);
+.upload {
+  border: 2px dashed var(--orange);
+  padding: 28px 12px;
+  text-align: center;
+  border-radius: 14px;
+  cursor: pointer;
+  background: #202020;
 }
 
-/* ABOUT */
-
-.about-text {
-    max-width: 850px;
-    margin: auto;
-    text-align: center;
-    color: var(--muted);
-    font-size: 17px;
+.upload-icon {
+  font-size: 38px;
+  color: var(--orange);
 }
 
-/* CARDS */
-
-.card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 22px;
+.upload p {
+  color: var(--ash);
+  font-size: 13px;
 }
 
-.card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 28px;
-    transition: .3s;
+input[type=file] {
+  display: none;
 }
 
-.card:hover {
-    transform: translateY(-6px);
-    border-color: var(--accent);
-    box-shadow: 0 0 22px #38bdf822;
+.preview {
+  width: 100%;
+  max-width: 270px;
+  margin: 20px auto;
+  background: #000;
+  border: 1px solid #555;
+  border-radius: 12px;
+  overflow: hidden;
+  display: none;
 }
 
-.card h3 {
-    color: var(--accent);
-    margin-bottom: 12px;
-    font-size: 21px;
+canvas {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-.card p {
-    color: var(--muted);
+.details {
+  background: #222;
+  padding: 14px;
+  border-radius: 12px;
+  margin-top: 15px;
+  display: none;
 }
 
-/* SKILLS */
-
-.skills {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
+.details p {
+  font-size: 13px;
+  color: #bbb;
+  margin: 8px 0;
+  overflow-wrap: anywhere;
 }
 
-.skill {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 12px 25px;
-    border-radius: 25px;
-    color: var(--accent);
-    transition: .3s;
+.details span {
+  color: var(--orange);
 }
 
-.skill:hover {
-    background: var(--accent);
-    color: #071426;
-    transform: translateY(-4px);
+.settings {
+  background: #222;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 15px;
 }
 
-/* MUSIC */
-
-.music-card {
-    text-align: center;
-    max-width: 600px;
-    margin: auto;
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-size: 13px;
+  border-bottom: 1px solid #444;
 }
 
-.music-icon {
-    font-size: 55px;
-    margin-bottom: 15px;
+.setting-row:last-child {
+  border: none;
 }
 
-/* CONTACT */
-
-.contact {
-    text-align: center;
+.setting-row strong {
+  color: var(--orange);
 }
 
-.contact-details {
-    margin: 25px auto;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
+button {
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 15px;
+  font-size: 14px;
 }
 
-.contact-details a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 17px;
-    transition: .3s;
+.convert-btn {
+  background: var(--orange);
+  color: #090909;
+  width: 100%;
+  margin-top: 20px;
 }
 
-.contact-details a:hover {
-    text-shadow: 0 0 12px var(--accent);
+.convert-btn:disabled {
+  opacity: .5;
+  cursor: not-allowed;
 }
 
-/* FOOTER */
+.download-btn {
+  display: none;
+  background: #333;
+  color: var(--orange);
+  border: 1px solid var(--orange);
+  width: 100%;
+  margin-top: 12px;
+}
+
+.progress {
+  display: none;
+  margin-top: 20px;
+}
+
+.progress-bar {
+  background: #444;
+  height: 9px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  width: 0%;
+  height: 100%;
+  background: var(--orange);
+}
+
+.progress-text {
+  text-align: center;
+  color: var(--orange);
+  font-size: 13px;
+  margin: 10px;
+}
+
+.notice {
+  background: #252525;
+  color: #aaa;
+  font-size: 12px;
+  padding: 14px;
+  border-radius: 10px;
+  line-height: 1.7;
+  margin-top: 20px;
+}
 
 footer {
-    text-align: center;
-    padding: 25px;
-    background: var(--nav);
-    color: var(--muted);
-    border-top: 1px solid var(--border);
-}
-
-/* TAP GLOW */
-
-a, button {
-    -webkit-tap-highlight-color: transparent;
-    cursor: pointer;
-}
-
-a:active, button:active {
-    transform: scale(.96);
-    box-shadow: 0 0 18px #38bdf899;
-    filter: brightness(1.2);
-}
-
-/* RIPPLE */
-
-.tap-ripple {
-    position: fixed;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background: rgba(56,189,248,.35);
-    box-shadow: 0 0 15px #38bdf8;
-    transform: translate(-50%, -50%) scale(0);
-    animation: rippleGlow .65s ease-out forwards;
-    pointer-events: none;
-    z-index: 9999;
-}
-
-@keyframes rippleGlow {
-    to {
-        transform: translate(-50%, -50%) scale(9);
-        opacity: 0;
-    }
-}
-
-/* MOBILE */
-
-@media(max-width: 800px) {
-    header {
-        padding: 13px 5%;
-    }
-
-    nav {
-        gap: 10px;
-    }
-
-    nav a {
-        display: none;
-    }
-
-    section {
-        padding: 65px 7%;
-    }
-
-    .hero {
-        flex-direction: column-reverse;
-        text-align: center;
-        justify-content: center;
-        min-height: auto;
-        padding-top: 65px;
-    }
-
-    .profile-wrapper {
-        width: 230px;
-        height: 230px;
-        min-width: 230px;
-    }
-
-    .profile {
-        width: 216px;
-        height: 216px;
-    }
-
-    .hero h1 {
-        font-size: 42px;
-    }
-}
-
-/* REDUCED MOTION */
-
-@media(prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        scroll-behavior: auto !important;
-        animation: none !important;
-        transition: none !important;
-    }
+  text-align: center;
+  color: #777;
+  font-size: 11px;
+  margin-top: 25px;
 }
 
 </style>
@@ -413,268 +221,472 @@ a:active, button:active {
 
 <body>
 
-<!-- HEADER -->
+<div class="container">
 
 <header>
-    <div class="logo">JOVAN.</div>
-
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
-        <a href="#interests">Interests</a>
-        <a href="#music">Music</a>
-        <a href="#contact">Contact</a>
-
-        <button id="themeBtn" onclick="toggleTheme()">☀️</button>
-    </nav>
+  <div class="logo">JOVANS VIDEO CONVERTER</div>
+  <div class="subtitle">VERTICAL VIDEO CONVERTER</div>
 </header>
 
-<!-- HOME -->
+<div class="section-title">SELECT YOUR VIDEO</div>
 
-<section class="hero" id="home">
+<label class="upload" for="videoFile">
+  <div class="upload-icon">＋</div>
+  <strong>Upload Video</strong>
+  <p>Choose MP4, WebM or another browser-supported video</p>
+</label>
 
-    <div class="hero-content">
-        <p class="intro">HELLO, WELCOME TO MY PORTFOLIO</p>
+<input type="file" id="videoFile" accept="video/*">
 
-        <h1>I'm <span>Jovan Mugdho</span></h1>
+<div class="details" id="details">
+  <p>File: <span id="fileName">-</span></p>
+  <p>Original Resolution: <span id="originalSize">-</span></p>
+  <p>Duration: <span id="duration">-</span></p>
+</div>
 
-        <p>
-            A Computer Science Engineering student,
-            technology enthusiast and music lover.
-            Exploring technology, creativity and new possibilities.
-        </p>
+<div class="section-title">9:16 VIDEO PREVIEW</div>
 
-        <a href="#about" class="btn">Explore More</a>
-        <a href="#contact" class="btn">Contact Me</a>
-    </div>
+<div class="preview" id="preview">
+  <canvas id="canvas" width="720" height="1280"></canvas>
+</div>
 
-    <div class="profile-wrapper">
-        <img src="Dp2.png"
-             alt="Jovan Mugdho"
-             class="profile">
-    </div>
+<div class="settings">
 
-</section>
+  <div class="setting-row">
+    <span>Output Ratio</span>
+    <strong>9:16</strong>
+  </div>
 
-<!-- ABOUT -->
+  <div class="setting-row">
+    <span>Output Resolution</span>
+    <strong>720 × 1280</strong>
+  </div>
 
-<section id="about">
-    <h2 class="section-title">About <span>Me</span></h2>
+  <div class="setting-row">
+    <span>Video Position</span>
+    <strong>Center</strong>
+  </div>
 
-    <div class="about-text">
-        <p>
-            Hello! I'm Jovan Mugdho, a Computer Science
-            Engineering student at Andhra University.
+  <div class="setting-row">
+    <span>Crop Video</span>
+    <strong>OFF</strong>
+  </div>
 
-            I have a strong interest in technology,
-            programming, artificial intelligence and
-            creative digital experiences.
+  <div class="setting-row">
+    <span>Audio</span>
+    <strong>Preserve when supported</strong>
+  </div>
 
-            I enjoy learning new things, exploring
-            innovative ideas and developing my skills
-            to build something meaningful.
-        </p>
-    </div>
-</section>
+</div>
 
-<!-- EDUCATION -->
+<button class="convert-btn" id="convertBtn" disabled>
+  CONVERT TO 9:16
+</button>
 
-<section id="education">
-    <h2 class="section-title">My <span>Education</span></h2>
+<div class="progress" id="progress">
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+  <div class="progress-text" id="progressText">
+    Preparing video...
+  </div>
+</div>
 
-    <div class="card-container">
-        <div class="card">
-            <h3>🎓 University</h3>
-            <p>Andhra University</p>
-            <p>B.Tech in Computer Science Engineering</p>
-            <p>Currently Pursuing</p>
-        </div>
+<button class="download-btn" id="downloadBtn">
+  DOWNLOAD VIDEO
+</button>
 
-        <div class="card">
-            <h3>📚 Academic Interests</h3>
-            <p>
-                Computer Science, Programming,
-                Artificial Intelligence and Technology.
-            </p>
-        </div>
-    </div>
-</section>
-
-<!-- SKILLS -->
-
-<section id="skills">
-    <h2 class="section-title">My <span>Skills</span></h2>
-
-    <div class="skills">
-        <div class="skill">HTML</div>
-        <div class="skill">CSS</div>
-        <div class="skill">C Programming</div>
-        <div class="skill">Python (Learning)</div>
-        <div class="skill">Web Development</div>
-        <div class="skill">Problem Solving</div>
-    </div>
-</section>
-
-<!-- INTERESTS -->
-
-<section id="interests">
-    <h2 class="section-title">My <span>Interests</span></h2>
-
-    <div class="card-container">
-        <div class="card">
-            <h3>💻 Technology</h3>
-            <p>
-                Exploring modern technology,
-                software development and new innovations.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>🤖 Artificial Intelligence</h3>
-            <p>
-                Learning about AI, machine learning
-                and intelligent systems.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>🎵 Music</h3>
-            <p>
-                Music is one of my biggest interests.
-                I enjoy listening to different genres
-                and exploring beautiful melodies.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>🌐 Web Development</h3>
-            <p>
-                Creating websites and exploring
-                creative digital experiences.
-            </p>
-        </div>
-    </div>
-</section>
-
-<!-- MUSIC COLLECTION -->
-
-<section id="music">
-    <h2 class="section-title">My Music <span>Collection</span></h2>
-
-    <div class="card music-card">
-        <div class="music-icon">🎧</div>
-
-        <h3>JOVAN'S MUSICA</h3>
-
-        <p>
-            Discover my personal music collection.
-            A place where melodies, memories
-            and music come together.
-        </p>
-
-        <br>
-
-        <a href="https://jovanmugdho.wuaze.com"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="btn">
-            Explore My Music Website →
-        </a>
-    </div>
-</section>
-
-<!-- CONTACT -->
-
-<section id="contact">
-    <h2 class="section-title">Get In <span>Touch</span></h2>
-
-    <div class="contact">
-        <p style="color:var(--muted)">
-            Thank you for visiting my personal portfolio.
-            Feel free to connect with me.
-        </p>
-
-        <div class="contact-details">
-
-            <a href="mailto:jovanmugdho@gmail.com">
-                ✉️ jovanmugdho@gmail.com
-            </a>
-
-            <a href="tel:+916302893745">
-                📞 +91 63028 93745
-            </a>
-
-        </div>
-
-        <a href="mailto:jovanmugdho@gmail.com" class="btn">
-            Email Me
-        </a>
-
-        <a href="tel:+916302893745" class="btn">
-            Call Me
-        </a>
-    </div>
-</section>
-
-<!-- FOOTER -->
+<div class="notice">
+  <strong style="color:#ff7518">IMPORTANT</strong><br>
+  Your original video will not be cropped.
+  The complete video will be fitted in the center
+  of the 9:16 frame. Empty space will remain black.
+  Video conversion happens locally in your browser.
+</div>
 
 <footer>
-    <p>© 2026 Jovan Mugdho. All Rights Reserved.</p>
-    <p>Designed with ❤️ by Jovan Mugdho</p>
+  JOVANS VIDEO CONVERTER<br>
+  MADE FOR VERTICAL VIDEOS
 </footer>
 
-<!-- JAVASCRIPT -->
+</div>
+
+<video id="sourceVideo"
+  playsinline
+  preload="metadata"
+  style="display:none">
+</video>
 
 <script>
 
-/* DARK / LIGHT MODE */
+const fileInput = document.getElementById("videoFile");
+const video = document.getElementById("sourceVideo");
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 
-function toggleTheme() {
-    document.body.classList.toggle("light");
+const convertBtn = document.getElementById("convertBtn");
+const downloadBtn = document.getElementById("downloadBtn");
 
-    const isLight =
-        document.body.classList.contains("light");
+const details = document.getElementById("details");
+const preview = document.getElementById("preview");
 
-    document.getElementById("themeBtn").innerHTML =
-        isLight ? "🌙" : "☀️";
+const progress = document.getElementById("progress");
+const progressFill = document.getElementById("progressFill");
+const progressText = document.getElementById("progressText");
 
-    localStorage.setItem(
-        "portfolioTheme",
-        isLight ? "light" : "dark"
+let selectedFile = null;
+let recorder = null;
+let recordedChunks = [];
+let animationFrame = null;
+let outputURL = null;
+let isConverting = false;
+
+const WIDTH = 720;
+const HEIGHT = 1280;
+const FPS = 30;
+
+// Upload video
+
+fileInput.addEventListener("change", () => {
+
+  const file = fileInput.files[0];
+
+  if (!file) return;
+
+  if (!file.type.startsWith("video/")) {
+    alert("Please select a valid video file.");
+    return;
+  }
+
+  selectedFile = file;
+
+  if (outputURL) {
+    URL.revokeObjectURL(outputURL);
+    outputURL = null;
+  }
+
+  downloadBtn.style.display = "none";
+  convertBtn.disabled = true;
+
+  video.pause();
+
+  const oldURL = video.src;
+
+  if (oldURL) URL.revokeObjectURL(oldURL);
+
+  video.src = URL.createObjectURL(file);
+
+  document.getElementById("fileName").textContent =
+    file.name;
+
+  details.style.display = "block";
+  preview.style.display = "block";
+
+  video.load();
+
+});
+
+
+// When video loads
+
+video.addEventListener("loadedmetadata", () => {
+
+  if (!video.videoWidth || !video.videoHeight) {
+    alert("This video format cannot be read by your browser.");
+    return;
+  }
+
+  document.getElementById("originalSize").textContent =
+    video.videoWidth + " × " + video.videoHeight;
+
+  document.getElementById("duration").textContent =
+    formatTime(video.duration);
+
+  drawFrame();
+
+  convertBtn.disabled = false;
+
+});
+
+
+// Time format
+
+function formatTime(seconds) {
+
+  const min = Math.floor(seconds / 60);
+  const sec = Math.floor(seconds % 60);
+
+  return min + ":" + String(sec).padStart(2, "0");
+
+}
+
+
+// Core 9:16 fit function
+
+function drawFrame() {
+
+  ctx.fillStyle = "#000000";
+  ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+  if (!video.videoWidth || !video.videoHeight) return;
+
+  const sourceWidth = video.videoWidth;
+  const sourceHeight = video.videoHeight;
+
+  // CONTAIN: Entire video stays visible.
+  // Never crop any part of the original video.
+
+  const scale = Math.min(
+    WIDTH / sourceWidth,
+    HEIGHT / sourceHeight
+  );
+
+  const drawWidth = sourceWidth * scale;
+  const drawHeight = sourceHeight * scale;
+
+  // Center positioning
+
+  const x = (WIDTH - drawWidth) / 2;
+  const y = (HEIGHT - drawHeight) / 2;
+
+  ctx.drawImage(
+    video,
+    0, 0,
+    sourceWidth,
+    sourceHeight,
+    x, y,
+    drawWidth,
+    drawHeight
+  );
+
+}
+
+
+// Preview updates
+
+video.addEventListener("timeupdate", drawFrame);
+video.addEventListener("seeked", drawFrame);
+
+
+// Animation during conversion
+
+function renderLoop() {
+
+  if (!isConverting) return;
+
+  drawFrame();
+
+  animationFrame = requestAnimationFrame(renderLoop);
+
+}
+
+
+// Convert video
+
+convertBtn.addEventListener("click", async () => {
+
+  if (!selectedFile || isConverting) return;
+
+  const capture = video.captureStream ||
+                  video.mozCaptureStream;
+
+  if (!capture) {
+    alert(
+      "Your browser does not support video audio capture. Try a recent Chrome browser."
     );
+    return;
+  }
+
+  try {
+
+    isConverting = true;
+
+    convertBtn.disabled = true;
+    downloadBtn.style.display = "none";
+
+    progress.style.display = "block";
+    progressFill.style.width = "0%";
+    progressText.textContent = "Preparing conversion...";
+
+    video.pause();
+    video.currentTime = 0;
+
+    await new Promise(resolve => {
+      if (video.readyState >= 2) {
+        resolve();
+      } else {
+        video.addEventListener("loadeddata", resolve, {
+          once: true
+        });
+      }
+    });
+
+    drawFrame();
+
+    const canvasStream = canvas.captureStream(FPS);
+
+    // Capture original audio where supported
+
+    const sourceStream = capture.call(video);
+
+    const tracks = [
+      ...canvasStream.getVideoTracks(),
+      ...sourceStream.getAudioTracks()
+    ];
+
+    const finalStream = new MediaStream(tracks);
+
+    let mimeType = "";
+
+    const formats = [
+      "video/webm;codecs=vp9,opus",
+      "video/webm;codecs=vp8,opus",
+      "video/webm"
+    ];
+
+    for (const format of formats) {
+      if (MediaRecorder.isTypeSupported(format)) {
+        mimeType = format;
+        break;
+      }
+    }
+
+    if (!mimeType) {
+      throw new Error("WebM recording is not supported.");
+    }
+
+    recordedChunks = [];
+
+    recorder = new MediaRecorder(finalStream, {
+      mimeType: mimeType,
+      videoBitsPerSecond: 5000000
+    });
+
+    recorder.ondataavailable = event => {
+      if (event.data && event.data.size > 0) {
+        recordedChunks.push(event.data);
+      }
+    };
+
+    recorder.onerror = () => {
+      finishConversion();
+      alert("Recording failed. Please try another video.");
+    };
+
+    recorder.onstop = () => {
+
+      const blob = new Blob(recordedChunks, {
+        type: mimeType
+      });
+
+      if (outputURL) URL.revokeObjectURL(outputURL);
+
+      outputURL = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+
+      link.href = outputURL;
+      link.download = "jovans-vertical-video.webm";
+
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      downloadBtn.style.display = "block";
+      progressText.textContent = "Conversion completed!";
+
+      downloadBtn.onclick = () => {
+        const a = document.createElement("a");
+        a.href = outputURL;
+        a.download = "jovans-vertical-video.webm";
+        a.click();
+      };
+
+      finishConversion();
+    };
+
+    recorder.start(1000);
+
+    video.muted = false;
+
+    await video.play();
+
+    renderLoop();
+
+    progressText.textContent = "Converting video...";
+
+    const updateProgress = () => {
+
+      if (!isConverting) return;
+
+      const percentage =
+        (video.currentTime / video.duration) * 100;
+
+      progressFill.style.width =
+        Math.min(100, percentage) + "%";
+
+      progressText.textContent =
+        "Converting: " + Math.round(percentage) + "%";
+
+    };
+
+    video.addEventListener(
+      "timeupdate",
+      updateProgress
+    );
+
+    video.addEventListener("ended", () => {
+
+      video.removeEventListener(
+        "timeupdate",
+        updateProgress
+      );
+
+      progressFill.style.width = "100%";
+
+      if (recorder && recorder.state !== "inactive") {
+        recorder.stop();
+      }
+
+    }, { once: true });
+
+  } catch(error) {
+
+    console.error(error);
+
+    alert(
+      "Conversion failed: " + error.message
+    );
+
+    finishConversion();
+
+  }
+
+});
+
+
+function finishConversion() {
+
+  isConverting = false;
+
+  cancelAnimationFrame(animationFrame);
+
+  if (video.srcObject) {
+    video.srcObject = null;
+  }
+
+  video.pause();
+
+  convertBtn.disabled = false;
+
 }
 
-/* SAVE THEME */
 
-const savedTheme =
-    localStorage.getItem("portfolioTheme");
+// Cleanup
 
-if (savedTheme === "light") {
-    document.body.classList.add("light");
-    document.getElementById("themeBtn").innerHTML = "🌙";
-}
+window.addEventListener("beforeunload", () => {
 
-/* TAP RIPPLE EFFECT */
-
-document.addEventListener("pointerdown", function(e) {
-
-    if (window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    ).matches) return;
-
-    const ripple = document.createElement("span");
-
-    ripple.className = "tap-ripple";
-    ripple.style.left = e.clientX + "px";
-    ripple.style.top = e.clientY + "px";
-
-    document.body.appendChild(ripple);
-
-    setTimeout(function() {
-        ripple.remove();
-    }, 650);
+  if (outputURL) URL.revokeObjectURL(outputURL);
 
 });
 
