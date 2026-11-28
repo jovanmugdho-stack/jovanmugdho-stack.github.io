@@ -1,610 +1,843 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jovans Video Converter</title>
-
+<title>Attendance Register</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --orange:#ff7518;
-  --bg:#090909;
-  --panel:#181818;
-  --ash:#999;
-  --text:#fff;
-}
+  :root{
+    --paper:#EDE6D3;
+    --paper-line:#d9cfae;
+    --ink:#2A2620;
+    --ink-light:#7a7161;
+    --margin-red:#a13b3b;
+    --stamp-teal:#2f6f62;
+    --gold:#b08d3d;
+    --cancel:#8d8477;
+    --paper-shadow: rgba(42,38,32,0.12);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      repeating-linear-gradient(
+        var(--paper),
+        var(--paper) 31px,
+        var(--paper-line) 32px
+      ),
+      var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Mono', monospace;
+    min-height:100vh;
+    padding:0 0 60px 0;
+  }
+  .sheet{
+    max-width:880px;
+    margin:0 auto;
+    padding:36px 28px 40px 76px;
+    position:relative;
+  }
+  .margin-rule{
+    position:absolute;
+    left:52px;
+    top:0;
+    bottom:0;
+    width:2px;
+    background:var(--margin-red);
+    opacity:0.55;
+  }
+  .margin-rule::before,.margin-rule::after{
+    content:'';
+    position:absolute;
+    left:-4px;
+    width:10px;height:10px;
+    border-radius:50%;
+    background:var(--paper);
+    box-shadow: inset 0 0 0 1.5px var(--ink-light);
+  }
+  .margin-rule::before{top:120px;}
+  .margin-rule::after{top:340px;}
 
-* { box-sizing:border-box; }
+  header{margin-bottom:22px;}
+  h1{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:2.3rem;
+    margin:0 0 4px 0;
+    letter-spacing:0.2px;
+  }
+  .tagline{
+    color:var(--ink-light);
+    font-size:0.78rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+  }
+  .save-status{
+    color:var(--stamp-teal);
+    font-size:0.72rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    height:16px;
+    margin-top:6px;
+    opacity:0;
+    transition:opacity 0.25s ease;
+  }
+  .save-status.show{opacity:1;}
+  .save-status.err{color:var(--margin-red);}
 
-body {
-  margin:0;
-  padding:18px;
-  background:var(--bg);
-  color:var(--text);
-  font-family:Arial,sans-serif;
-}
+  .tabs{
+    display:flex;
+    gap:6px;
+    margin-top:26px;
+  }
+  .tab-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    background:var(--paper-line);
+    color:var(--ink-light);
+    border:1px solid var(--ink-light);
+    border-bottom:none;
+    padding:9px 18px 8px 18px;
+    border-radius:6px 6px 0 0;
+    cursor:pointer;
+    position:relative;
+    top:1px;
+  }
+  .tab-btn.active{
+    background:var(--paper);
+    color:var(--ink);
+    font-weight:600;
+    border-color:var(--ink);
+  }
+  .panel{
+    background:var(--paper);
+    border:1px solid var(--ink);
+    border-radius:0 6px 6px 6px;
+    padding:26px;
+    min-height:280px;
+  }
+  .hidden{display:none !important;}
 
-.container {
-  max-width:520px;
-  margin:20px auto;
-  background:var(--panel);
-  padding:22px;
-  border:1px solid #383838;
-  border-radius:20px;
-}
+  /* Today tab */
+  .date-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:20px;
+    padding-bottom:16px;
+    border-bottom:1px dashed var(--ink-light);
+  }
+  .date-row label{font-size:0.8rem; color:var(--ink-light); text-transform:uppercase; letter-spacing:0.06em;}
+  input[type="date"], input[type="text"], input[type="number"]{
+    font-family:'IBM Plex Mono', monospace;
+    background:transparent;
+    border:none;
+    border-bottom:1.5px solid var(--ink);
+    color:var(--ink);
+    font-size:0.95rem;
+    padding:4px 2px;
+    outline:none;
+  }
+  .day-label{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-style:italic;
+    color:var(--stamp-teal);
+  }
 
-header {
-  text-align:center;
-  margin-bottom:28px;
-}
+  .period-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:12px 0;
+    border-bottom:1px solid var(--paper-line);
+  }
+  .period-row:last-child{border-bottom:none;}
+  .period-time{
+    width:80px;
+    color:var(--ink-light);
+    font-size:0.82rem;
+    flex-shrink:0;
+  }
+  .period-subject{
+    flex:1;
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:1.05rem;
+  }
+  .type-badge{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.62rem;
+    font-weight:600;
+    letter-spacing:0.05em;
+    border:1px solid currentColor;
+    border-radius:3px;
+    padding:1px 5px;
+    vertical-align:middle;
+    margin-left:6px;
+  }
+  .type-badge.class{color:var(--ink-light);}
+  .type-badge.lab{color:var(--gold); border-color:var(--gold);}
+  .stamp-group{display:flex; gap:8px; flex-shrink:0;}
+  .stamp-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:0.05em;
+    font-weight:600;
+    padding:6px 10px;
+    border-radius:4px;
+    border:2px solid;
+    background:transparent;
+    cursor:pointer;
+    transform:rotate(0deg);
+    transition:transform 0.08s ease;
+  }
+  .stamp-btn:hover{transform:rotate(-3deg);}
+  .stamp-btn.present{color:var(--stamp-teal); border-color:var(--stamp-teal);}
+  .stamp-btn.absent{color:var(--margin-red); border-color:var(--margin-red);}
+  .stamp-btn.cancelled{color:var(--cancel); border-color:var(--cancel);}
+  .stamp-btn.present.selected{background:var(--stamp-teal); color:var(--paper);}
+  .stamp-btn.absent.selected{background:var(--margin-red); color:var(--paper);}
+  .stamp-btn.cancelled.selected{background:var(--cancel); color:var(--paper);}
+  .stamp-pop{
+    display:inline-block;
+    animation: stampdown 0.28s ease;
+  }
+  @keyframes stampdown{
+    0%{transform:scale(1.6) rotate(-10deg); opacity:0;}
+    60%{transform:scale(0.95) rotate(-3deg); opacity:1;}
+    100%{transform:scale(1) rotate(-3deg); opacity:1;}
+  }
 
-.logo {
-  color:var(--orange);
-  font-size:23px;
-  font-weight:bold;
-}
+  .empty-note{
+    color:var(--ink-light);
+    font-style:italic;
+    font-family:'Fraunces', serif;
+    padding:24px 0;
+  }
 
-.subtitle {
-  color:var(--ash);
-  font-size:11px;
-  letter-spacing:2px;
-  margin-top:8px;
-}
+  /* Routine tab */
+  .day-block{margin-bottom:26px;}
+  .day-block h3{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.15rem;
+    margin:0 0 10px 0;
+    color:var(--ink);
+    border-bottom:1px solid var(--ink);
+    padding-bottom:4px;
+  }
+  .routine-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:6px 0;
+  }
+  .routine-row .period-time{width:110px;}
+  .routine-row .period-subject{font-family:'Fraunces', serif; font-weight:500;}
+  .del-btn{
+    background:none; border:none; cursor:pointer;
+    color:var(--margin-red); font-size:1rem; font-weight:700;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .add-row{
+    display:flex; gap:10px; align-items:center; margin-top:8px;
+  }
+  .add-row input[type="text"]{flex:0 0 110px;}
+  .add-row input[type="text"].subj{flex:1;}
+  .add-row select{
+    font-family:'IBM Plex Mono', monospace;
+    background:transparent;
+    border:none;
+    border-bottom:1.5px solid var(--ink);
+    color:var(--ink);
+    font-size:0.85rem;
+    padding:4px 2px;
+  }
+  .add-btn{
+    font-family:'IBM Plex Mono', monospace;
+    background:var(--ink);
+    color:var(--paper);
+    border:none;
+    padding:6px 14px;
+    border-radius:4px;
+    cursor:pointer;
+    font-size:0.8rem;
+  }
 
-.upload {
-  display:block;
-  border:2px dashed var(--orange);
-  padding:30px 12px;
-  border-radius:15px;
-  text-align:center;
-  cursor:pointer;
-  background:#222;
-}
+  /* Report tab */
+  .target-row{
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:22px;
+    padding-bottom:16px;
+    border-bottom:1px dashed var(--ink-light);
+  }
+  .target-row input[type="number"]{width:50px;}
+  .month-row{
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+    margin-bottom:16px;
+  }
+  .month-row input[type="month"]{font-size:0.9rem;}
+  .scope-btns{display:flex; gap:6px;}
+  .scope-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    background:transparent;
+    border:1.5px solid var(--ink-light);
+    color:var(--ink-light);
+    padding:5px 11px;
+    border-radius:4px;
+    cursor:pointer;
+  }
+  .scope-btn.active{
+    border-color:var(--ink);
+    color:var(--ink);
+    font-weight:600;
+    background:var(--paper-line);
+  }
+  .month-banner{
+    background:var(--gold);
+    color:var(--paper);
+    font-size:0.78rem;
+    font-weight:600;
+    padding:9px 14px;
+    border-radius:4px;
+    margin-bottom:18px;
+    letter-spacing:0.02em;
+  }
+  .caption{
+    color:var(--ink-light);
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:14px;
+  }
+  .report-row{
+    display:grid;
+    grid-template-columns: 1fr auto auto;
+    gap:6px 18px;
+    align-items:center;
+    padding:14px 0;
+    border-bottom:1px solid var(--paper-line);
+  }
+  .report-row:last-child{border-bottom:none;}
+  .report-subject{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.1rem;
+  }
+  .report-pct{
+    font-size:1.6rem;
+    font-weight:600;
+    text-align:right;
+    min-width:80px;
+  }
+  .report-advice{
+    grid-column:1 / -1;
+    font-size:0.82rem;
+    color:var(--ink-light);
+  }
+  .tally-line{grid-column:1/-1; display:flex; flex-wrap:wrap; gap:2px 0; align-items:center; margin-top:2px;}
+  .tally-group{position:relative; display:inline-flex; margin-right:9px; height:18px; align-items:flex-end;}
+  .stroke{width:3px; height:16px; display:inline-block; margin-right:3px; border-radius:1px;}
+  .diagonal{position:absolute; width:24px; height:3px; top:6px; left:-3px; transform:rotate(-38deg); border-radius:1px;}
+  .tally-plus{color:var(--ink-light); font-size:0.75rem; margin-left:4px;}
 
-.upload-icon {
-  font-size:38px;
-  color:var(--orange);
-}
+  .overall-box{
+    background:var(--paper-line);
+    border:1px solid var(--ink);
+    border-radius:6px;
+    padding:20px 22px;
+    margin-bottom:26px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:center;
+    gap:10px;
+  }
+  .overall-box .report-subject{font-size:1.25rem;}
+  .overall-box .report-pct{font-size:2.1rem;}
 
-.upload p {
-  color:var(--ash);
-  font-size:12px;
-}
+  footer.note{
+    max-width:880px;
+    margin:18px auto 0 auto;
+    padding:0 28px 0 76px;
+    color:var(--ink-light);
+    font-size:0.72rem;
+  }
 
-input { display:none; }
-
-.info {
-  display:none;
-  background:#222;
-  padding:14px;
-  border-radius:12px;
-  margin-top:15px;
-  color:var(--ash);
-  font-size:13px;
-  line-height:1.8;
-  overflow-wrap:anywhere;
-}
-
-.info strong { color:var(--orange); }
-
-.preview {
-  display:none;
-  width:180px;
-  margin:20px auto;
-  background:#000;
-  border:1px solid var(--orange);
-  border-radius:10px;
-  overflow:hidden;
-}
-
-video {
-  display:none;
-}
-
-canvas {
-  width:100%;
-  display:block;
-}
-
-.settings {
-  margin-top:20px;
-  background:#222;
-  padding:15px;
-  border-radius:12px;
-}
-
-.setting {
-  display:flex;
-  justify-content:space-between;
-  padding:11px 0;
-  border-bottom:1px solid #444;
-  font-size:13px;
-}
-
-.setting:last-child { border:0; }
-
-.setting strong { color:var(--orange); }
-
-button {
-  cursor:pointer;
-  border:0;
-  border-radius:10px;
-  font-weight:bold;
-  padding:15px;
-}
-
-.convert {
-  width:100%;
-  margin-top:22px;
-  background:var(--orange);
-  color:#090909;
-  font-size:15px;
-}
-
-.convert:disabled {
-  opacity:.4;
-  cursor:not-allowed;
-}
-
-.download {
-  display:none;
-  width:100%;
-  margin-top:12px;
-  background:#252525;
-  border:1px solid var(--orange);
-  color:var(--orange);
-}
-
-.progress {
-  display:none;
-  margin-top:22px;
-}
-
-.progress-track {
-  height:10px;
-  background:#444;
-  border-radius:20px;
-  overflow:hidden;
-}
-
-.progress-fill {
-  height:100%;
-  width:0%;
-  background:var(--orange);
-  transition:width .2s;
-}
-
-.progress-text {
-  text-align:center;
-  color:var(--orange);
-  font-size:13px;
-  margin:12px 0;
-}
-
-.notice {
-  margin-top:22px;
-  padding:14px;
-  background:#222;
-  border-radius:10px;
-  color:#aaa;
-  font-size:12px;
-  line-height:1.8;
-}
-
-footer {
-  text-align:center;
-  color:#777;
-  font-size:11px;
-  margin-top:25px;
-}
-
+  @media (max-width:560px){
+    .sheet{padding:28px 16px 40px 52px;}
+    .margin-rule{left:32px;}
+    h1{font-size:1.7rem;}
+    .stamp-btn{padding:5px 7px; font-size:0.62rem;}
+    .report-pct{font-size:1.25rem;}
+  }
 </style>
 </head>
-
 <body>
+<div class="sheet">
+  <div class="margin-rule"></div>
+  <header>
+    <h1>Attendance Register</h1>
+    <div class="tagline">mind your percentage, keep your seat</div>
+    <div class="save-status" id="save-status"></div>
+  </header>
 
-<div class="container">
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="today">Today</button>
+    <button class="tab-btn" data-tab="routine">Routine</button>
+    <button class="tab-btn" data-tab="report">Report</button>
+  </div>
 
-<header>
-  <div class="logo">JOVANS VIDEO CONVERTER</div>
-  <div class="subtitle">FAST 9:16 VIDEO CONVERTER</div>
-</header>
+  <div class="panel" id="panel-today">
+    <div class="date-row">
+      <label for="date-pick">Date</label>
+      <input type="date" id="date-pick">
+      <span class="day-label" id="day-label"></span>
+    </div>
+    <div id="today-list"></div>
+  </div>
 
-<label class="upload" for="file">
-  <div class="upload-icon">＋</div>
-  <strong>SELECT VIDEO</strong>
-  <p>Upload your video from your device</p>
-  <p>MP4, MOV, WebM and other supported formats</p>
-</label>
+  <div class="panel hidden" id="panel-routine">
+    <div id="routine-list"></div>
+  </div>
 
-<input type="file" id="file" accept="video/*">
+  <div class="panel hidden" id="panel-report">
+    <div class="target-row">
+      <label for="target-input">Target attendance</label>
+      <input type="number" id="target-input" min="1" max="100" value="75">
+      <span>%</span>
+    </div>
+    <div class="month-row">
+      <input type="month" id="month-pick">
+      <div class="scope-btns">
+        <button class="scope-btn active" data-scope="month">This month</button>
+        <button class="scope-btn" data-scope="all">All time</button>
+      </div>
+    </div>
+    <div id="month-banner-slot"></div>
+    <div id="overall-slot"></div>
+    <div class="caption">By subject — lowest attendance first</div>
+    <div id="report-list"></div>
+  </div>
 
-<div class="info" id="info">
-  <div>File: <strong id="filename">-</strong></div>
-  <div>Original: <strong id="resolution">-</strong></div>
-  <div>Duration: <strong id="duration">-</strong></div>
-  <div>File Size: <strong id="filesize">-</strong></div>
+  <footer class="note">Saved automatically on this device. Add your weekly classes in Routine, then stamp attendance each day in Today.</footer>
 </div>
 
-<div class="preview" id="preview">
-  <canvas id="canvas" width="720" height="1280"></canvas>
-</div>
+<script>
+const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const DAY_FULL = {Sun:'Sunday',Mon:'Monday',Tue:'Tuesday',Wed:'Wednesday',Thu:'Thursday',Fri:'Friday',Sat:'Saturday'};
+const WEIGHT = {class:2, lab:3};
+function periodWeight(p){ return WEIGHT[p && p.type] || WEIGHT.class; }
 
-<video id="video" muted playsinline></video>
+let routine = {Mon:[],Tue:[],Wed:[],Thu:[],Fri:[],Sat:[],Sun:[]};
+let attendance = {}; // key: `${date}#${idx}` -> 'present'|'absent'|'cancelled'
+let settings = {target:75};
 
-<div class="settings">
-
-  <div class="setting">
-    <span>Output Ratio</span>
-    <strong>9:16</strong>
-  </div>
-
-  <div class="setting">
-    <span>Resolution</span>
-    <strong>720 × 1280</strong>
-  </div>
-
-  <div class="setting">
-    <span>Video Position</span>
-    <strong>Center</strong>
-  </div>
-
-  <div class="setting">
-    <span>Crop</span>
-    <strong>OFF</strong>
-  </div>
-
-  <div class="setting">
-    <span>Format</span>
-    <strong>MP4</strong>
-  </div>
-
-  <div class="setting">
-    <span>Audio</span>
-    <strong>Preserved</strong>
-  </div>
-
-</div>
-
-<button class="convert" id="convert" disabled>
-  CONVERT VIDEO
-</button>
-
-<div class="progress" id="progress">
-
-  <div class="progress-track">
-    <div class="progress-fill" id="fill"></div>
-  </div>
-
-  <div class="progress-text" id="progressText">
-    Waiting...
-  </div>
-
-</div>
-
-<button class="download" id="download">
-  ↓ DOWNLOAD CONVERTED VIDEO
-</button>
-
-<div class="notice">
-  <strong style="color:#ff7518">
-    CONVERSION INFORMATION
-  </strong>
-  <br>
-  Your complete video remains visible.
-  No cropping is applied. Landscape videos
-  are centered with black background space.
-  Portrait videos are also fitted without cropping.
-  Output is MP4 format.
-</div>
-
-<footer>
-  JOVANS VIDEO CONVERTER<br>
-  FAST · SIMPLE · NO CROP
-</footer>
-
-</div>
-
-<script type="module">
-
-import { FFmpeg } from
-"https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/esm/index.js";
-
-import { fetchFile, toBlobURL } from
-"https://cdn.jsdelivr.net/npm/@ffmpeg/util@0.12.1/dist/esm/index.js";
-
-const fileInput = document.getElementById("file");
-const convertBtn = document.getElementById("convert");
-const downloadBtn = document.getElementById("download");
-
-const info = document.getElementById("info");
-const preview = document.getElementById("preview");
-const progress = document.getElementById("progress");
-const fill = document.getElementById("fill");
-const progressText = document.getElementById("progressText");
-
-const video = document.getElementById("video");
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
-
-const ffmpeg = new FFmpeg();
-
-let selectedFile = null;
-let outputBlob = null;
-let outputURL = null;
-let isLoaded = false;
-let isConverting = false;
-
-const WIDTH = 720;
-const HEIGHT = 1280;
-
-// Load FFmpeg only once
-
-async function loadFFmpeg() {
-
-  if (isLoaded) return;
-
-  progress.style.display = "block";
-  progressText.textContent = "Loading conversion engine...";
-
-  const base =
-    "https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd";
-
-  const coreURL = await toBlobURL(
-    base + "/ffmpeg-core.js",
-    "text/javascript"
-  );
-
-  const wasmURL = await toBlobURL(
-    base + "/ffmpeg-core.wasm",
-    "application/wasm"
-  );
-
-  await ffmpeg.load({
-    coreURL,
-    wasmURL
-  });
-
-  isLoaded = true;
+async function storageGet(key){
+  if(window.storage && typeof window.storage.get === 'function'){
+    try{ return await window.storage.get(key); }
+    catch(e){ /* key not found in artifact storage */ }
+  }
+  try{
+    const raw = localStorage.getItem('attreg_'+key);
+    return raw ? {value: raw} : null;
+  }catch(e){ return null; }
+}
+async function storageSet(key, value){
+  let savedRemotely = false;
+  let savedLocally = false;
+  if(window.storage && typeof window.storage.set === 'function'){
+    try{ await window.storage.set(key, value); savedRemotely = true; }
+    catch(e){ console.error('artifact storage set failed', e); }
+  }
+  try{ localStorage.setItem('attreg_'+key, value); savedLocally = true; }
+  catch(e){ console.error('localStorage save failed', e); }
+  flashSaveStatus(savedRemotely || savedLocally);
 }
 
-// Progress listener
+let saveStatusTimer = null;
+function flashSaveStatus(ok){
+  const el = document.getElementById('save-status');
+  if(!el) return;
+  el.textContent = ok ? 'Saved' : 'Could not save — storage unavailable';
+  el.classList.toggle('err', !ok);
+  el.classList.add('show');
+  clearTimeout(saveStatusTimer);
+  saveStatusTimer = setTimeout(()=>el.classList.remove('show'), 1400);
+}
 
-ffmpeg.on("progress", ({ progress: value }) => {
+async function loadState(){
+  try{
+    const r = await storageGet('routine');
+    if(r && r.value) routine = Object.assign(routine, JSON.parse(r.value));
+  }catch(e){ /* not found, keep default */ }
+  try{
+    const a = await storageGet('attendance');
+    if(a && a.value) attendance = JSON.parse(a.value);
+  }catch(e){}
+  try{
+    const s = await storageGet('settings');
+    if(s && s.value) settings = Object.assign(settings, JSON.parse(s.value));
+  }catch(e){}
+}
 
-  const percentage = Math.min(
-    100,
-    Math.max(0, value * 100)
-  );
+async function saveRoutine(){
+  await storageSet('routine', JSON.stringify(routine));
+}
+async function saveAttendance(){
+  await storageSet('attendance', JSON.stringify(attendance));
+}
+async function saveSettings(){
+  await storageSet('settings', JSON.stringify(settings));
+}
 
-  fill.style.width = percentage + "%";
+function todayStr(){
+  const d = new Date();
+  const off = d.getTimezoneOffset();
+  const local = new Date(d.getTime() - off*60000);
+  return local.toISOString().slice(0,10);
+}
 
-  progressText.textContent =
-    "Converting: " + Math.round(percentage) + "%";
+function dayOfWeek(dateStr){
+  const d = new Date(dateStr+'T00:00:00');
+  return DAYS[d.getDay()];
+}
 
+function isSecondSaturday(dateStr){
+  const d = new Date(dateStr+'T00:00:00');
+  if(d.getDay()!==6) return false;
+  const date = d.getDate();
+  return date>=8 && date<=14;
+}
+function isHoliday(dateStr){
+  const d = new Date(dateStr+'T00:00:00');
+  if(d.getDay()===0) return true;
+  return isSecondSaturday(dateStr);
+}
+function holidayLabel(dateStr){
+  const d = new Date(dateStr+'T00:00:00');
+  if(d.getDay()===0) return 'Sunday — weekly holiday.';
+  return 'Second Saturday — university holiday.';
+}
+
+/* ---------- TABS ---------- */
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.panel').forEach(p=>p.classList.add('hidden'));
+    document.getElementById('panel-'+btn.dataset.tab).classList.remove('hidden');
+    if(btn.dataset.tab==='report') renderReport();
+    if(btn.dataset.tab==='routine') renderRoutine();
+    if(btn.dataset.tab==='today') renderToday();
+  });
 });
 
-// File selection
+/* ---------- TODAY ---------- */
+const datePick = document.getElementById('date-pick');
+datePick.value = todayStr();
+datePick.addEventListener('change', renderToday);
 
-fileInput.addEventListener("change", async () => {
+function renderToday(){
+  const date = datePick.value || todayStr();
+  const day = dayOfWeek(date);
+  document.getElementById('day-label').textContent = DAY_FULL[day];
+  const list = document.getElementById('today-list');
+  list.innerHTML = '';
+  if(isHoliday(date)){
+    list.innerHTML = '<div class="empty-note">'+holidayLabel(date)+' No classes to mark.</div>';
+    return;
+  }
+  const periods = routine[day] || [];
+  if(periods.length===0){
+    list.innerHTML = '<div class="empty-note">No classes scheduled for '+DAY_FULL[day]+'. Add some in the Routine tab.</div>';
+    return;
+  }
+  periods.forEach((p, idx)=>{
+    const key = date+'#'+idx;
+    const current = attendance[key];
+    const row = document.createElement('div');
+    row.className = 'period-row';
+    row.innerHTML = `
+      <div class="period-time">${escapeHtml(p.time||'')}</div>
+      <div class="period-subject">${escapeHtml(p.subject)} <span class="type-badge ${p.type==='lab'?'lab':'class'}">${p.type==='lab'?'LAB · 3':'CLASS · 2'}</span></div>
+      <div class="stamp-group">
+        <button class="stamp-btn present ${current==='present'?'selected':''}" data-status="present">PRESENT</button>
+        <button class="stamp-btn absent ${current==='absent'?'selected':''}" data-status="absent">ABSENT</button>
+        <button class="stamp-btn cancelled ${current==='cancelled'?'selected':''}" data-status="cancelled">CANCELLED</button>
+      </div>
+    `;
+    row.querySelectorAll('.stamp-btn').forEach(b=>{
+      b.addEventListener('click', async ()=>{
+        const status = b.dataset.status;
+        if(attendance[key]===status){
+          delete attendance[key]; // toggle off
+        } else {
+          attendance[key] = status;
+        }
+        await saveAttendance();
+        renderToday();
+        // small stamp animation replay
+        const sel = row.querySelector('.stamp-btn.selected');
+        if(sel){ sel.classList.remove('stamp-pop'); void sel.offsetWidth; sel.classList.add('stamp-pop'); }
+      });
+    });
+    list.appendChild(row);
+  });
+}
 
-  const file = fileInput.files[0];
+/* ---------- ROUTINE ---------- */
+function renderRoutine(){
+  const wrap = document.getElementById('routine-list');
+  wrap.innerHTML = '<div class="empty-note" style="padding:0 0 18px 0; font-size:0.85rem;">Sundays are always off, and the second Saturday of each month is a university holiday — both are skipped automatically.</div>';
+  const order = ['Mon','Tue','Wed','Thu','Fri','Sat'];
+  order.forEach(day=>{
+    const block = document.createElement('div');
+    block.className = 'day-block';
+    const periods = routine[day] || [];
+    let rowsHtml = periods.map((p,idx)=>`
+      <div class="routine-row">
+        <div class="period-time">${escapeHtml(p.time||'')}</div>
+        <div class="period-subject">${escapeHtml(p.subject)} <span class="type-badge ${p.type==='lab'?'lab':'class'}">${p.type==='lab'?'LAB · 3':'CLASS · 2'}</span></div>
+        <button class="del-btn" data-day="${day}" data-idx="${idx}" title="Remove">✕</button>
+      </div>
+    `).join('');
+    if(!rowsHtml) rowsHtml = '<div class="empty-note" style="padding:6px 0;">No classes added.</div>';
+    block.innerHTML = `
+      <h3>${DAY_FULL[day]}</h3>
+      ${rowsHtml}
+      <div class="add-row">
+        <input type="text" placeholder="time e.g. 9:00" class="new-time">
+        <input type="text" placeholder="subject name" class="new-subj subj">
+        <select class="new-type">
+          <option value="class">Class · 2</option>
+          <option value="lab">Lab · 3</option>
+        </select>
+        <button class="add-btn" data-day="${day}">Add class</button>
+      </div>
+    `;
+    wrap.appendChild(block);
+  });
 
-  if (!file) return;
+  wrap.querySelectorAll('.del-btn').forEach(b=>{
+    b.addEventListener('click', async ()=>{
+      const day = b.dataset.day, idx = parseInt(b.dataset.idx,10);
+      routine[day].splice(idx,1);
+      await saveRoutine();
+      renderRoutine();
+    });
+  });
+  wrap.querySelectorAll('.add-btn').forEach(b=>{
+    b.addEventListener('click', async ()=>{
+      const day = b.dataset.day;
+      const block = b.closest('.day-block');
+      const timeVal = block.querySelector('.new-time').value.trim();
+      const subjVal = block.querySelector('.new-subj').value.trim();
+      const typeVal = block.querySelector('.new-type').value;
+      if(!subjVal) return;
+      routine[day] = routine[day] || [];
+      routine[day].push({time:timeVal, subject:subjVal, type:typeVal});
+      await saveRoutine();
+      renderRoutine();
+    });
+  });
+}
 
-  if (!file.type.startsWith("video/")) {
-    alert("Please select a valid video.");
+/* ---------- REPORT ---------- */
+const targetInput = document.getElementById('target-input');
+targetInput.addEventListener('change', async ()=>{
+  let v = parseInt(targetInput.value,10);
+  if(isNaN(v)) v = 75;
+  v = Math.max(1, Math.min(100, v));
+  settings.target = v;
+  targetInput.value = v;
+  await saveSettings();
+  renderReport();
+});
+
+const monthPick = document.getElementById('month-pick');
+monthPick.value = todayStr().slice(0,7);
+monthPick.addEventListener('change', renderReport);
+
+let reportScope = 'month';
+document.querySelectorAll('.scope-btn').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    document.querySelectorAll('.scope-btn').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    reportScope = b.dataset.scope;
+    monthPick.disabled = (reportScope==='all');
+    renderReport();
+  });
+});
+
+function isLastDayOfMonth(dateStr){
+  const d = new Date(dateStr+'T00:00:00');
+  const next = new Date(d);
+  next.setDate(d.getDate()+1);
+  return next.getMonth() !== d.getMonth();
+}
+
+function monthLabel(ym){
+  const [y,m] = ym.split('-').map(Number);
+  const d = new Date(y, m-1, 1);
+  return d.toLocaleString('en-US', {month:'long', year:'numeric'});
+}
+
+function tallyHtml(count, colorVar){
+  const cap = 25;
+  const shown = Math.min(count, cap);
+  let html = '<div class="tally-line">';
+  let remaining = shown;
+  while(remaining > 0){
+    const inGroup = Math.min(5, remaining);
+    html += '<span class="tally-group">';
+    for(let i=0;i<Math.min(inGroup,4);i++){
+      html += `<span class="stroke" style="background:${colorVar}"></span>`;
+    }
+    if(inGroup===5){
+      html += `<span class="diagonal" style="background:${colorVar}"></span>`;
+    }
+    html += '</span>';
+    remaining -= inGroup;
+  }
+  if(count > cap){
+    html += `<span class="tally-plus">+${count-cap} more</span>`;
+  }
+  html += '</div>';
+  return html;
+}
+
+function calcAdvice(present, total, targetPct){
+  if(total===0) return null;
+  const frac = targetPct/100;
+  const pct = present/total;
+  if(pct >= frac){
+    if(frac<=0) return {type:'safe', n:'∞'};
+    const maxA = Math.floor(present/frac - total);
+    return {type:'safe', n: Math.max(0,maxA)};
+  } else {
+    if(frac>=1) return {type:'need', n:'∞'};
+    const n = Math.ceil((frac*total - present)/(1-frac));
+    return {type:'need', n};
+  }
+}
+
+function renderReport(){
+  targetInput.value = settings.target;
+  const selectedMonth = monthPick.value || todayStr().slice(0,7);
+  const bannerSlot = document.getElementById('month-banner-slot');
+
+  // aggregate by subject
+  const bySubject = {}; // subject -> {present, absent}
+  Object.keys(attendance).forEach(key=>{
+    const status = attendance[key];
+    if(status==='cancelled') return;
+    const [date, idxStr] = key.split('#');
+    if(isHoliday(date)) return;
+    if(reportScope==='month' && date.slice(0,7)!==selectedMonth) return;
+    const idx = parseInt(idxStr,10);
+    const day = dayOfWeek(date);
+    const periods = routine[day] || [];
+    const p = periods[idx];
+    const subject = p ? p.subject : '(removed class)';
+    const w = periodWeight(p);
+    if(!bySubject[subject]) bySubject[subject] = {present:0, absent:0};
+    if(status==='present') bySubject[subject].present += w;
+    else if(status==='absent') bySubject[subject].absent += w;
+  });
+
+  const subjects = Object.keys(bySubject);
+  const overallSlot = document.getElementById('overall-slot');
+  const list = document.getElementById('report-list');
+
+  // end-of-month banner
+  if(reportScope==='month'){
+    const today = todayStr();
+    const currentMonth = today.slice(0,7);
+    if(selectedMonth < currentMonth){
+      bannerSlot.innerHTML = `<div class="month-banner">Final report — ${monthLabel(selectedMonth)} is complete.</div>`;
+    } else if(selectedMonth === currentMonth && isLastDayOfMonth(today)){
+      bannerSlot.innerHTML = `<div class="month-banner">Today is the last day of ${monthLabel(selectedMonth)} — here's your report for the month.</div>`;
+    } else {
+      bannerSlot.innerHTML = '';
+    }
+  } else {
+    bannerSlot.innerHTML = '';
+  }
+
+  if(subjects.length===0){
+    overallSlot.innerHTML = '';
+    const scopeMsg = reportScope==='month' ? `No classes marked yet for ${monthLabel(selectedMonth)}.` : 'No classes marked yet — mark attendance in the Today tab first.';
+    list.innerHTML = `<div class="empty-note">${scopeMsg}</div>`;
     return;
   }
 
-  selectedFile = file;
-  outputBlob = null;
+  let totalP=0, totalT=0;
+  subjects.forEach(s=>{ totalP+=bySubject[s].present; totalT+=bySubject[s].present+bySubject[s].absent; });
+  const overallPct = totalT? Math.round((totalP/totalT)*1000)/10 : 0;
+  const overallAdvice = calcAdvice(totalP, totalT, settings.target);
+  const overallColor = overallPct >= settings.target ? 'var(--stamp-teal)' : 'var(--margin-red)';
 
-  if (outputURL) {
-    URL.revokeObjectURL(outputURL);
-    outputURL = null;
-  }
+  overallSlot.innerHTML = `
+    <div class="overall-box">
+      <div>
+        <div class="report-subject">Overall</div>
+        ${tallyHtml(totalP,'var(--stamp-teal)')}
+        ${tallyHtml(totalT-totalP,'var(--margin-red)')}
+        <div class="report-advice">${adviceText(overallAdvice)}</div>
+      </div>
+      <div class="report-pct" style="color:${overallColor}">${overallPct}%</div>
+    </div>
+  `;
 
-  downloadBtn.style.display = "none";
+  const rows = subjects.map(s=>{
+    const {present, absent} = bySubject[s];
+    const total = present+absent;
+    const pct = total? Math.round((present/total)*1000)/10 : 0;
+    return {subject:s, present, absent, total, pct};
+  }).sort((a,b)=>a.pct-b.pct);
 
-  video.src = URL.createObjectURL(file);
-
-  document.getElementById("filename").textContent =
-    file.name;
-
-  document.getElementById("filesize").textContent =
-    (file.size / (1024 * 1024)).toFixed(2) + " MB";
-
-  info.style.display = "block";
-  preview.style.display = "block";
-
-  convertBtn.disabled = true;
-
-  video.load();
-
-});
-
-video.addEventListener("loadedmetadata", () => {
-
-  document.getElementById("resolution").textContent =
-    video.videoWidth + " × " + video.videoHeight;
-
-  document.getElementById("duration").textContent =
-    Math.floor(video.duration) + " seconds";
-
-  drawPreview();
-
-  convertBtn.disabled = false;
-
-});
-
-// Preview with full video visible
-
-function drawPreview() {
-
-  if (!video.videoWidth) return;
-
-  ctx.fillStyle = "#000";
-  ctx.fillRect(0, 0, WIDTH, HEIGHT);
-
-  const scale = Math.min(
-    WIDTH / video.videoWidth,
-    HEIGHT / video.videoHeight
-  );
-
-  const w = video.videoWidth * scale;
-  const h = video.videoHeight * scale;
-
-  const x = (WIDTH - w) / 2;
-  const y = (HEIGHT - h) / 2;
-
-  ctx.drawImage(video, x, y, w, h);
-
+  list.innerHTML = rows.map(r=>{
+    const advice = calcAdvice(r.present, r.total, settings.target);
+    const color = r.pct >= settings.target ? 'var(--stamp-teal)' : 'var(--margin-red)';
+    return `
+      <div class="report-row">
+        <div class="report-subject">${escapeHtml(r.subject)}</div>
+        <div></div>
+        <div class="report-pct" style="color:${color}">${r.pct}%</div>
+        ${tallyHtml(r.present,'var(--stamp-teal)')}
+        ${tallyHtml(r.absent,'var(--margin-red)')}
+        <div class="report-advice">${adviceText(advice)} &middot; ${r.present} / ${r.total} attendance units (class=2, lab=3)</div>
+      </div>
+    `;
+  }).join('');
 }
 
-// Conversion
-
-convertBtn.addEventListener("click", async () => {
-
-  if (!selectedFile || isConverting) return;
-
-  isConverting = true;
-  convertBtn.disabled = true;
-  downloadBtn.style.display = "none";
-
-  progress.style.display = "block";
-  fill.style.width = "0%";
-
-  try {
-
-    await loadFFmpeg();
-
-    progressText.textContent = "Preparing video...";
-
-    const extension =
-      selectedFile.name.split(".").pop().toLowerCase()
-      .replace(/[^a-z0-9]/g, "") || "mp4";
-
-    const inputName = "input." + extension;
-    const outputName = "jovans-output.mp4";
-
-    await ffmpeg.writeFile(
-      inputName,
-      await fetchFile(selectedFile)
-    );
-
-    progressText.textContent = "Converting video...";
-
-    // Scale + Pad:
-    // Entire original frame stays visible.
-    // No cropping. Black bars fill empty space.
-
-    await ffmpeg.exec([
-
-      "-i", inputName,
-
-      "-vf",
-      "scale=720:1280:force_original_aspect_ratio=decrease:force_divisible_by=2,pad=720:1280:(ow-iw)/2:(oh-ih)/2:color=black,setsar=1",
-
-      "-c:v", "libx264",
-
-      "-preset", "ultrafast",
-
-      "-crf", "26",
-
-      "-pix_fmt", "yuv420p",
-
-      "-c:a", "aac",
-
-      "-b:a", "128k",
-
-      "-movflags", "+faststart",
-
-      "-threads", "1",
-
-      outputName
-
-    ]);
-
-    progressText.textContent = "Preparing download...";
-
-    const data = await ffmpeg.readFile(outputName);
-
-    outputBlob = new Blob(
-      [data],
-      { type: "video/mp4" }
-    );
-
-    if (outputURL) {
-      URL.revokeObjectURL(outputURL);
-    }
-
-    outputURL = URL.createObjectURL(outputBlob);
-
-    fill.style.width = "100%";
-    progressText.textContent =
-      "✓ CONVERSION COMPLETE!";
-
-    downloadBtn.style.display = "block";
-
-    // Automatic download
-
-    downloadFile();
-
-    // Remove temporary files
-
-    await ffmpeg.deleteFile(inputName);
-    await ffmpeg.deleteFile(outputName);
-
-  } catch(error) {
-
-    console.error(error);
-
-    progressText.textContent =
-      "Conversion failed. Try a smaller video.";
-
-    alert(
-      "Conversion failed. Your phone may have insufficient memory, or the video format may not be supported."
-    );
-
-  } finally {
-
-    isConverting = false;
-    convertBtn.disabled = false;
-
+function adviceText(advice){
+  if(!advice) return '';
+  if(advice.type==='safe'){
+    if(advice.n===0) return 'At the line — one more miss will drop you below target.';
+    return `You can miss <strong>${advice.n}</strong> more class${advice.n===1?'':'es'} and stay at target.`;
   }
-
-});
-
-// Download function
-
-function downloadFile() {
-
-  if (!outputURL) return;
-
-  const link = document.createElement("a");
-
-  link.href = outputURL;
-  link.download = "Jovans-9-16-Video.mp4";
-
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-
+  return advice.n==='∞' ? 'Target is 100% — you cannot miss any class.' : `Attend the next <strong>${advice.n}</strong> class${advice.n===1?'':'es'} in a row to reach target.`;
 }
 
-downloadBtn.addEventListener("click", downloadFile);
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
 
-window.addEventListener("beforeunload", () => {
-
-  if (outputURL) {
-    URL.revokeObjectURL(outputURL);
-  }
-
-});
-
+(async function init(){
+  await loadState();
+  renderToday();
+})();
 </script>
-
 </body>
 </html>
