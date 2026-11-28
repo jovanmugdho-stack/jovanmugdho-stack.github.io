@@ -1,843 +1,953 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Attendance Register</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --paper:#EDE6D3;
-    --paper-line:#d9cfae;
-    --ink:#2A2620;
-    --ink-light:#7a7161;
-    --margin-red:#a13b3b;
-    --stamp-teal:#2f6f62;
-    --gold:#b08d3d;
-    --cancel:#8d8477;
-    --paper-shadow: rgba(42,38,32,0.12);
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background:
-      repeating-linear-gradient(
-        var(--paper),
-        var(--paper) 31px,
-        var(--paper-line) 32px
-      ),
-      var(--paper);
-    color:var(--ink);
-    font-family:'IBM Plex Mono', monospace;
-    min-height:100vh;
-    padding:0 0 60px 0;
-  }
-  .sheet{
-    max-width:880px;
-    margin:0 auto;
-    padding:36px 28px 40px 76px;
-    position:relative;
-  }
-  .margin-rule{
-    position:absolute;
-    left:52px;
-    top:0;
-    bottom:0;
-    width:2px;
-    background:var(--margin-red);
-    opacity:0.55;
-  }
-  .margin-rule::before,.margin-rule::after{
-    content:'';
-    position:absolute;
-    left:-4px;
-    width:10px;height:10px;
-    border-radius:50%;
-    background:var(--paper);
-    box-shadow: inset 0 0 0 1.5px var(--ink-light);
-  }
-  .margin-rule::before{top:120px;}
-  .margin-rule::after{top:340px;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rudra Biswas | Portfolio</title>
 
-  header{margin-bottom:22px;}
-  h1{
-    font-family:'Fraunces', serif;
-    font-style:italic;
-    font-weight:600;
-    font-size:2.3rem;
-    margin:0 0 4px 0;
-    letter-spacing:0.2px;
-  }
-  .tagline{
-    color:var(--ink-light);
-    font-size:0.78rem;
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-  }
-  .save-status{
-    color:var(--stamp-teal);
-    font-size:0.72rem;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    height:16px;
-    margin-top:6px;
-    opacity:0;
-    transition:opacity 0.25s ease;
-  }
-  .save-status.show{opacity:1;}
-  .save-status.err{color:var(--margin-red);}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  .tabs{
-    display:flex;
-    gap:6px;
-    margin-top:26px;
-  }
-  .tab-btn{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.82rem;
-    letter-spacing:0.04em;
-    text-transform:uppercase;
-    background:var(--paper-line);
-    color:var(--ink-light);
-    border:1px solid var(--ink-light);
-    border-bottom:none;
-    padding:9px 18px 8px 18px;
-    border-radius:6px 6px 0 0;
-    cursor:pointer;
-    position:relative;
-    top:1px;
-  }
-  .tab-btn.active{
-    background:var(--paper);
-    color:var(--ink);
-    font-weight:600;
-    border-color:var(--ink);
-  }
-  .panel{
-    background:var(--paper);
-    border:1px solid var(--ink);
-    border-radius:0 6px 6px 6px;
-    padding:26px;
-    min-height:280px;
-  }
-  .hidden{display:none !important;}
-
-  /* Today tab */
-  .date-row{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin-bottom:20px;
-    padding-bottom:16px;
-    border-bottom:1px dashed var(--ink-light);
-  }
-  .date-row label{font-size:0.8rem; color:var(--ink-light); text-transform:uppercase; letter-spacing:0.06em;}
-  input[type="date"], input[type="text"], input[type="number"]{
-    font-family:'IBM Plex Mono', monospace;
-    background:transparent;
-    border:none;
-    border-bottom:1.5px solid var(--ink);
-    color:var(--ink);
-    font-size:0.95rem;
-    padding:4px 2px;
-    outline:none;
-  }
-  .day-label{
-    font-family:'Fraunces', serif;
-    font-weight:600;
-    font-style:italic;
-    color:var(--stamp-teal);
-  }
-
-  .period-row{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    padding:12px 0;
-    border-bottom:1px solid var(--paper-line);
-  }
-  .period-row:last-child{border-bottom:none;}
-  .period-time{
-    width:80px;
-    color:var(--ink-light);
-    font-size:0.82rem;
-    flex-shrink:0;
-  }
-  .period-subject{
-    flex:1;
-    font-family:'Fraunces', serif;
-    font-weight:500;
-    font-size:1.05rem;
-  }
-  .type-badge{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.62rem;
-    font-weight:600;
-    letter-spacing:0.05em;
-    border:1px solid currentColor;
-    border-radius:3px;
-    padding:1px 5px;
-    vertical-align:middle;
-    margin-left:6px;
-  }
-  .type-badge.class{color:var(--ink-light);}
-  .type-badge.lab{color:var(--gold); border-color:var(--gold);}
-  .stamp-group{display:flex; gap:8px; flex-shrink:0;}
-  .stamp-btn{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.7rem;
-    letter-spacing:0.05em;
-    font-weight:600;
-    padding:6px 10px;
-    border-radius:4px;
-    border:2px solid;
-    background:transparent;
-    cursor:pointer;
-    transform:rotate(0deg);
-    transition:transform 0.08s ease;
-  }
-  .stamp-btn:hover{transform:rotate(-3deg);}
-  .stamp-btn.present{color:var(--stamp-teal); border-color:var(--stamp-teal);}
-  .stamp-btn.absent{color:var(--margin-red); border-color:var(--margin-red);}
-  .stamp-btn.cancelled{color:var(--cancel); border-color:var(--cancel);}
-  .stamp-btn.present.selected{background:var(--stamp-teal); color:var(--paper);}
-  .stamp-btn.absent.selected{background:var(--margin-red); color:var(--paper);}
-  .stamp-btn.cancelled.selected{background:var(--cancel); color:var(--paper);}
-  .stamp-pop{
-    display:inline-block;
-    animation: stampdown 0.28s ease;
-  }
-  @keyframes stampdown{
-    0%{transform:scale(1.6) rotate(-10deg); opacity:0;}
-    60%{transform:scale(0.95) rotate(-3deg); opacity:1;}
-    100%{transform:scale(1) rotate(-3deg); opacity:1;}
-  }
-
-  .empty-note{
-    color:var(--ink-light);
-    font-style:italic;
-    font-family:'Fraunces', serif;
-    padding:24px 0;
-  }
-
-  /* Routine tab */
-  .day-block{margin-bottom:26px;}
-  .day-block h3{
-    font-family:'Fraunces', serif;
-    font-style:italic;
-    font-size:1.15rem;
-    margin:0 0 10px 0;
-    color:var(--ink);
-    border-bottom:1px solid var(--ink);
-    padding-bottom:4px;
-  }
-  .routine-row{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:6px 0;
-  }
-  .routine-row .period-time{width:110px;}
-  .routine-row .period-subject{font-family:'Fraunces', serif; font-weight:500;}
-  .del-btn{
-    background:none; border:none; cursor:pointer;
-    color:var(--margin-red); font-size:1rem; font-weight:700;
-    font-family:'IBM Plex Mono', monospace;
-  }
-  .add-row{
-    display:flex; gap:10px; align-items:center; margin-top:8px;
-  }
-  .add-row input[type="text"]{flex:0 0 110px;}
-  .add-row input[type="text"].subj{flex:1;}
-  .add-row select{
-    font-family:'IBM Plex Mono', monospace;
-    background:transparent;
-    border:none;
-    border-bottom:1.5px solid var(--ink);
-    color:var(--ink);
-    font-size:0.85rem;
-    padding:4px 2px;
-  }
-  .add-btn{
-    font-family:'IBM Plex Mono', monospace;
-    background:var(--ink);
-    color:var(--paper);
-    border:none;
-    padding:6px 14px;
-    border-radius:4px;
-    cursor:pointer;
-    font-size:0.8rem;
-  }
-
-  /* Report tab */
-  .target-row{
-    display:flex; align-items:center; gap:10px;
-    margin-bottom:22px;
-    padding-bottom:16px;
-    border-bottom:1px dashed var(--ink-light);
-  }
-  .target-row input[type="number"]{width:50px;}
-  .month-row{
-    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
-    margin-bottom:16px;
-  }
-  .month-row input[type="month"]{font-size:0.9rem;}
-  .scope-btns{display:flex; gap:6px;}
-  .scope-btn{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.72rem;
-    text-transform:uppercase;
-    letter-spacing:0.05em;
-    background:transparent;
-    border:1.5px solid var(--ink-light);
-    color:var(--ink-light);
-    padding:5px 11px;
-    border-radius:4px;
-    cursor:pointer;
-  }
-  .scope-btn.active{
-    border-color:var(--ink);
-    color:var(--ink);
-    font-weight:600;
-    background:var(--paper-line);
-  }
-  .month-banner{
-    background:var(--gold);
-    color:var(--paper);
-    font-size:0.78rem;
-    font-weight:600;
-    padding:9px 14px;
-    border-radius:4px;
-    margin-bottom:18px;
-    letter-spacing:0.02em;
-  }
-  .caption{
-    color:var(--ink-light);
-    font-size:0.75rem;
-    text-transform:uppercase;
-    letter-spacing:0.08em;
-    margin-bottom:14px;
-  }
-  .report-row{
-    display:grid;
-    grid-template-columns: 1fr auto auto;
-    gap:6px 18px;
-    align-items:center;
-    padding:14px 0;
-    border-bottom:1px solid var(--paper-line);
-  }
-  .report-row:last-child{border-bottom:none;}
-  .report-subject{
-    font-family:'Fraunces', serif;
-    font-weight:600;
-    font-size:1.1rem;
-  }
-  .report-pct{
-    font-size:1.6rem;
-    font-weight:600;
-    text-align:right;
-    min-width:80px;
-  }
-  .report-advice{
-    grid-column:1 / -1;
-    font-size:0.82rem;
-    color:var(--ink-light);
-  }
-  .tally-line{grid-column:1/-1; display:flex; flex-wrap:wrap; gap:2px 0; align-items:center; margin-top:2px;}
-  .tally-group{position:relative; display:inline-flex; margin-right:9px; height:18px; align-items:flex-end;}
-  .stroke{width:3px; height:16px; display:inline-block; margin-right:3px; border-radius:1px;}
-  .diagonal{position:absolute; width:24px; height:3px; top:6px; left:-3px; transform:rotate(-38deg); border-radius:1px;}
-  .tally-plus{color:var(--ink-light); font-size:0.75rem; margin-left:4px;}
-
-  .overall-box{
-    background:var(--paper-line);
-    border:1px solid var(--ink);
-    border-radius:6px;
-    padding:20px 22px;
-    margin-bottom:26px;
-    display:grid;
-    grid-template-columns:1fr auto;
-    align-items:center;
-    gap:10px;
-  }
-  .overall-box .report-subject{font-size:1.25rem;}
-  .overall-box .report-pct{font-size:2.1rem;}
-
-  footer.note{
-    max-width:880px;
-    margin:18px auto 0 auto;
-    padding:0 28px 0 76px;
-    color:var(--ink-light);
-    font-size:0.72rem;
-  }
-
-  @media (max-width:560px){
-    .sheet{padding:28px 16px 40px 52px;}
-    .margin-rule{left:32px;}
-    h1{font-size:1.7rem;}
-    .stamp-btn{padding:5px 7px; font-size:0.62rem;}
-    .report-pct{font-size:1.25rem;}
-  }
-</style>
-</head>
-<body>
-<div class="sheet">
-  <div class="margin-rule"></div>
-  <header>
-    <h1>Attendance Register</h1>
-    <div class="tagline">mind your percentage, keep your seat</div>
-    <div class="save-status" id="save-status"></div>
-  </header>
-
-  <div class="tabs">
-    <button class="tab-btn active" data-tab="today">Today</button>
-    <button class="tab-btn" data-tab="routine">Routine</button>
-    <button class="tab-btn" data-tab="report">Report</button>
-  </div>
-
-  <div class="panel" id="panel-today">
-    <div class="date-row">
-      <label for="date-pick">Date</label>
-      <input type="date" id="date-pick">
-      <span class="day-label" id="day-label"></span>
-    </div>
-    <div id="today-list"></div>
-  </div>
-
-  <div class="panel hidden" id="panel-routine">
-    <div id="routine-list"></div>
-  </div>
-
-  <div class="panel hidden" id="panel-report">
-    <div class="target-row">
-      <label for="target-input">Target attendance</label>
-      <input type="number" id="target-input" min="1" max="100" value="75">
-      <span>%</span>
-    </div>
-    <div class="month-row">
-      <input type="month" id="month-pick">
-      <div class="scope-btns">
-        <button class="scope-btn active" data-scope="month">This month</button>
-        <button class="scope-btn" data-scope="all">All time</button>
-      </div>
-    </div>
-    <div id="month-banner-slot"></div>
-    <div id="overall-slot"></div>
-    <div class="caption">By subject — lowest attendance first</div>
-    <div id="report-list"></div>
-  </div>
-
-  <footer class="note">Saved automatically on this device. Add your weekly classes in Routine, then stamp attendance each day in Today.</footer>
-</div>
-
-<script>
-const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-const DAY_FULL = {Sun:'Sunday',Mon:'Monday',Tue:'Tuesday',Wed:'Wednesday',Thu:'Thursday',Fri:'Friday',Sat:'Saturday'};
-const WEIGHT = {class:2, lab:3};
-function periodWeight(p){ return WEIGHT[p && p.type] || WEIGHT.class; }
-
-let routine = {Mon:[],Tue:[],Wed:[],Thu:[],Fri:[],Sat:[],Sun:[]};
-let attendance = {}; // key: `${date}#${idx}` -> 'present'|'absent'|'cancelled'
-let settings = {target:75};
-
-async function storageGet(key){
-  if(window.storage && typeof window.storage.get === 'function'){
-    try{ return await window.storage.get(key); }
-    catch(e){ /* key not found in artifact storage */ }
-  }
-  try{
-    const raw = localStorage.getItem('attreg_'+key);
-    return raw ? {value: raw} : null;
-  }catch(e){ return null; }
-}
-async function storageSet(key, value){
-  let savedRemotely = false;
-  let savedLocally = false;
-  if(window.storage && typeof window.storage.set === 'function'){
-    try{ await window.storage.set(key, value); savedRemotely = true; }
-    catch(e){ console.error('artifact storage set failed', e); }
-  }
-  try{ localStorage.setItem('attreg_'+key, value); savedLocally = true; }
-  catch(e){ console.error('localStorage save failed', e); }
-  flashSaveStatus(savedRemotely || savedLocally);
-}
-
-let saveStatusTimer = null;
-function flashSaveStatus(ok){
-  const el = document.getElementById('save-status');
-  if(!el) return;
-  el.textContent = ok ? 'Saved' : 'Could not save — storage unavailable';
-  el.classList.toggle('err', !ok);
-  el.classList.add('show');
-  clearTimeout(saveStatusTimer);
-  saveStatusTimer = setTimeout(()=>el.classList.remove('show'), 1400);
-}
-
-async function loadState(){
-  try{
-    const r = await storageGet('routine');
-    if(r && r.value) routine = Object.assign(routine, JSON.parse(r.value));
-  }catch(e){ /* not found, keep default */ }
-  try{
-    const a = await storageGet('attendance');
-    if(a && a.value) attendance = JSON.parse(a.value);
-  }catch(e){}
-  try{
-    const s = await storageGet('settings');
-    if(s && s.value) settings = Object.assign(settings, JSON.parse(s.value));
-  }catch(e){}
-}
-
-async function saveRoutine(){
-  await storageSet('routine', JSON.stringify(routine));
-}
-async function saveAttendance(){
-  await storageSet('attendance', JSON.stringify(attendance));
-}
-async function saveSettings(){
-  await storageSet('settings', JSON.stringify(settings));
-}
-
-function todayStr(){
-  const d = new Date();
-  const off = d.getTimezoneOffset();
-  const local = new Date(d.getTime() - off*60000);
-  return local.toISOString().slice(0,10);
-}
-
-function dayOfWeek(dateStr){
-  const d = new Date(dateStr+'T00:00:00');
-  return DAYS[d.getDay()];
-}
-
-function isSecondSaturday(dateStr){
-  const d = new Date(dateStr+'T00:00:00');
-  if(d.getDay()!==6) return false;
-  const date = d.getDate();
-  return date>=8 && date<=14;
-}
-function isHoliday(dateStr){
-  const d = new Date(dateStr+'T00:00:00');
-  if(d.getDay()===0) return true;
-  return isSecondSaturday(dateStr);
-}
-function holidayLabel(dateStr){
-  const d = new Date(dateStr+'T00:00:00');
-  if(d.getDay()===0) return 'Sunday — weekly holiday.';
-  return 'Second Saturday — university holiday.';
-}
-
-/* ---------- TABS ---------- */
-document.querySelectorAll('.tab-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.panel').forEach(p=>p.classList.add('hidden'));
-    document.getElementById('panel-'+btn.dataset.tab).classList.remove('hidden');
-    if(btn.dataset.tab==='report') renderReport();
-    if(btn.dataset.tab==='routine') renderRoutine();
-    if(btn.dataset.tab==='today') renderToday();
-  });
-});
-
-/* ---------- TODAY ---------- */
-const datePick = document.getElementById('date-pick');
-datePick.value = todayStr();
-datePick.addEventListener('change', renderToday);
-
-function renderToday(){
-  const date = datePick.value || todayStr();
-  const day = dayOfWeek(date);
-  document.getElementById('day-label').textContent = DAY_FULL[day];
-  const list = document.getElementById('today-list');
-  list.innerHTML = '';
-  if(isHoliday(date)){
-    list.innerHTML = '<div class="empty-note">'+holidayLabel(date)+' No classes to mark.</div>';
-    return;
-  }
-  const periods = routine[day] || [];
-  if(periods.length===0){
-    list.innerHTML = '<div class="empty-note">No classes scheduled for '+DAY_FULL[day]+'. Add some in the Routine tab.</div>';
-    return;
-  }
-  periods.forEach((p, idx)=>{
-    const key = date+'#'+idx;
-    const current = attendance[key];
-    const row = document.createElement('div');
-    row.className = 'period-row';
-    row.innerHTML = `
-      <div class="period-time">${escapeHtml(p.time||'')}</div>
-      <div class="period-subject">${escapeHtml(p.subject)} <span class="type-badge ${p.type==='lab'?'lab':'class'}">${p.type==='lab'?'LAB · 3':'CLASS · 2'}</span></div>
-      <div class="stamp-group">
-        <button class="stamp-btn present ${current==='present'?'selected':''}" data-status="present">PRESENT</button>
-        <button class="stamp-btn absent ${current==='absent'?'selected':''}" data-status="absent">ABSENT</button>
-        <button class="stamp-btn cancelled ${current==='cancelled'?'selected':''}" data-status="cancelled">CANCELLED</button>
-      </div>
-    `;
-    row.querySelectorAll('.stamp-btn').forEach(b=>{
-      b.addEventListener('click', async ()=>{
-        const status = b.dataset.status;
-        if(attendance[key]===status){
-          delete attendance[key]; // toggle off
-        } else {
-          attendance[key] = status;
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
-        await saveAttendance();
-        renderToday();
-        // small stamp animation replay
-        const sel = row.querySelector('.stamp-btn.selected');
-        if(sel){ sel.classList.remove('stamp-pop'); void sel.offsetWidth; sel.classList.add('stamp-pop'); }
-      });
-    });
-    list.appendChild(row);
-  });
-}
 
-/* ---------- ROUTINE ---------- */
-function renderRoutine(){
-  const wrap = document.getElementById('routine-list');
-  wrap.innerHTML = '<div class="empty-note" style="padding:0 0 18px 0; font-size:0.85rem;">Sundays are always off, and the second Saturday of each month is a university holiday — both are skipped automatically.</div>';
-  const order = ['Mon','Tue','Wed','Thu','Fri','Sat'];
-  order.forEach(day=>{
-    const block = document.createElement('div');
-    block.className = 'day-block';
-    const periods = routine[day] || [];
-    let rowsHtml = periods.map((p,idx)=>`
-      <div class="routine-row">
-        <div class="period-time">${escapeHtml(p.time||'')}</div>
-        <div class="period-subject">${escapeHtml(p.subject)} <span class="type-badge ${p.type==='lab'?'lab':'class'}">${p.type==='lab'?'LAB · 3':'CLASS · 2'}</span></div>
-        <button class="del-btn" data-day="${day}" data-idx="${idx}" title="Remove">✕</button>
-      </div>
-    `).join('');
-    if(!rowsHtml) rowsHtml = '<div class="empty-note" style="padding:6px 0;">No classes added.</div>';
-    block.innerHTML = `
-      <h3>${DAY_FULL[day]}</h3>
-      ${rowsHtml}
-      <div class="add-row">
-        <input type="text" placeholder="time e.g. 9:00" class="new-time">
-        <input type="text" placeholder="subject name" class="new-subj subj">
-        <select class="new-type">
-          <option value="class">Class · 2</option>
-          <option value="lab">Lab · 3</option>
-        </select>
-        <button class="add-btn" data-day="${day}">Add class</button>
-      </div>
-    `;
-    wrap.appendChild(block);
-  });
+        :root {
+            --bg: #080b12;
+            --card: #101722;
+            --accent: #70f0c0;
+            --text: #f1f5f9;
+            --muted: #9ba8b7;
+            --border: rgba(255,255,255,0.09);
+        }
 
-  wrap.querySelectorAll('.del-btn').forEach(b=>{
-    b.addEventListener('click', async ()=>{
-      const day = b.dataset.day, idx = parseInt(b.dataset.idx,10);
-      routine[day].splice(idx,1);
-      await saveRoutine();
-      renderRoutine();
-    });
-  });
-  wrap.querySelectorAll('.add-btn').forEach(b=>{
-    b.addEventListener('click', async ()=>{
-      const day = b.dataset.day;
-      const block = b.closest('.day-block');
-      const timeVal = block.querySelector('.new-time').value.trim();
-      const subjVal = block.querySelector('.new-subj').value.trim();
-      const typeVal = block.querySelector('.new-type').value;
-      if(!subjVal) return;
-      routine[day] = routine[day] || [];
-      routine[day].push({time:timeVal, subject:subjVal, type:typeVal});
-      await saveRoutine();
-      renderRoutine();
-    });
-  });
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
 
-/* ---------- REPORT ---------- */
-const targetInput = document.getElementById('target-input');
-targetInput.addEventListener('change', async ()=>{
-  let v = parseInt(targetInput.value,10);
-  if(isNaN(v)) v = 75;
-  v = Math.max(1, Math.min(100, v));
-  settings.target = v;
-  targetInput.value = v;
-  await saveSettings();
-  renderReport();
-});
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-const monthPick = document.getElementById('month-pick');
-monthPick.value = todayStr().slice(0,7);
-monthPick.addEventListener('change', renderReport);
+        .container {
+            width: 90%;
+            max-width: 1150px;
+            margin: auto;
+        }
 
-let reportScope = 'month';
-document.querySelectorAll('.scope-btn').forEach(b=>{
-  b.addEventListener('click', ()=>{
-    document.querySelectorAll('.scope-btn').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');
-    reportScope = b.dataset.scope;
-    monthPick.disabled = (reportScope==='all');
-    renderReport();
-  });
-});
+        /* NAVBAR */
 
-function isLastDayOfMonth(dateStr){
-  const d = new Date(dateStr+'T00:00:00');
-  const next = new Date(d);
-  next.setDate(d.getDate()+1);
-  return next.getMonth() !== d.getMonth();
-}
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 0;
+        }
 
-function monthLabel(ym){
-  const [y,m] = ym.split('-').map(Number);
-  const d = new Date(y, m-1, 1);
-  return d.toLocaleString('en-US', {month:'long', year:'numeric'});
-}
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+        }
 
-function tallyHtml(count, colorVar){
-  const cap = 25;
-  const shown = Math.min(count, cap);
-  let html = '<div class="tally-line">';
-  let remaining = shown;
-  while(remaining > 0){
-    const inGroup = Math.min(5, remaining);
-    html += '<span class="tally-group">';
-    for(let i=0;i<Math.min(inGroup,4);i++){
-      html += `<span class="stroke" style="background:${colorVar}"></span>`;
-    }
-    if(inGroup===5){
-      html += `<span class="diagonal" style="background:${colorVar}"></span>`;
-    }
-    html += '</span>';
-    remaining -= inGroup;
-  }
-  if(count > cap){
-    html += `<span class="tally-plus">+${count-cap} more</span>`;
-  }
-  html += '</div>';
-  return html;
-}
+        .logo span {
+            color: var(--accent);
+        }
 
-function calcAdvice(present, total, targetPct){
-  if(total===0) return null;
-  const frac = targetPct/100;
-  const pct = present/total;
-  if(pct >= frac){
-    if(frac<=0) return {type:'safe', n:'∞'};
-    const maxA = Math.floor(present/frac - total);
-    return {type:'safe', n: Math.max(0,maxA)};
-  } else {
-    if(frac>=1) return {type:'need', n:'∞'};
-    const n = Math.ceil((frac*total - present)/(1-frac));
-    return {type:'need', n};
-  }
-}
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
 
-function renderReport(){
-  targetInput.value = settings.target;
-  const selectedMonth = monthPick.value || todayStr().slice(0,7);
-  const bannerSlot = document.getElementById('month-banner-slot');
+        .nav-links a {
+            color: var(--muted);
+            font-size: 14px;
+            transition: 0.3s;
+        }
 
-  // aggregate by subject
-  const bySubject = {}; // subject -> {present, absent}
-  Object.keys(attendance).forEach(key=>{
-    const status = attendance[key];
-    if(status==='cancelled') return;
-    const [date, idxStr] = key.split('#');
-    if(isHoliday(date)) return;
-    if(reportScope==='month' && date.slice(0,7)!==selectedMonth) return;
-    const idx = parseInt(idxStr,10);
-    const day = dayOfWeek(date);
-    const periods = routine[day] || [];
-    const p = periods[idx];
-    const subject = p ? p.subject : '(removed class)';
-    const w = periodWeight(p);
-    if(!bySubject[subject]) bySubject[subject] = {present:0, absent:0};
-    if(status==='present') bySubject[subject].present += w;
-    else if(status==='absent') bySubject[subject].absent += w;
-  });
+        .nav-links a:hover {
+            color: var(--accent);
+        }
 
-  const subjects = Object.keys(bySubject);
-  const overallSlot = document.getElementById('overall-slot');
-  const list = document.getElementById('report-list');
+        /* HERO */
 
-  // end-of-month banner
-  if(reportScope==='month'){
-    const today = todayStr();
-    const currentMonth = today.slice(0,7);
-    if(selectedMonth < currentMonth){
-      bannerSlot.innerHTML = `<div class="month-banner">Final report — ${monthLabel(selectedMonth)} is complete.</div>`;
-    } else if(selectedMonth === currentMonth && isLastDayOfMonth(today)){
-      bannerSlot.innerHTML = `<div class="month-banner">Today is the last day of ${monthLabel(selectedMonth)} — here's your report for the month.</div>`;
-    } else {
-      bannerSlot.innerHTML = '';
-    }
-  } else {
-    bannerSlot.innerHTML = '';
-  }
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
 
-  if(subjects.length===0){
-    overallSlot.innerHTML = '';
-    const scopeMsg = reportScope==='month' ? `No classes marked yet for ${monthLabel(selectedMonth)}.` : 'No classes marked yet — mark attendance in the Today tab first.';
-    list.innerHTML = `<div class="empty-note">${scopeMsg}</div>`;
-    return;
-  }
+        .hero-content {
+            max-width: 750px;
+            padding: 80px 0;
+        }
 
-  let totalP=0, totalT=0;
-  subjects.forEach(s=>{ totalP+=bySubject[s].present; totalT+=bySubject[s].present+bySubject[s].absent; });
-  const overallPct = totalT? Math.round((totalP/totalT)*1000)/10 : 0;
-  const overallAdvice = calcAdvice(totalP, totalT, settings.target);
-  const overallColor = overallPct >= settings.target ? 'var(--stamp-teal)' : 'var(--margin-red)';
+        .badge {
+            display: inline-block;
+            border: 1px solid rgba(112,240,192,0.3);
+            background: rgba(112,240,192,0.07);
+            color: var(--accent);
+            padding: 10px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
 
-  overallSlot.innerHTML = `
-    <div class="overall-box">
-      <div>
-        <div class="report-subject">Overall</div>
-        ${tallyHtml(totalP,'var(--stamp-teal)')}
-        ${tallyHtml(totalT-totalP,'var(--margin-red)')}
-        <div class="report-advice">${adviceText(overallAdvice)}</div>
-      </div>
-      <div class="report-pct" style="color:${overallColor}">${overallPct}%</div>
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(42px, 8vw, 85px);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            max-width: 620px;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 23px;
+            border-radius: 9px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .primary {
+            background: var(--accent);
+            color: #06120e;
+        }
+
+        .primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(112,240,192,0.2);
+        }
+
+        .secondary {
+            border: 1px solid var(--border);
+            color: white;
+        }
+
+        .secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(112,240,192,0.06);
+            filter: blur(120px);
+            border-radius: 50%;
+            right: -100px;
+            top: 100px;
+            z-index: -1;
+        }
+
+        /* GENERAL SECTIONS */
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .section-title span {
+            color: var(--accent);
+        }
+
+        .section-subtitle {
+            color: var(--muted);
+            margin-bottom: 45px;
+            line-height: 1.7;
+        }
+
+        /* ABOUT */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+        }
+
+        .about-card, .info-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 35px;
+        }
+
+        .about-card p {
+            color: var(--muted);
+            line-height: 1.9;
+            margin-bottom: 15px;
+        }
+
+        .info-card h3 {
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            margin-bottom: 18px;
+        }
+
+        .info-item small {
+            color: var(--muted);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .info-item strong {
+            font-size: 14px;
+        }
+
+        /* SKILLS */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .skill-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(112,240,192,0.5);
+        }
+
+        .skill-icon {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .skill-card p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* EDUCATION */
+
+        .education-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        .education-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .education-card p {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .education-date {
+            color: var(--accent) !important;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        /* PROJECTS */
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .project-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            padding: 30px;
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .project-number {
+            color: var(--accent);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .project-card h3 {
+            font-size: 21px;
+            margin-bottom: 12px;
+        }
+
+        .project-card p {
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .tag {
+            font-size: 12px;
+            color: var(--accent);
+            background: rgba(112,240,192,0.08);
+            padding: 7px 12px;
+            border-radius: 20px;
+        }
+
+        /* INTERESTS */
+
+        .interest-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .interest {
+            padding: 14px 20px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            border-radius: 30px;
+            color: var(--muted);
+            transition: 0.3s;
+        }
+
+        .interest:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* CONTACT */
+
+        .contact-box {
+            text-align: center;
+            padding: 60px 30px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+
+        .contact-box p {
+            color: var(--muted);
+            max-width: 550px;
+            margin: 20px auto 30px;
+            line-height: 1.8;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 30px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        footer span {
+            color: var(--accent);
+        }
+
+        /* ANIMATION */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* MOBILE */
+
+        @media(max-width: 768px) {
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: 75vh;
+            }
+
+            section {
+                padding: 70px 0;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+
+            .about-card, .info-card {
+                padding: 25px;
+            }
+        }
+
+        @media(max-width: 450px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 9px;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <div class="container">
+        <nav>
+            <a href="#" class="logo">Rudra<span>.</span></a>
+
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </div>
-  `;
 
-  const rows = subjects.map(s=>{
-    const {present, absent} = bySubject[s];
-    const total = present+absent;
-    const pct = total? Math.round((present/total)*1000)/10 : 0;
-    return {subject:s, present, absent, total, pct};
-  }).sort((a,b)=>a.pct-b.pct);
+    <!-- HERO -->
 
-  list.innerHTML = rows.map(r=>{
-    const advice = calcAdvice(r.present, r.total, settings.target);
-    const color = r.pct >= settings.target ? 'var(--stamp-teal)' : 'var(--margin-red)';
-    return `
-      <div class="report-row">
-        <div class="report-subject">${escapeHtml(r.subject)}</div>
-        <div></div>
-        <div class="report-pct" style="color:${color}">${r.pct}%</div>
-        ${tallyHtml(r.present,'var(--stamp-teal)')}
-        ${tallyHtml(r.absent,'var(--margin-red)')}
-        <div class="report-advice">${adviceText(advice)} &middot; ${r.present} / ${r.total} attendance units (class=2, lab=3)</div>
-      </div>
-    `;
-  }).join('');
-}
+    <section class="hero container">
 
-function adviceText(advice){
-  if(!advice) return '';
-  if(advice.type==='safe'){
-    if(advice.n===0) return 'At the line — one more miss will drop you below target.';
-    return `You can miss <strong>${advice.n}</strong> more class${advice.n===1?'':'es'} and stay at target.`;
-  }
-  return advice.n==='∞' ? 'Target is 100% — you cannot miss any class.' : `Attend the next <strong>${advice.n}</strong> class${advice.n===1?'':'es'} in a row to reach target.`;
-}
+        <div class="hero-glow"></div>
 
-function escapeHtml(str){
-  return String(str).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
+        <div class="hero-content reveal">
 
-(async function init(){
-  await loadState();
-  renderToday();
-})();
-</script>
+            <div class="badge">
+                ✦ Electronics & Communication Engineering Student
+            </div>
+
+            <h1>
+                Hi, I'm <span>Rudra</span><br>
+                Biswas.
+            </h1>
+
+            <p>
+                An aspiring engineer exploring the intersection of
+                Electronics, Artificial Intelligence, Programming and
+                emerging technologies. I love learning, building ideas
+                and solving real-world problems through technology.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#projects" class="btn primary">
+                    Explore My Work ↗
+                </a>
+
+                <a href="#contact" class="btn secondary">
+                    Contact Me
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+
+    <section id="about">
+        <div class="container">
+
+            <h2 class="section-title reveal">
+                About <span>Me</span>
+            </h2>
+
+            <p class="section-subtitle reveal">
+                A curious mind with a passion for technology and innovation.
+            </p>
+
+            <div class="about-grid">
+
+                <div class="about-card reveal">
+
+                    <p>
+                        I am a B.Tech student in Electronics and
+                        Communication Engineering at Andhra University,
+                        Visakhapatnam, India.
+                    </p>
+
+                    <p>
+                        My academic journey has introduced me to
+                        electronics, signals and systems, communication
+                        engineering, programming and digital systems.
+                    </p>
+
+                    <p>
+                        Alongside my academic studies, I am exploring
+                        Python programming, Artificial Intelligence,
+                        Machine Learning, Data Analytics, Embedded
+                        Systems and IoT.
+                    </p>
+
+                    <p>
+                        My goal is to continuously improve my technical
+                        skills, work on meaningful projects and build
+                        innovative solutions that connect hardware
+                        and software.
+                    </p>
+
+                </div>
+
+                <div class="info-card reveal">
+
+                    <h3>Quick Information</h3>
+
+                    <div class="info-item">
+                        <small>Name</small>
+                        <strong>Rudra Biswas</strong>
+                    </div>
+
+                    <div class="info-item">
+                        <small>Degree</small>
+                        <strong>B.Tech - ECE</strong>
+                    </div>
+
+                    <div class="info-item">
+                        <small>University</small>
+                        <strong>Andhra University</strong>
+                    </div>
+
+                    <div class="info-item">
+                        <small>Location</small>
+                        <strong>Visakhapatnam, India</strong>
+                    </div>
+
+                    <div class="info-item">
+                        <small>Career Interests</small>
+                        <strong>AI/ML · Electronics · Embedded Systems</strong>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+
+    <section id="skills">
+        <div class="container">
+
+            <h2 class="section-title reveal">
+                My <span>Skills</span>
+            </h2>
+
+            <p class="section-subtitle reveal">
+                Technologies I have learned and am currently developing.
+            </p>
+
+            <div class="skills-grid">
+
+                <div class="skill-card reveal">
+                    <div class="skill-icon">🐍</div>
+                    <h3>Python</h3>
+                    <p>
+                        Programming fundamentals, functions,
+                        OOP, data structures and problem solving.
+                    </p>
+                </div>
+
+                <div class="skill-card reveal">
+                    <div class="skill-icon">📊</div>
+                    <h3>Data Analytics</h3>
+                    <p>
+                        Exploring NumPy, Pandas, data cleaning,
+                        data manipulation and visualization.
+                    </p>
+                </div>
+
+                <div class="skill-card reveal">
+                    <div class="skill-icon">🤖</div>
+                    <h3>AI & Machine Learning</h3>
+                    <p>
+                        Learning the foundations of AI, ML,
+                        mathematics and intelligent systems.
+                    </p>
+                </div>
+
+                <div class="skill-card reveal">
+                    <div class="skill-icon">⚡</div>
+                    <h3>Electronics</h3>
+                    <p>
+                        Analog electronics, digital electronics,
+                        communication systems and circuit fundamentals.
+                    </p>
+                </div>
+
+                <div class="skill-card reveal">
+                    <div class="skill-icon">💻</div>
+                    <h3>MATLAB</h3>
+                    <p>
+                        Signals, systems, signal processing,
+                        mathematical analysis and simulations.
+                    </p>
+                </div>
+
+                <div class="skill-card reveal">
+                    <div class="skill-icon">🔌</div>
+                    <h3>Verilog & Digital Design</h3>
+                    <p>
+                        Digital logic design, HDL programming,
+                        logic gates and FPGA fundamentals.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+
+    <section id="education">
+        <div class="container">
+
+            <h2 class="section-title reveal">
+                <span>Education</span>
+            </h2>
+
+            <p class="section-subtitle reveal">
+                My academic background.
+            </p>
+
+            <div class="education-card reveal">
+
+                <h3>Bachelor of Technology (B.Tech)</h3>
+
+                <p class="education-date">
+                    Undergraduate Engineering
+                </p>
+
+                <p>
+                    Electronics and Communication Engineering (ECE)
+                </p>
+
+                <p>
+                    Andhra University · Visakhapatnam, Andhra Pradesh, India
+                </p>
+
+                <p>
+                    Currently pursuing undergraduate studies with a
+                    focus on electronics, communication systems,
+                    programming and emerging technologies.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+
+    <section id="projects">
+        <div class="container">
+
+            <h2 class="section-title reveal">
+                Featured <span>Projects</span>
+            </h2>
+
+            <p class="section-subtitle reveal">
+                Projects I am exploring, planning or developing.
+            </p>
+
+            <div class="projects-grid">
+
+                <div class="project-card reveal">
+
+                    <div class="project-number">PROJECT 01</div>
+
+                    <h3>Smart Helmet Safety System</h3>
+
+                    <p>
+                        An IoT-based safety concept using sensors
+                        to detect accidents or abnormal movement
+                        and provide alerts for improved rider safety.
+                    </p>
+
+                    <div class="tags">
+                        <span class="tag">ESP32</span>
+                        <span class="tag">IoT</span>
+                        <span class="tag">Sensors</span>
+                        <span class="tag">Embedded Systems</span>
+                    </div>
+
+                </div>
+
+                <div class="project-card reveal">
+
+                    <div class="project-number">PROJECT 02</div>
+
+                    <h3>Smart Energy Saving System</h3>
+
+                    <p>
+                        A smart occupancy-based system concept
+                        that automatically controls electrical
+                        appliances to reduce unnecessary energy usage.
+                    </p>
+
+                    <div class="tags">
+                        <span class="tag">Automation</span>
+                        <span class="tag">Sensors</span>
+                        <span class="tag">Electronics</span>
+                        <span class="tag">IoT</span>
+                    </div>
+
+                </div>
+
+                <div class="project-card reveal">
+
+                    <div class="project-number">PROJECT 03</div>
+
+                    <h3>ESP32 Mini Quadcopter</h3>
+
+                    <p>
+                        Exploring the design of a mini drone using
+                        embedded systems, motor control, sensors
+                        and wireless communication.
+                    </p>
+
+                    <div class="tags">
+                        <span class="tag">ESP32</span>
+                        <span class="tag">Drone</span>
+                        <span class="tag">Embedded C</span>
+                        <span class="tag">Electronics</span>
+                    </div>
+
+                </div>
+
+                <div class="project-card reveal">
+
+                    <div class="project-number">PROJECT 04</div>
+
+                    <h3>Student Academic Management System</h3>
+
+                    <p>
+                        A proposed system for managing student
+                        attendance, assignment deadlines and academic
+                        records with automated notifications.
+                    </p>
+
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Automation</span>
+                        <span class="tag">Database</span>
+                        <span class="tag">Web Development</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INTERESTS -->
+
+    <section id="interests">
+        <div class="container">
+
+            <h2 class="section-title reveal">
+                Areas of <span>Interest</span>
+            </h2>
+
+            <p class="section-subtitle reveal">
+                Technologies and fields I want to explore in depth.
+            </p>
+
+            <div class="interest-list reveal">
+
+                <div class="interest">Artificial Intelligence</div>
+                <div class="interest">Machine Learning</div>
+                <div class="interest">Data Analytics</div>
+                <div class="interest">VLSI Design</div>
+                <div class="interest">Embedded Systems</div>
+                <div class="interest">Internet of Things</div>
+                <div class="interest">Robotics</div>
+                <div class="interest">Signal Processing</div>
+                <div class="interest">Drone Technology</div>
+                <div class="interest">Electronics</div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+
+    <section id="contact">
+        <div class="container">
+
+            <div class="contact-box reveal">
+
+                <h2 class="section-title">
+                    Let's <span>Connect</span>
+                </h2>
+
+                <p>
+                    I am always open to learning opportunities,
+                    collaboration, interesting projects and
+                    connecting with people passionate about technology.
+                </p>
+
+                <div class="contact-links">
+
+                    <!-- Replace email below -->
+                    <a href="mailto:YOUR_EMAIL@gmail.com"
+                       class="btn primary">
+                        ✉ Email Me
+                    </a>
+
+                    <!-- Replace LinkedIn URL -->
+                    <a href="https://www.linkedin.com/"
+                       target="_blank"
+                       class="btn secondary">
+                        LinkedIn ↗
+                    </a>
+
+                    <!-- Replace GitHub URL -->
+                    <a href="https://github.com/"
+                       target="_blank"
+                       class="btn secondary">
+                        GitHub ↗
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+        <div class="container">
+
+            <p>
+                Designed & Built by <span>Rudra Biswas</span>
+            </p>
+
+            <p style="margin-top:10px;">
+                © 2026 · Learning, Building & Growing.
+            </p>
+
+        </div>
+    </footer>
+
+    <!-- ANIMATION SCRIPT -->
+
+    <script>
+
+        const observer = new IntersectionObserver((entries) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                }
+
+            });
+
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll(".reveal").forEach(element => {
+            observer.observe(element);
+        });
+
+    </script>
+
 </body>
 </html>
