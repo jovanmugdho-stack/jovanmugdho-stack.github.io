@@ -4,8 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080812">
-<meta name="description" content="JOVAN | Computer Science Student, Musician and Technology Enthusiast">
+<meta name="theme-color" content="#06151a">
+<meta name="description" content="JOVAN | CSE Student, Musician, Developer and Creative Thinker">
 <title>JOVAN | Personal Portfolio</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,31 +15,33 @@
 
 <style>
 :root {
-  --bg:#080812;
-  --bg2:#101020;
-  --card:rgba(255,255,255,.055);
-  --card-hover:rgba(255,255,255,.095);
-  --text:#f7f5ff;
-  --muted:#a5a3bb;
-  --accent:#a78bfa;
-  --accent2:#ec8cff;
-  --line:rgba(255,255,255,.11);
-  --shadow:0 20px 70px rgba(0,0,0,.3);
-  --nav:rgba(8,8,18,.78);
+  --bg:#061116;
+  --bg2:#0a1d24;
+  --card:rgba(13,42,49,.72);
+  --card2:rgba(17,59,65,.85);
+  --text:#efffff;
+  --muted:#a4c1c5;
+  --blue:#38bdf8;
+  --green:#35e0ad;
+  --cyan:#67e8f9;
+  --line:rgba(103,232,249,.17);
+  --shadow:0 20px 65px rgba(0,0,0,.35);
+  --nav:rgba(5,18,23,.85);
 }
 
 body.light {
-  --bg:#f6f4fc;
-  --bg2:#eeebf8;
-  --card:rgba(255,255,255,.78);
-  --card-hover:#fff;
-  --text:#171329;
-  --muted:#68647d;
-  --accent:#7651db;
-  --accent2:#bb56d6;
-  --line:rgba(30,20,60,.12);
-  --shadow:0 20px 70px rgba(50,30,100,.10);
-  --nav:rgba(246,244,252,.85);
+  --bg:#effafa;
+  --bg2:#e0f3f2;
+  --card:rgba(255,255,255,.83);
+  --card2:#ffffff;
+  --text:#102c32;
+  --muted:#58777b;
+  --blue:#0284c7;
+  --green:#059669;
+  --cyan:#0891b2;
+  --line:rgba(4,120,120,.17);
+  --shadow:0 20px 60px rgba(0,80,90,.10);
+  --nav:rgba(239,250,250,.88);
 }
 
 * {
@@ -58,41 +60,47 @@ body {
   color:var(--text);
   font-family:'DM Sans',sans-serif;
   overflow-x:hidden;
-  transition:background .5s,color .5s;
-}
-
-body,button,a {
-  -webkit-tap-highlight-color:transparent;
+  transition:background .4s,color .4s;
 }
 
 a {
-  text-decoration:none;
   color:inherit;
+  text-decoration:none;
 }
 
 button {
   font:inherit;
+  -webkit-tap-highlight-color:transparent;
 }
 
 ::selection {
-  background:var(--accent);
-  color:white;
+  background:var(--green);
+  color:#042027;
 }
+
+.container {
+  width:min(1120px,90%);
+  margin:auto;
+}
+
+/* BACKGROUND */
 
 #progress {
   position:fixed;
   top:0;
   left:0;
-  height:3px;
   width:0;
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  height:3px;
+  background:linear-gradient(90deg,var(--green),var(--blue),var(--cyan));
   z-index:3000;
-  box-shadow:0 0 15px var(--accent);
+  box-shadow:0 0 15px var(--cyan);
 }
 
 #particles {
   position:fixed;
   inset:0;
+  width:100%;
+  height:100%;
   pointer-events:none;
   z-index:-3;
 }
@@ -100,9 +108,9 @@ button {
 .grid-bg {
   position:fixed;
   inset:0;
-  z-index:-4;
   pointer-events:none;
-  opacity:.15;
+  z-index:-4;
+  opacity:.13;
   background-image:
     linear-gradient(var(--line) 1px,transparent 1px),
     linear-gradient(90deg,var(--line) 1px,transparent 1px);
@@ -112,37 +120,25 @@ button {
 
 .glow {
   position:fixed;
-  width:420px;
-  height:420px;
+  width:400px;
+  height:400px;
   border-radius:50%;
   filter:blur(120px);
-  opacity:.18;
+  opacity:.13;
   pointer-events:none;
   z-index:-2;
-  animation:glowMove 12s ease-in-out infinite alternate;
 }
 
 .glow.one {
-  background:#8b5cf6;
+  background:#06b6d4;
   top:-170px;
   left:-150px;
 }
 
 .glow.two {
-  background:#d946ef;
-  bottom:-190px;
-  right:-140px;
-  animation-delay:3s;
-}
-
-@keyframes glowMove {
-  from {transform:translate(0,0) scale(1)}
-  to {transform:translate(70px,50px) scale(1.2)}
-}
-
-.container {
-  width:min(1120px,90%);
-  margin:auto;
+  background:#10b981;
+  bottom:-170px;
+  right:-150px;
 }
 
 /* NAVIGATION */
@@ -150,12 +146,12 @@ button {
 nav {
   position:fixed;
   top:0;
+  left:0;
   width:100%;
   z-index:2000;
   background:var(--nav);
   backdrop-filter:blur(22px);
   border-bottom:1px solid var(--line);
-  transition:.4s;
 }
 
 .nav-inner {
@@ -163,19 +159,19 @@ nav {
   height:76px;
   margin:auto;
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
 }
 
 .logo {
   font-family:'Space Grotesk',sans-serif;
-  font-size:27px;
+  font-size:31px;
   font-weight:800;
   letter-spacing:2px;
 }
 
 .logo span {
-  color:var(--accent);
+  color:var(--green);
 }
 
 .nav-links {
@@ -188,51 +184,33 @@ nav {
   font-size:12px;
   color:var(--muted);
   transition:.3s;
-  position:relative;
-}
-
-.nav-links a::after {
-  content:"";
-  position:absolute;
-  width:0;
-  height:2px;
-  bottom:-7px;
-  left:0;
-  background:var(--accent);
-  transition:.35s;
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after {
-  width:100%;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-  color:var(--accent);
+  color:var(--green);
 }
 
 .nav-actions {
   display:flex;
-  align-items:center;
-  gap:10px;
+  gap:12px;
 }
 
 .icon-btn {
-  width:40px;
-  height:40px;
+  width:42px;
+  height:42px;
   border-radius:50%;
+  background:var(--card);
   border:1px solid var(--line);
   color:var(--text);
-  background:var(--card);
   cursor:pointer;
-  transition:.35s;
+  transition:.3s;
 }
 
 .icon-btn:hover {
-  background:var(--accent);
-  color:white;
-  transform:rotate(15deg) scale(1.08);
+  background:var(--green);
+  color:#042027;
+  transform:rotate(12deg) scale(1.08);
 }
 
 .menu-btn {
@@ -245,13 +223,12 @@ nav {
   min-height:100vh;
   display:flex;
   align-items:center;
-  padding:130px 0 75px;
-  position:relative;
+  padding:125px 0 75px;
 }
 
 .hero-grid {
   display:grid;
-  grid-template-columns:1.15fr .85fr;
+  grid-template-columns:1.1fr .9fr;
   align-items:center;
   gap:55px;
 }
@@ -260,63 +237,66 @@ nav {
   display:inline-flex;
   align-items:center;
   gap:10px;
-  color:var(--accent);
-  border:1px solid var(--line);
   padding:10px 16px;
+  border:1px solid var(--line);
   border-radius:30px;
-  font-size:11px;
-  margin-bottom:25px;
   background:var(--card);
-  animation:fadeUp 1s ease both;
+  color:var(--green);
+  font-size:11px;
+  letter-spacing:1px;
+  margin-bottom:25px;
 }
 
-.eyebrow i {
-  font-size:9px;
-  animation:pulse 2s infinite;
+.pulse-dot {
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 12px var(--green);
+  animation:pulse 1.8s infinite;
 }
 
 @keyframes pulse {
-  50% {opacity:.25}
+  50% { opacity:.35; transform:scale(.7); }
 }
 
 .hero h1 {
   font-family:'Space Grotesk',sans-serif;
-  font-size:clamp(65px,10vw,112px);
-  line-height:1;
-  letter-spacing:-5px;
-  margin-bottom:22px;
-  animation:fadeUp 1s .1s ease both;
+  font-size:clamp(48px,7vw,83px);
+  line-height:1.04;
+  letter-spacing:-3px;
+  margin-bottom:20px;
 }
 
 .gradient-text {
-  background:linear-gradient(100deg,#bda6ff,#ed9bff,#9eafff,#bda6ff);
+  background:linear-gradient(100deg,var(--green),var(--cyan),var(--blue),var(--green));
   background-size:250% auto;
   color:transparent;
   background-clip:text;
   -webkit-background-clip:text;
-  animation:shimmer 5s linear infinite;
+  animation:gradientMove 7s linear infinite;
 }
 
-@keyframes shimmer {
-  to {background-position:250% center}
+@keyframes gradientMove {
+  to { background-position:250% center; }
 }
 
 .typing-line {
   font-size:19px;
-  margin-bottom:20px;
   color:var(--muted);
+  margin-bottom:20px;
 }
 
-.typing-line span {
-  color:var(--accent);
+.typing-line span:first-child {
+  color:var(--green);
   font-weight:700;
 }
 
 .hero-description {
+  max-width:560px;
   color:var(--muted);
   font-size:14px;
-  line-height:2;
-  max-width:570px;
+  line-height:1.95;
   margin-bottom:28px;
 }
 
@@ -333,35 +313,37 @@ nav {
   justify-content:center;
   gap:10px;
   padding:14px 22px;
-  border-radius:10px;
-  font-size:12px;
+  border-radius:11px;
+  font-size:13px;
   font-weight:700;
-  transition:transform .35s,box-shadow .35s,background .35s;
+  border:1px solid transparent;
   cursor:pointer;
-  border:none;
+  transition:transform .35s,box-shadow .35s,background .35s;
+}
+
+.btn:hover {
+  transform:translateY(-5px);
 }
 
 .btn-primary {
-  background:linear-gradient(110deg,#8b5cf6,#c084fc);
+  background:linear-gradient(110deg,#059669,#0891b2);
   color:white;
-  box-shadow:0 8px 30px rgba(139,92,246,.23);
+  box-shadow:0 9px 28px rgba(5,150,105,.24);
 }
 
 .btn-primary:hover {
-  transform:translateY(-5px);
-  box-shadow:0 15px 35px rgba(139,92,246,.4);
+  box-shadow:0 12px 35px rgba(6,182,212,.35);
 }
 
 .btn-outline {
-  border:1px solid var(--line);
   background:var(--card);
+  border-color:var(--line);
   color:var(--text);
 }
 
 .btn-outline:hover {
-  border-color:var(--accent);
-  color:var(--accent);
-  transform:translateY(-4px);
+  border-color:var(--green);
+  color:var(--green);
 }
 
 .socials {
@@ -370,48 +352,55 @@ nav {
 }
 
 .socials a {
-  width:40px;
-  height:40px;
+  width:41px;
+  height:41px;
   display:grid;
   place-items:center;
   border:1px solid var(--line);
   border-radius:50%;
+  background:var(--card);
   color:var(--muted);
   transition:.35s;
 }
 
 .socials a:hover {
-  color:white;
-  background:var(--accent);
+  background:var(--green);
+  color:#042027;
   transform:translateY(-5px) rotate(8deg);
 }
 
-/* INTERACTIVE 3D PROFILE */
+/* 3D PROFILE */
 
 .visual-area {
-  perspective:1200px;
+  perspective:1400px;
   display:flex;
   justify-content:center;
   align-items:center;
-  min-height:470px;
+  min-height:510px;
+  position:relative;
+}
+
+.profile-wrapper {
+  width:min(100%,375px);
+  perspective:1400px;
+  position:relative;
 }
 
 .profile-card {
-  width:min(100%,365px);
-  min-height:435px;
-  position:relative;
-  border:1px solid rgba(190,160,255,.3);
-  border-radius:25px;
+  width:100%;
+  min-height:465px;
   padding:28px;
-  background:linear-gradient(145deg,rgba(166,130,255,.15),var(--card));
-  box-shadow:var(--shadow),inset 0 1px rgba(255,255,255,.1);
-  transform-style:preserve-3d;
-  transition:transform .12s ease-out,box-shadow .4s;
+  position:relative;
   overflow:hidden;
-  touch-action:pan-y;
-  user-select:none;
-  cursor:grab;
+  border:1px solid rgba(103,232,249,.3);
+  border-radius:27px;
+  background:linear-gradient(145deg,rgba(14,87,91,.5),var(--card));
+  box-shadow:var(--shadow),inset 0 1px rgba(255,255,255,.12);
+  transform-style:preserve-3d;
   will-change:transform;
+  touch-action:pan-y;
+  cursor:grab;
+  transition:box-shadow .35s;
 }
 
 .profile-card:active {
@@ -421,29 +410,27 @@ nav {
 .profile-card::before {
   content:"";
   position:absolute;
-  width:250px;
-  height:250px;
-  background:#a78bfa;
-  filter:blur(100px);
-  opacity:.2;
-  top:-120px;
+  width:270px;
+  height:270px;
+  top:-130px;
   right:-100px;
+  background:var(--blue);
+  filter:blur(100px);
+  opacity:.24;
   pointer-events:none;
 }
 
 .profile-card::after {
   content:"";
   position:absolute;
-  inset:0;
-  background:linear-gradient(120deg,transparent 25%,rgba(255,255,255,.08),transparent 65%);
-  transform:translateX(-120%);
-  animation:cardShine 7s ease-in-out infinite;
+  width:230px;
+  height:230px;
+  bottom:-150px;
+  left:-100px;
+  background:var(--green);
+  filter:blur(90px);
+  opacity:.18;
   pointer-events:none;
-}
-
-@keyframes cardShine {
-  0%,60%,100% {transform:translateX(-120%)}
-  75% {transform:translateX(120%)}
 }
 
 .profile-top {
@@ -451,52 +438,60 @@ nav {
   justify-content:space-between;
   align-items:center;
   position:relative;
+  z-index:2;
   transform:translateZ(35px);
 }
 
 .profile-tag {
-  font-size:10px;
-  color:var(--accent);
+  font-size:11px;
+  padding:9px 13px;
   border:1px solid var(--line);
-  border-radius:20px;
-  padding:7px 12px;
+  border-radius:30px;
+  color:var(--cyan);
 }
 
 .profile-dot {
-  width:9px;
-  height:9px;
+  width:10px;
+  height:10px;
   border-radius:50%;
-  background:#4ade80;
-  box-shadow:0 0 13px #4ade80;
+  background:var(--green);
+  box-shadow:0 0 15px var(--green);
 }
 
 .avatar {
-  width:140px;
-  height:140px;
+  width:150px;
+  height:150px;
+  margin:42px auto 25px;
   border-radius:50%;
-  margin:44px auto 23px;
+  overflow:hidden;
   display:grid;
   place-items:center;
-  font-size:52px;
+  background:linear-gradient(135deg,#059669,#0284c7,#06b6d4);
+  border:5px solid rgba(103,232,249,.25);
+  box-shadow:0 0 0 9px rgba(56,189,248,.07),0 0 50px rgba(6,182,212,.3);
+  transform:translateZ(65px);
+  transition:.4s;
+}
+
+.avatar img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.avatar-fallback {
+  font-size:65px;
   font-family:'Space Grotesk',sans-serif;
   font-weight:700;
   color:white;
-  background:linear-gradient(140deg,#8b5cf6,#e879f9);
-  box-shadow:0 0 0 9px rgba(167,139,250,.09),0 0 55px rgba(167,139,250,.35);
-  transform:translateZ(65px);
-  animation:avatarFloat 4s ease-in-out infinite;
-}
-
-@keyframes avatarFloat {
-  50% {transform:translateZ(65px) translateY(-9px)}
 }
 
 .profile-card h2 {
   text-align:center;
   font-family:'Space Grotesk',sans-serif;
-  font-size:28px;
+  font-size:31px;
   letter-spacing:2px;
-  transform:translateZ(50px);
+  transform:translateZ(55px);
 }
 
 .profile-card > p {
@@ -504,93 +499,102 @@ nav {
   color:var(--muted);
   font-size:12px;
   margin-top:8px;
-  transform:translateZ(40px);
+  transform:translateZ(45px);
 }
 
 .profile-divider {
   height:1px;
   background:var(--line);
-  margin:25px 0 20px;
-  transform:translateZ(25px);
+  margin:27px 0 22px;
+  transform:translateZ(30px);
 }
 
 .profile-info {
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:17px;
-  transform:translateZ(35px);
+  gap:20px;
+  transform:translateZ(40px);
 }
 
 .profile-info small {
   display:block;
-  color:var(--muted);
   font-size:10px;
-  margin-bottom:5px;
+  color:var(--muted);
+  margin-bottom:7px;
 }
 
 .profile-info strong {
-  font-size:11px;
+  font-size:12px;
 }
 
 .floating-chip {
   position:absolute;
-  padding:11px 14px;
+  padding:12px 15px;
   background:var(--bg2);
   border:1px solid var(--line);
-  border-radius:12px;
-  font-size:11px;
+  border-radius:13px;
+  font-size:12px;
   box-shadow:var(--shadow);
+  z-index:5;
   animation:float 4s ease-in-out infinite;
-  z-index:2;
+  pointer-events:none;
 }
 
 .chip-one {
-  top:100px;
-  left:-40px;
+  top:125px;
+  left:-43px;
 }
 
 .chip-two {
   bottom:100px;
-  right:-40px;
+  right:-43px;
   animation-delay:1.5s;
 }
 
 @keyframes float {
-  0%,100% {transform:translateY(0)}
-  50% {transform:translateY(-13px)}
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-13px); }
 }
 
 .card-controls {
-  position:absolute;
-  bottom:12px;
-  left:0;
-  width:100%;
-  text-align:center;
-  color:var(--muted);
-  font-size:9px;
-  letter-spacing:.5px;
-  transform:translateZ(45px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:9px;
+  margin-top:17px;
 }
 
-.reset-card {
-  position:absolute;
-  top:15px;
-  right:15px;
-  width:31px;
-  height:31px;
+.card-control {
+  width:37px;
+  height:37px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
   border:1px solid var(--line);
   background:var(--card);
   color:var(--text);
-  border-radius:50%;
   cursor:pointer;
-  z-index:5;
-  transform:translateZ(50px);
+  transition:.3s;
+}
+
+.card-control:hover {
+  background:var(--green);
+  color:#042027;
+  transform:scale(1.12);
+}
+
+.drag-hint {
+  text-align:center;
+  color:var(--muted);
+  font-size:10px;
+  margin-top:11px;
+  letter-spacing:.5px;
 }
 
 /* GENERAL SECTIONS */
 
 .section {
-  padding:105px 0;
+  padding:100px 0;
 }
 
 .section-heading {
@@ -599,51 +603,52 @@ nav {
 }
 
 .section-label {
-  color:var(--accent);
-  font-size:10px;
+  color:var(--green);
+  font-size:11px;
   font-weight:800;
   letter-spacing:3px;
-  margin-bottom:14px;
+  margin-bottom:13px;
 }
 
 .section-heading h2 {
   font-family:'Space Grotesk',sans-serif;
-  font-size:clamp(30px,4vw,44px);
-  letter-spacing:-1.5px;
+  font-size:clamp(30px,4vw,45px);
+  letter-spacing:-1px;
 }
 
 .section-heading p {
   color:var(--muted);
   font-size:13px;
-  margin-top:13px;
+  margin-top:12px;
 }
 
 .glass-card {
   background:var(--card);
   border:1px solid var(--line);
-  border-radius:18px;
-  padding:28px;
+  border-radius:19px;
+  padding:27px;
   box-shadow:var(--shadow);
-  transition:transform .4s cubic-bezier(.2,.8,.2,1),
-             background .4s,border-color .4s;
+  transition:transform .4s ease,background .4s,border-color .4s,box-shadow .4s;
+  transform-style:preserve-3d;
 }
 
 .glass-card:hover {
-  transform:translateY(-7px);
-  background:var(--card-hover);
-  border-color:rgba(167,139,250,.4);
+  transform:translateY(-8px) perspective(900px) rotateX(2deg);
+  background:var(--card2);
+  border-color:rgba(53,224,173,.4);
+  box-shadow:0 24px 55px rgba(0,0,0,.22);
 }
 
 .glass-card h3 {
   font-family:'Space Grotesk',sans-serif;
   font-size:19px;
-  margin-bottom:15px;
+  margin-bottom:13px;
 }
 
 .glass-card p {
   color:var(--muted);
-  font-size:12px;
-  line-height:1.95;
+  font-size:13px;
+  line-height:1.9;
 }
 
 /* ABOUT */
@@ -651,12 +656,12 @@ nav {
 .about-grid {
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:25px;
+  gap:22px;
 }
 
 .about-icon {
-  color:var(--accent);
-  font-size:24px;
+  color:var(--green);
+  font-size:25px;
   margin-bottom:18px;
 }
 
@@ -664,28 +669,28 @@ nav {
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:15px;
-  margin-top:25px;
+  margin-top:22px;
 }
 
 .stat {
   text-align:center;
   padding:22px 10px;
-  border:1px solid var(--line);
-  border-radius:13px;
   background:var(--card);
+  border:1px solid var(--line);
+  border-radius:15px;
   transition:.35s;
 }
 
 .stat:hover {
-  transform:translateY(-5px);
-  border-color:var(--accent);
+  transform:translateY(-7px) scale(1.03);
+  border-color:var(--green);
 }
 
 .stat strong {
   display:block;
-  color:var(--accent);
-  font-size:25px;
   font-family:'Space Grotesk',sans-serif;
+  color:var(--green);
+  font-size:27px;
 }
 
 .stat span {
@@ -704,71 +709,40 @@ nav {
 .timeline::before {
   content:"";
   position:absolute;
+  left:17px;
   top:10px;
   bottom:10px;
-  left:17px;
-  width:1px;
-  background:linear-gradient(var(--accent),var(--accent2),transparent);
+  width:2px;
+  background:linear-gradient(var(--green),var(--blue),transparent);
 }
 
 .timeline-item {
   position:relative;
   padding-left:55px;
-  margin-bottom:30px;
+  margin-bottom:28px;
 }
 
 .timeline-dot {
   position:absolute;
+  top:8px;
   left:9px;
-  top:7px;
-  width:17px;
-  height:17px;
+  width:18px;
+  height:18px;
   border-radius:50%;
-  background:var(--accent);
+  background:var(--green);
   border:4px solid var(--bg);
-  box-shadow:0 0 15px var(--accent);
-}
-
-.timeline-item .glass-card {
-  padding:24px;
+  box-shadow:0 0 15px var(--green);
 }
 
 .timeline-item small {
-  color:var(--accent);
-  font-size:10px;
+  color:var(--green);
+  font-size:11px;
   font-weight:700;
 }
 
 .timeline-item h3 {
   margin:9px 0;
-  font-size:16px;
-}
-
-/* SKILLS */
-
-.skills-grid {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:17px;
-}
-
-.skill-card {
-  padding:25px;
-}
-
-.skill-card i {
-  font-size:26px;
-  color:var(--accent);
-  margin-bottom:17px;
-}
-
-.skill-card h3 {
-  font-size:15px;
-  margin-bottom:10px;
-}
-
-.skill-card p {
-  font-size:12px;
+  font-size:17px;
 }
 
 .skill-tags {
@@ -781,10 +755,32 @@ nav {
 .skill-tags span {
   padding:6px 10px;
   font-size:10px;
-  color:var(--accent);
-  background:rgba(167,139,250,.1);
-  border:1px solid rgba(167,139,250,.15);
+  color:var(--cyan);
+  background:rgba(56,189,248,.09);
+  border:1px solid var(--line);
   border-radius:20px;
+}
+
+/* SKILLS */
+
+.skills-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:17px;
+}
+
+.skill-card {
+  padding:24px;
+}
+
+.skill-card > i {
+  font-size:27px;
+  color:var(--green);
+  margin-bottom:17px;
+}
+
+.skill-card h3 {
+  font-size:16px;
 }
 
 /* INTERESTS */
@@ -796,65 +792,56 @@ nav {
 }
 
 .interest-card {
-  min-height:180px;
   cursor:pointer;
-  overflow:hidden;
+  min-height:180px;
 }
 
 .interest-icon {
-  width:48px;
-  height:48px;
+  width:49px;
+  height:49px;
   display:grid;
   place-items:center;
-  background:rgba(167,139,250,.12);
-  color:var(--accent);
   border-radius:13px;
+  color:var(--green);
+  background:rgba(53,224,173,.11);
   font-size:21px;
-  margin-bottom:17px;
-}
-
-.interest-card h3 {
-  margin-bottom:8px;
-}
-
-.interest-card p {
-  font-size:12px;
+  margin-bottom:18px;
 }
 
 .interest-more {
   display:none;
-  margin-top:13px;
-  padding-top:13px;
+  margin-top:15px;
+  padding-top:14px;
   border-top:1px solid var(--line);
 }
 
 .interest-card.open .interest-more {
   display:block;
-  animation:fadeIn .35s ease;
+  animation:fadeIn .4s ease;
 }
 
 .interest-card.open {
-  border-color:var(--accent);
+  border-color:var(--green);
 }
 
 .interest-more a {
-  color:var(--accent);
-  font-size:11px;
-  font-weight:700;
   display:inline-block;
+  color:var(--cyan);
+  font-size:12px;
+  font-weight:700;
   margin-top:10px;
 }
 
 .expand-hint {
   display:block;
-  color:var(--accent);
+  color:var(--green);
   font-size:10px;
-  margin-top:13px;
+  margin-top:14px;
 }
 
 @keyframes fadeIn {
-  from {opacity:0;transform:translateY(10px)}
-  to {opacity:1;transform:translateY(0)}
+  from { opacity:0; transform:translateY(10px); }
+  to { opacity:1; transform:translateY(0); }
 }
 
 /* PROJECTS */
@@ -871,30 +858,39 @@ nav {
 }
 
 .project-visual {
-  height:175px;
+  height:180px;
   display:grid;
   place-items:center;
-  font-size:48px;
-  color:white;
-  background:linear-gradient(135deg,#6546c7,#bd70d9);
   position:relative;
   overflow:hidden;
+  color:white;
+  font-size:50px;
+  background:linear-gradient(135deg,#047857,#0284c7);
 }
 
-.project-visual::after {
+.project-visual i {
+  position:relative;
+  z-index:2;
+  transition:.5s;
+}
+
+.project-card:hover .project-visual i {
+  transform:scale(1.3) rotate(10deg);
+}
+
+.project-visual::before {
   content:"";
   position:absolute;
-  width:170px;
-  height:170px;
-  border:1px solid rgba(255,255,255,.25);
+  width:160px;
+  height:160px;
+  border:1px solid rgba(255,255,255,.3);
   border-radius:50%;
-  box-shadow:0 0 0 25px rgba(255,255,255,.04),
-             0 0 0 50px rgba(255,255,255,.03);
-  animation:orbit 15s linear infinite;
+  box-shadow:0 0 0 25px rgba(255,255,255,.04),0 0 0 50px rgba(255,255,255,.03);
+  animation:rotateCircle 15s linear infinite;
 }
 
-@keyframes orbit {
-  to {transform:rotate(360deg)}
+@keyframes rotateCircle {
+  to { transform:rotate(360deg); }
 }
 
 .project-content {
@@ -906,94 +902,38 @@ nav {
   margin-bottom:10px;
 }
 
-.project-content p {
-  font-size:12px;
-}
-
 .project-status {
   display:inline-flex;
   align-items:center;
   gap:7px;
-  margin-top:17px;
-  color:var(--accent);
-  font-size:10px;
+  margin-top:16px;
   padding:8px 12px;
-  border-radius:20px;
-  background:rgba(167,139,250,.1);
-  border:1px solid rgba(167,139,250,.15);
-}
-
-/* MY DIGITAL WORK */
-
-.digital-grid {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-.digital-card {
-  text-align:center;
-  padding:30px 22px;
-  position:relative;
-  overflow:hidden;
-}
-
-.digital-card .digital-icon {
-  width:65px;
-  height:65px;
-  display:grid;
-  place-items:center;
-  margin:0 auto 20px;
-  background:rgba(167,139,250,.13);
-  color:var(--accent);
-  font-size:27px;
-  border-radius:18px;
-  transition:.4s;
-}
-
-.digital-card:hover .digital-icon {
-  transform:rotateY(180deg) scale(1.1);
-}
-
-.digital-card h3 {
-  font-size:17px;
-  margin-bottom:10px;
-}
-
-.digital-card p {
-  min-height:65px;
-  margin-bottom:15px;
-}
-
-.digital-card .btn {
-  width:100%;
+  background:rgba(53,224,173,.1);
+  border:1px solid var(--line);
+  color:var(--green);
   font-size:11px;
+  border-radius:20px;
 }
 
 /* FUTURE */
 
 .future-box {
-  padding:48px;
+  padding:45px;
   text-align:center;
   position:relative;
   overflow:hidden;
 }
 
 .future-box > i {
-  font-size:37px;
-  color:var(--accent);
+  font-size:38px;
+  color:var(--green);
   margin-bottom:20px;
-  animation:rocketFloat 3s ease-in-out infinite;
-}
-
-@keyframes rocketFloat {
-  50% {transform:translateY(-12px) rotate(-8deg)}
 }
 
 .future-box h3 {
   font-family:'Space Grotesk',sans-serif;
   font-size:27px;
-  margin-bottom:15px;
+  margin-bottom:16px;
 }
 
 .future-box p {
@@ -1019,32 +959,32 @@ nav {
   align-items:center;
   gap:15px;
   padding:17px;
-  border:1px solid var(--line);
   background:var(--card);
-  border-radius:13px;
-  transition:.35s;
+  border:1px solid var(--line);
+  border-radius:14px;
   min-width:0;
+  transition:.3s;
 }
 
 .contact-item:hover {
-  border-color:var(--accent);
+  border-color:var(--green);
   transform:translateX(6px);
 }
 
-.contact-item i {
+.contact-item > i {
   width:42px;
   height:42px;
   flex-shrink:0;
   display:grid;
   place-items:center;
-  background:rgba(167,139,250,.13);
-  color:var(--accent);
-  border-radius:11px;
+  background:rgba(53,224,173,.12);
+  color:var(--green);
+  border-radius:12px;
 }
 
 .contact-item small {
-  color:var(--muted);
   display:block;
+  color:var(--muted);
   font-size:10px;
   margin-bottom:5px;
 }
@@ -1066,7 +1006,12 @@ nav {
 }
 
 .contact-message p {
-  margin-bottom:22px;
+  margin-bottom:20px;
+}
+
+#copyStatus {
+  color:var(--green);
+  font-size:12px;
 }
 
 /* FOOTER */
@@ -1078,41 +1023,36 @@ footer {
 
 .footer-inner {
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   gap:15px;
   color:var(--muted);
   font-size:11px;
 }
 
 .footer-inner strong {
-  color:var(--accent);
+  color:var(--green);
 }
-
-.footer-inner a:hover {
-  color:var(--accent);
-}
-
-/* BACK TO TOP */
 
 .back-top {
   position:fixed;
-  right:22px;
-  bottom:22px;
-  width:44px;
-  height:44px;
+  bottom:23px;
+  right:23px;
+  width:47px;
+  height:47px;
   display:grid;
   place-items:center;
-  border:none;
-  border-radius:13px;
-  background:var(--accent);
+  background:linear-gradient(135deg,var(--green),var(--blue));
   color:white;
+  border:none;
+  border-radius:14px;
+  font-size:18px;
   cursor:pointer;
   opacity:0;
   visibility:hidden;
-  transform:translateY(12px);
-  transition:.4s;
-  z-index:1500;
+  transform:translateY(15px);
+  transition:.35s;
+  z-index:1000;
 }
 
 .back-top.show {
@@ -1121,12 +1061,12 @@ footer {
   transform:translateY(0);
 }
 
-/* SCROLL REVEAL */
+/* REVEAL */
 
 .reveal {
   opacity:0;
-  transform:translateY(35px);
-  transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1);
+  transform:translateY(30px);
+  transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1);
 }
 
 .reveal.visible {
@@ -1134,40 +1074,17 @@ footer {
   transform:translateY(0);
 }
 
-.reveal-left {
-  opacity:0;
-  transform:translateX(-35px);
-  transition:opacity .8s ease,transform .8s ease;
-}
-
-.reveal-left.visible {
-  opacity:1;
-  transform:translateX(0);
-}
-
-.reveal-right {
-  opacity:0;
-  transform:translateX(35px);
-  transition:opacity .8s ease,transform .8s ease;
-}
-
-.reveal-right.visible {
-  opacity:1;
-  transform:translateX(0);
-}
-
-/* MOBILE */
+/* RESPONSIVE */
 
 @media(max-width:900px) {
-  .nav-links {gap:15px}
-  .hero-grid {gap:25px}
-  .chip-one {left:-15px}
-  .chip-two {right:-15px}
-  .digital-grid {grid-template-columns:repeat(2,1fr)}
+  .nav-links { gap:14px; }
+  .hero-grid { gap:25px; }
+  .chip-one { left:-15px; }
+  .chip-two { right:-15px; }
 }
 
 @media(max-width:760px) {
-  .menu-btn {display:block}
+  .menu-btn { display:block; }
 
   .nav-links {
     position:absolute;
@@ -1175,24 +1092,16 @@ footer {
     left:0;
     width:100%;
     padding:25px 6%;
-    background:var(--nav);
-    backdrop-filter:blur(22px);
-    border-bottom:1px solid var(--line);
     display:none;
     flex-direction:column;
     align-items:flex-start;
-    gap:22px;
+    gap:21px;
+    background:var(--nav);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--line);
   }
 
-  .nav-links.open {
-    display:flex;
-    animation:menuIn .3s ease;
-  }
-
-  @keyframes menuIn {
-    from {opacity:0;transform:translateY(-10px)}
-    to {opacity:1;transform:translateY(0)}
-  }
+  .nav-links.open { display:flex; }
 
   .hero-grid {
     grid-template-columns:1fr;
@@ -1202,25 +1111,15 @@ footer {
     padding-top:125px;
   }
 
-  .hero h1 {
-    font-size:clamp(65px,13vw,95px);
-  }
-
   .visual-area {
-    margin-top:25px;
+    margin-top:20px;
   }
 
-  .profile-card {
-    max-width:350px;
-  }
-
-  .about-grid,
-  .contact-grid {
+  .about-grid,.contact-grid {
     grid-template-columns:1fr;
   }
 
-  .skills-grid,
-  .interest-grid {
+  .skills-grid,.interest-grid {
     grid-template-columns:repeat(2,1fr);
   }
 
@@ -1229,66 +1128,71 @@ footer {
   }
 
   .section {
-    padding:80px 0;
+    padding:75px 0;
   }
 }
 
 @media(max-width:480px) {
-  .container {width:90%}
+  .container { width:90%; }
 
   .hero h1 {
-    letter-spacing:-3px;
-    font-size:67px;
+    letter-spacing:-2px;
   }
 
   .hero-description {
     font-size:13px;
   }
 
-  .skills-grid,
-  .interest-grid,
-  .digital-grid {
+  .profile-card {
+    padding:23px;
+    min-height:445px;
+  }
+
+  .profile-info {
+    gap:17px 10px;
+  }
+
+  .profile-info strong {
+    font-size:11px;
+  }
+
+  .chip-one { left:-5px; }
+  .chip-two { right:-5px; }
+
+  .skills-grid,.interest-grid {
     grid-template-columns:1fr;
   }
 
-  .stats {gap:8px}
+  .stats { gap:8px; }
 
-  .stat {padding:15px 5px}
+  .stat { padding:15px 5px; }
 
-  .stat strong {font-size:20px}
+  .stat strong { font-size:20px; }
 
-  .profile-card {padding:23px}
-
-  .chip-one {left:-5px}
-  .chip-two {right:-5px}
-
-  .future-box {padding:30px 20px}
+  .future-box {
+    padding:30px 20px;
+  }
 
   .footer-inner {
     flex-direction:column;
     text-align:center;
   }
 
-  .section-heading h2 {
-    font-size:31px;
+  .floating-chip {
+    font-size:10px;
+    padding:9px 10px;
   }
 }
 
-/* REDUCED MOTION */
-
 @media(prefers-reduced-motion:reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior:auto !important;
-    animation-duration:.01ms !important;
-    animation-iteration-count:1 !important;
-    transition-duration:.01ms !important;
+  *,*::before,*::after {
+    scroll-behavior:auto!important;
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
   }
 
-  .reveal,
-  .reveal-left,
-  .reveal-right {
+  .reveal {
     opacity:1;
     transform:none;
   }
@@ -1304,6 +1208,8 @@ footer {
 <div class="glow two"></div>
 <canvas id="particles"></canvas>
 
+<!-- NAVIGATION -->
+
 <nav>
   <div class="nav-inner">
 
@@ -1316,7 +1222,6 @@ footer {
       <a href="#skills">Skills</a>
       <a href="#interests">Interests</a>
       <a href="#projects">Projects</a>
-      <a href="#mywork">My Work</a>
       <a href="#contact">Contact</a>
     </div>
 
@@ -1338,76 +1243,82 @@ footer {
 <!-- HERO -->
 
 <section class="hero" id="home">
-  <div class="container hero-grid">
+<div class="container hero-grid">
 
-    <div class="hero-content">
+  <div class="hero-content reveal">
 
-      <div class="eyebrow">
-        <i class="fa-solid fa-circle"></i>
-        COMPUTER SCIENCE STUDENT
-      </div>
-
-      <h1>
-        Hello, I'm<br>
-        <span class="gradient-text">JOVAN.</span>
-      </h1>
-
-      <div class="typing-line">
-        I am a <span id="typing">CSE Student</span><span class="gradient-text">|</span>
-      </div>
-
-      <p class="hero-description">
-        A Computer Science and Engineering student at Andhra University,
-        passionate about technology, programming, music and creativity.
-        I enjoy learning new things, exploring ideas and building something meaningful.
-      </p>
-
-      <div class="hero-buttons">
-        <a href="#contact" class="btn btn-primary">
-          Let's Connect <i class="fa-solid fa-arrow-right"></i>
-        </a>
-
-        <a href="#about" class="btn btn-outline">
-          Explore Portfolio <i class="fa-solid fa-compass"></i>
-        </a>
-      </div>
-
-      <div class="socials">
-        <a href="mailto:mugdho601@gmail.com" aria-label="Email">
-          <i class="fa-solid fa-envelope"></i>
-        </a>
-
-        <a href="https://jovanmugdho.wuaze.com/" target="_blank" rel="noopener noreferrer" aria-label="Music Website">
-          <i class="fa-solid fa-globe"></i>
-        </a>
-
-        <a href="tel:+916302893745" aria-label="Phone">
-          <i class="fa-solid fa-phone"></i>
-        </a>
-
-        <a href="https://github.com/jovanmugdho-stack" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-          <i class="fa-brands fa-github"></i>
-        </a>
-      </div>
-
+    <div class="eyebrow">
+      <span class="pulse-dot"></span>
+      COMPUTER SCIENCE STUDENT
     </div>
 
-    <div class="visual-area">
+    <h1>
+      Hello, I'm<br>
+      <span class="gradient-text">JOVAN.</span>
+    </h1>
+
+    <div class="typing-line">
+      I am a <span id="typing">CSE Student</span>
+      <span class="gradient-text">|</span>
+    </div>
+
+    <p class="hero-description">
+      A Computer Science and Engineering student at Andhra University,
+      passionate about technology, programming, music and creativity.
+      I enjoy learning new things, exploring ideas and building something meaningful.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#contact" class="btn btn-primary">
+        Let's Connect <i class="fa-solid fa-arrow-right"></i>
+      </a>
+
+      <a href="#about" class="btn btn-outline">
+        Explore Portfolio <i class="fa-solid fa-compass"></i>
+      </a>
+    </div>
+
+    <div class="socials">
+      <a href="mailto:mugdho601@gmail.com" aria-label="Email">
+        <i class="fa-solid fa-envelope"></i>
+      </a>
+
+      <a href="https://jovanmugdho.wuaze.com/" target="_blank" rel="noopener" aria-label="Music Website">
+        <i class="fa-solid fa-music"></i>
+      </a>
+
+      <a href="https://github.com/jovanmugdho-stack" target="_blank" rel="noopener" aria-label="GitHub">
+        <i class="fa-brands fa-github"></i>
+      </a>
+
+      <a href="tel:+916302893745" aria-label="Phone">
+        <i class="fa-solid fa-phone"></i>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- 3D PROFILE CARD -->
+
+  <div class="visual-area reveal">
+
+    <div class="profile-wrapper">
 
       <div class="profile-card" id="profileCard">
-
-        <button class="reset-card" id="resetCard" aria-label="Reset 3D card">
-          <i class="fa-solid fa-rotate-left"></i>
-        </button>
 
         <div class="profile-top">
           <span class="profile-tag">PERSONAL PORTFOLIO</span>
           <span class="profile-dot"></span>
         </div>
 
-        <div class="avatar">J</div>
+        <div class="avatar">
+          <img src="Jovan.png" alt="JOVAN Profile Picture"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+          <span class="avatar-fallback" style="display:none">J</span>
+        </div>
 
         <h2>JOVAN</h2>
+
         <p>Student · Musician · Creative Thinker</p>
 
         <div class="profile-divider"></div>
@@ -1437,599 +1348,585 @@ footer {
         </div>
 
         <div class="floating-chip chip-one">
-          <i class="fa-solid fa-code" style="color:var(--accent)"></i>
+          <i class="fa-solid fa-code" style="color:var(--green)"></i>
           Technology
         </div>
 
         <div class="floating-chip chip-two">
-          <i class="fa-solid fa-music" style="color:var(--accent)"></i>
+          <i class="fa-solid fa-music" style="color:var(--cyan)"></i>
           Music
-        </div>
-
-        <div class="card-controls">
-          <i class="fa-solid fa-hand-pointer"></i>
-          DRAG TO ROTATE · TOUCH TO EXPLORE
         </div>
 
       </div>
 
+      <div class="card-controls">
+
+        <button class="card-control" id="pauseRotate" aria-label="Pause rotation">
+          <i class="fa-solid fa-pause"></i>
+        </button>
+
+        <button class="card-control" id="resetCard" aria-label="Reset card">
+          <i class="fa-solid fa-rotate-left"></i>
+        </button>
+
+        <button class="card-control" id="rotateCard" aria-label="Start rotation">
+          <i class="fa-solid fa-play"></i>
+        </button>
+
+      </div>
+
+      <p class="drag-hint">
+        <i class="fa-solid fa-hand-pointer"></i>
+        DRAG TO ROTATE · TOUCH TO EXPLORE
+      </p>
+
     </div>
 
   </div>
+
+</div>
 </section>
 
 <!-- ABOUT -->
 
 <section class="section" id="about">
-  <div class="container">
+<div class="container">
 
-    <div class="section-heading reveal">
-      <div class="section-label">01 / ABOUT ME</div>
-      <h2>A Little About <span class="gradient-text">Myself</span></h2>
-      <p>Who I am, what I enjoy and what inspires me.</p>
+  <div class="section-heading reveal">
+    <div class="section-label">01 / ABOUT ME</div>
+    <h2>A Little About <span class="gradient-text">Myself</span></h2>
+    <p>Who I am, what I enjoy and what inspires me.</p>
+  </div>
+
+  <div class="about-grid">
+
+    <div class="glass-card reveal">
+      <div class="about-icon">
+        <i class="fa-solid fa-user-astronaut"></i>
+      </div>
+
+      <h3>Who Am I?</h3>
+
+      <p>
+        I am JOVAN, a student from Bangladesh currently pursuing
+        B.Tech in Computer Science and Engineering at Andhra University.
+        I enjoy exploring the world of computers, learning programming
+        and understanding how technology can solve real-world problems.
+      </p>
     </div>
 
-    <div class="about-grid">
-
-      <div class="glass-card reveal">
-        <div class="about-icon">
-          <i class="fa-solid fa-user-astronaut"></i>
-        </div>
-
-        <h3>Who Am I?</h3>
-
-        <p>
-          I am JOVAN, a student from Bangladesh currently pursuing
-          B.Tech in Computer Science and Engineering at Andhra University.
-          I enjoy exploring the world of computers, learning programming
-          and understanding how technology can solve real-world problems.
-        </p>
+    <div class="glass-card reveal">
+      <div class="about-icon">
+        <i class="fa-solid fa-lightbulb"></i>
       </div>
 
-      <div class="glass-card reveal">
-        <div class="about-icon">
-          <i class="fa-solid fa-lightbulb"></i>
-        </div>
+      <h3>What Drives Me?</h3>
 
-        <h3>What Drives Me?</h3>
-
-        <p>
-          Curiosity drives me to learn and experiment. I believe creativity
-          and technology can work together to create useful things.
-          Apart from academics, music, guitar and exploring new places
-          are important parts of my life.
-        </p>
-      </div>
-
-    </div>
-
-    <div class="stats reveal">
-
-      <div class="stat">
-        <strong>01</strong>
-        <span>Curiosity</span>
-      </div>
-
-      <div class="stat">
-        <strong>02</strong>
-        <span>Creativity</span>
-      </div>
-
-      <div class="stat">
-        <strong>03</strong>
-        <span>Learning</span>
-      </div>
-
+      <p>
+        Curiosity drives me to learn and experiment. I believe creativity
+        and technology can work together to create useful things.
+        Apart from academics, music, guitar and exploring new places
+        are important parts of my life.
+      </p>
     </div>
 
   </div>
+
+  <div class="stats reveal">
+
+    <div class="stat">
+      <strong>01</strong>
+      <span>Curiosity</span>
+    </div>
+
+    <div class="stat">
+      <strong>02</strong>
+      <span>Creativity</span>
+    </div>
+
+    <div class="stat">
+      <strong>03</strong>
+      <span>Learning</span>
+    </div>
+
+  </div>
+
+</div>
 </section>
 
 <!-- EDUCATION -->
 
 <section class="section" id="education">
-  <div class="container">
+<div class="container">
 
-    <div class="section-heading reveal">
-      <div class="section-label">02 / EDUCATION</div>
-      <h2>My Academic <span class="gradient-text">Journey</span></h2>
-      <p>A journey of learning, growing and discovering.</p>
-    </div>
-
-    <div class="timeline">
-
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-
-        <div class="glass-card">
-          <small>CURRENTLY PURSUING</small>
-          <h3>Bachelor of Technology - Computer Science and Engineering</h3>
-          <p>Andhra University, Visakhapatnam, Andhra Pradesh, India.</p>
-
-          <div class="skill-tags">
-            <span>B.Tech</span>
-            <span>CSE</span>
-            <span>Undergraduate</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-
-        <div class="glass-card">
-          <small>PRE-UNIVERSITY EDUCATION</small>
-          <h3>Higher Secondary Certificate (HSC)</h3>
-          <p>Bangladesh</p>
-        </div>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-
-        <div class="glass-card">
-          <small>SECONDARY EDUCATION</small>
-          <h3>Secondary School Certificate (SSC)</h3>
-          <p>Bangladesh</p>
-        </div>
-      </div>
-
-    </div>
+  <div class="section-heading reveal">
+    <div class="section-label">02 / EDUCATION</div>
+    <h2>My Academic <span class="gradient-text">Journey</span></h2>
+    <p>A journey of learning, growing and discovering.</p>
   </div>
+
+  <div class="timeline">
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+
+      <div class="glass-card">
+        <small>CURRENTLY PURSUING</small>
+        <h3>Bachelor of Technology - Computer Science and Engineering</h3>
+        <p>Andhra University, Visakhapatnam, Andhra Pradesh, India.</p>
+
+        <div class="skill-tags">
+          <span>B.Tech</span>
+          <span>CSE</span>
+          <span>Undergraduate</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+
+      <div class="glass-card">
+        <small>PRE-UNIVERSITY EDUCATION</small>
+        <h3>Higher Secondary Certificate (HSC)</h3>
+        <p>Bangladesh</p>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+
+      <div class="glass-card">
+        <small>SECONDARY EDUCATION</small>
+        <h3>Secondary School Certificate (SSC)</h3>
+        <p>Bangladesh</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
 </section>
 
 <!-- SKILLS -->
 
 <section class="section" id="skills">
-  <div class="container">
+<div class="container">
 
-    <div class="section-heading reveal">
-      <div class="section-label">03 / SKILLS & LEARNING</div>
-      <h2>Things I <span class="gradient-text">Explore</span></h2>
-      <p>Technologies and subjects I am learning and interested in.</p>
-    </div>
-
-    <div class="skills-grid">
-
-      <div class="glass-card skill-card reveal">
-        <i class="fa-solid fa-code"></i>
-        <h3>Programming</h3>
-        <p>Learning programming fundamentals and problem-solving.</p>
-        <div class="skill-tags">
-          <span>C</span>
-          <span>Java</span>
-          <span>Programming Logic</span>
-        </div>
-      </div>
-
-      <div class="glass-card skill-card reveal">
-        <i class="fa-solid fa-globe"></i>
-        <h3>Web Development</h3>
-        <p>Exploring how websites are designed and developed.</p>
-        <div class="skill-tags">
-          <span>HTML</span>
-          <span>CSS</span>
-          <span>JavaScript</span>
-        </div>
-      </div>
-
-      <div class="glass-card skill-card reveal">
-        <i class="fa-solid fa-brain"></i>
-        <h3>Artificial Intelligence</h3>
-        <p>Interested in AI, machine learning and practical applications.</p>
-        <div class="skill-tags">
-          <span>AI</span>
-          <span>Machine Learning</span>
-        </div>
-      </div>
-
-      <div class="glass-card skill-card reveal">
-        <i class="fa-solid fa-laptop-code"></i>
-        <h3>Computer Science</h3>
-        <p>Exploring core computer science concepts and systems.</p>
-        <div class="skill-tags">
-          <span>Operating Systems</span>
-          <span>Algorithms</span>
-        </div>
-      </div>
-
-      <div class="glass-card skill-card reveal">
-        <i class="fa-solid fa-pen-nib"></i>
-        <h3>Creative Thinking</h3>
-        <p>Enjoy creating ideas and combining technology with creativity.</p>
-        <div class="skill-tags">
-          <span>Creativity</span>
-          <span>Ideas</span>
-        </div>
-      </div>
-
-      <div class="glass-card skill-card reveal">
-        <i class="fa-solid fa-graduation-cap"></i>
-        <h3>Continuous Learning</h3>
-        <p>Always interested in learning new tools and improving my knowledge.</p>
-        <div class="skill-tags">
-          <span>Learning</span>
-          <span>Research</span>
-        </div>
-      </div>
-
-    </div>
+  <div class="section-heading reveal">
+    <div class="section-label">03 / SKILLS & LEARNING</div>
+    <h2>Things I <span class="gradient-text">Explore</span></h2>
+    <p>Technologies and subjects I am learning and interested in.</p>
   </div>
+
+  <div class="skills-grid">
+
+    <div class="glass-card skill-card reveal">
+      <i class="fa-solid fa-code"></i>
+      <h3>Programming</h3>
+      <p>Learning programming fundamentals and problem-solving.</p>
+      <div class="skill-tags">
+        <span>C</span>
+        <span>Java</span>
+        <span>Programming Logic</span>
+      </div>
+    </div>
+
+    <div class="glass-card skill-card reveal">
+      <i class="fa-solid fa-globe"></i>
+      <h3>Web Development</h3>
+      <p>Exploring how websites are designed and developed.</p>
+      <div class="skill-tags">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+      </div>
+    </div>
+
+    <div class="glass-card skill-card reveal">
+      <i class="fa-solid fa-brain"></i>
+      <h3>Artificial Intelligence</h3>
+      <p>Interested in AI, machine learning and practical applications.</p>
+      <div class="skill-tags">
+        <span>AI</span>
+        <span>Machine Learning</span>
+      </div>
+    </div>
+
+    <div class="glass-card skill-card reveal">
+      <i class="fa-solid fa-laptop-code"></i>
+      <h3>Computer Science</h3>
+      <p>Exploring core computer science concepts and systems.</p>
+      <div class="skill-tags">
+        <span>Operating Systems</span>
+        <span>Algorithms</span>
+      </div>
+    </div>
+
+    <div class="glass-card skill-card reveal">
+      <i class="fa-solid fa-pen-nib"></i>
+      <h3>Creative Thinking</h3>
+      <p>Enjoy creating ideas and combining technology with creativity.</p>
+      <div class="skill-tags">
+        <span>Creativity</span>
+        <span>Ideas</span>
+      </div>
+    </div>
+
+    <div class="glass-card skill-card reveal">
+      <i class="fa-solid fa-graduation-cap"></i>
+      <h3>Continuous Learning</h3>
+      <p>Always interested in learning new tools and improving my knowledge.</p>
+      <div class="skill-tags">
+        <span>Learning</span>
+        <span>Research</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
 </section>
 
 <!-- INTERESTS -->
 
 <section class="section" id="interests">
-  <div class="container">
+<div class="container">
 
-    <div class="section-heading reveal">
-      <div class="section-label">04 / BEYOND TECHNOLOGY</div>
-      <h2>My <span class="gradient-text">Interests</span></h2>
-      <p>Click on a card to explore more.</p>
-    </div>
-
-    <div class="interest-grid">
-
-      <div class="glass-card interest-card reveal" tabindex="0" role="button" aria-expanded="false">
-        <div class="interest-icon">
-          <i class="fa-solid fa-music"></i>
-        </div>
-        <h3>Music & Singing</h3>
-        <p>Music is one of my biggest creative interests.</p>
-        <span class="expand-hint">+ Click to explore</span>
-        <div class="interest-more">
-          <p>I enjoy singing, listening to different genres and exploring musical expression.</p>
-          <a href="https://jovanmugdho.wuaze.com/" target="_blank" rel="noopener noreferrer">
-            Visit My Music Website
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-          </a>
-        </div>
-      </div>
-
-      <div class="glass-card interest-card reveal" tabindex="0" role="button" aria-expanded="false">
-        <div class="interest-icon">
-          <i class="fa-solid fa-guitar"></i>
-        </div>
-        <h3>Guitar</h3>
-        <p>Playing guitar and exploring melodies.</p>
-        <span class="expand-hint">+ Click to explore</span>
-        <div class="interest-more">
-          <p>I enjoy learning songs, practicing guitar and creating original musical ideas.</p>
-        </div>
-      </div>
-
-      <div class="glass-card interest-card reveal" tabindex="0" role="button" aria-expanded="false">
-        <div class="interest-icon">
-          <i class="fa-solid fa-camera"></i>
-        </div>
-        <h3>Photography</h3>
-        <p>Capturing beautiful moments and places.</p>
-        <span class="expand-hint">+ Click to explore</span>
-        <div class="interest-more">
-          <p>I enjoy natural scenery, landscapes, the sea and capturing everyday moments.</p>
-        </div>
-      </div>
-
-      <div class="glass-card interest-card reveal" tabindex="0" role="button" aria-expanded="false">
-        <div class="interest-icon">
-          <i class="fa-solid fa-plane"></i>
-        </div>
-        <h3>Travelling</h3>
-        <p>Exploring new places and experiences.</p>
-        <span class="expand-hint">+ Click to explore</span>
-        <div class="interest-more">
-          <p>Nature, hills, beaches and discovering different cultures inspire me.</p>
-        </div>
-      </div>
-
-      <div class="glass-card interest-card reveal" tabindex="0" role="button" aria-expanded="false">
-        <div class="interest-icon">
-          <i class="fa-solid fa-microchip"></i>
-        </div>
-        <h3>Technology</h3>
-        <p>Discovering new technologies and innovations.</p>
-        <span class="expand-hint">+ Click to explore</span>
-        <div class="interest-more">
-          <p>I enjoy exploring computers, AI, software and the future of technology.</p>
-        </div>
-      </div>
-
-      <div class="glass-card interest-card reveal" tabindex="0" role="button" aria-expanded="false">
-        <div class="interest-icon">
-          <i class="fa-solid fa-book-open"></i>
-        </div>
-        <h3>Science & Learning</h3>
-        <p>Understanding how things work.</p>
-        <span class="expand-hint">+ Click to explore</span>
-        <div class="interest-more">
-          <p>Science, mathematics and new ideas keep me curious and motivated.</p>
-        </div>
-      </div>
-
-    </div>
+  <div class="section-heading reveal">
+    <div class="section-label">04 / BEYOND TECHNOLOGY</div>
+    <h2>My <span class="gradient-text">Interests</span></h2>
+    <p>Tap on a card to explore more.</p>
   </div>
+
+  <div class="interest-grid">
+
+    <div class="glass-card interest-card reveal" tabindex="0" role="button" aria-expanded="false">
+      <div class="interest-icon">
+        <i class="fa-solid fa-music"></i>
+      </div>
+      <h3>Music & Singing</h3>
+      <p>Music is one of my biggest creative interests.</p>
+      <span class="expand-hint">+ Tap to explore</span>
+
+      <div class="interest-more">
+        <p>I enjoy singing, listening to different genres and exploring musical expression.</p>
+        <a href="https://jovanmugdho.wuaze.com/" target="_blank" rel="noopener">
+          Visit My Music Website <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="glass-card interest-card reveal" tabindex="0" role="button" aria-expanded="false">
+      <div class="interest-icon">
+        <i class="fa-solid fa-guitar"></i>
+      </div>
+      <h3>Guitar</h3>
+      <p>Playing guitar and exploring melodies.</p>
+      <span class="expand-hint">+ Tap to explore</span>
+
+      <div class="interest-more">
+        <p>I enjoy learning songs, practicing guitar and creating original musical ideas.</p>
+      </div>
+    </div>
+
+    <div class="glass-card interest-card reveal" tabindex="0" role="button" aria-expanded="false">
+      <div class="interest-icon">
+        <i class="fa-solid fa-camera"></i>
+      </div>
+      <h3>Photography</h3>
+      <p>Capturing beautiful moments and places.</p>
+      <span class="expand-hint">+ Tap to explore</span>
+
+      <div class="interest-more">
+        <p>I enjoy natural scenery, landscapes, the sea and capturing everyday moments.</p>
+      </div>
+    </div>
+
+    <div class="glass-card interest-card reveal" tabindex="0" role="button" aria-expanded="false">
+      <div class="interest-icon">
+        <i class="fa-solid fa-plane"></i>
+      </div>
+      <h3>Travelling</h3>
+      <p>Exploring new places and experiences.</p>
+      <span class="expand-hint">+ Tap to explore</span>
+
+      <div class="interest-more">
+        <p>Nature, hills, beaches and discovering different cultures inspire me.</p>
+      </div>
+    </div>
+
+    <div class="glass-card interest-card reveal" tabindex="0" role="button" aria-expanded="false">
+      <div class="interest-icon">
+        <i class="fa-solid fa-microchip"></i>
+      </div>
+      <h3>Technology</h3>
+      <p>Discovering new technologies and innovations.</p>
+      <span class="expand-hint">+ Tap to explore</span>
+
+      <div class="interest-more">
+        <p>I enjoy exploring computers, AI, software and the future of technology.</p>
+      </div>
+    </div>
+
+    <div class="glass-card interest-card reveal" tabindex="0" role="button" aria-expanded="false">
+      <div class="interest-icon">
+        <i class="fa-solid fa-book-open"></i>
+      </div>
+      <h3>Science & Learning</h3>
+      <p>Understanding how things work.</p>
+      <span class="expand-hint">+ Tap to explore</span>
+
+      <div class="interest-more">
+        <p>Science, mathematics and new ideas keep me curious and motivated.</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
 </section>
 
 <!-- PROJECTS -->
 
 <section class="section" id="projects">
-  <div class="container">
+<div class="container">
 
-    <div class="section-heading reveal">
-      <div class="section-label">05 / PROJECTS & IDEAS</div>
-      <h2>My Creative <span class="gradient-text">Space</span></h2>
-      <p>Ideas and areas I want to explore through technology.</p>
-    </div>
-
-    <div class="projects-grid">
-
-      <div class="glass-card project-card reveal">
-        <div class="project-visual">
-          <i class="fa-solid fa-water"></i>
-        </div>
-
-        <div class="project-content">
-          <h3>AI for Flood Awareness</h3>
-          <p>
-            An idea to explore how artificial intelligence and data
-            could support flood awareness and help communities in Bangladesh.
-          </p>
-          <span class="project-status">Future Project Idea</span>
-        </div>
-      </div>
-
-      <div class="glass-card project-card reveal">
-        <div class="project-visual" style="background:linear-gradient(135deg,#4b5ac7,#a66bd8)">
-          <i class="fa-solid fa-code"></i>
-        </div>
-
-        <div class="project-content">
-          <h3>Personal Portfolio Website</h3>
-          <p>
-            A personal website to present my academic journey,
-            interests, skills and creative work through an interactive design.
-          </p>
-          <span class="project-status">Personal Website</span>
-        </div>
-      </div>
-
-      <div class="glass-card project-card reveal">
-        <div class="project-visual" style="background:linear-gradient(135deg,#9b4cb5,#e27db7)">
-          <i class="fa-solid fa-guitar"></i>
-        </div>
-
-        <div class="project-content">
-          <h3>Music Website</h3>
-          <p>
-            My personal music website, where I explore
-            and share my interest in music and creativity.
-          </p>
-
-          <a class="project-status" href="https://jovanmugdho.wuaze.com/" target="_blank" rel="noopener noreferrer">
-            Visit Music Website
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-          </a>
-        </div>
-      </div>
-
-      <div class="glass-card project-card reveal">
-        <div class="project-visual" style="background:linear-gradient(135deg,#356caa,#7c9eea)">
-          <i class="fa-solid fa-lightbulb"></i>
-        </div>
-
-        <div class="project-content">
-          <h3>Future Experiments</h3>
-          <p>
-            Exploring new ideas in programming, web development,
-            artificial intelligence and useful digital tools.
-          </p>
-          <span class="project-status">Learning & Exploration</span>
-        </div>
-      </div>
-
-    </div>
+  <div class="section-heading reveal">
+    <div class="section-label">05 / PROJECTS & IDEAS</div>
+    <h2>My Creative <span class="gradient-text">Space</span></h2>
+    <p>Things I have created and ideas I want to explore.</p>
   </div>
-</section>
 
-<!-- MY DIGITAL WORK -->
+  <div class="projects-grid">
 
-<section class="section" id="mywork">
-  <div class="container">
+    <div class="glass-card project-card reveal">
+      <div class="project-visual">
+        <i class="fa-solid fa-water"></i>
+      </div>
 
-    <div class="section-heading reveal">
-      <div class="section-label">06 / MY DIGITAL WORK</div>
-      <h2>Things I've <span class="gradient-text">Built</span></h2>
-      <p>Explore my websites and interactive tools.</p>
+      <div class="project-content">
+        <h3>AI for Flood Awareness</h3>
+        <p>
+          An idea to explore how artificial intelligence and data
+          could support flood awareness and help communities in Bangladesh.
+        </p>
+        <span class="project-status">Future Project Idea</span>
+      </div>
     </div>
 
-    <div class="digital-grid">
+    <div class="glass-card project-card reveal">
+      <div class="project-visual" style="background:linear-gradient(135deg,#075985,#0f766e)">
+        <i class="fa-solid fa-code"></i>
+      </div>
 
-      <div class="glass-card digital-card reveal">
-        <div class="digital-icon">
-          <i class="fa-solid fa-music"></i>
-        </div>
-
-        <h3>My Music Website</h3>
-
+      <div class="project-content">
+        <h3>Personal Portfolio Website</h3>
         <p>
-          Explore my musical interests, creative work and music-related website.
+          My personal website to present my academic journey,
+          interests, skills and creative work.
+        </p>
+        <span class="project-status">Personal Website</span>
+      </div>
+    </div>
+
+    <!-- MUSIC WEBSITE -->
+
+    <div class="glass-card project-card reveal">
+      <div class="project-visual" style="background:linear-gradient(135deg,#047857,#0891b2)">
+        <i class="fa-solid fa-music"></i>
+      </div>
+
+      <div class="project-content">
+        <h3>My Music Website</h3>
+        <p>
+          A personal music website where I share my musical interests
+          and creative work.
         </p>
 
-        <a class="btn btn-primary"
-           href="https://jovanmugdho.wuaze.com/"
-           target="_blank"
-           rel="noopener noreferrer">
+        <a class="project-status" href="https://jovanmugdho.wuaze.com/" target="_blank" rel="noopener">
           Visit Music Website
           <i class="fa-solid fa-arrow-up-right-from-square"></i>
         </a>
       </div>
+    </div>
 
-      <div class="glass-card digital-card reveal">
-        <div class="digital-icon">
-          <i class="fa-solid fa-video"></i>
-        </div>
+    <!-- CONVERT WITH JOVAN -->
 
-        <h3>Video Converter</h3>
+    <div class="glass-card project-card reveal">
+      <div class="project-visual" style="background:linear-gradient(135deg,#0369a1,#059669)">
+        <i class="fa-solid fa-repeat"></i>
+      </div>
 
+      <div class="project-content">
+        <h3>Convert with JOVAN</h3>
         <p>
-          My online video converter project. Visit the tool and explore its features.
+          A digital conversion project designed to make
+          everyday conversion tasks easier.
         </p>
 
-        <a class="btn btn-primary"
-           href="https://jovanmugdho-stack.github.io/Jovanexp/"
-           target="_blank"
-           rel="noopener noreferrer">
-          Open Video Converter
+        <a class="project-status" href="https://jovanmugdho-stack.github.io/Jovanexp/" target="_blank" rel="noopener">
+          Open Project
           <i class="fa-solid fa-arrow-up-right-from-square"></i>
         </a>
       </div>
+    </div>
 
-      <div class="glass-card digital-card reveal">
-        <div class="digital-icon">
-          <i class="fa-solid fa-guitar"></i>
-        </div>
+    <!-- GUITAR TUNER -->
 
+    <div class="glass-card project-card reveal">
+      <div class="project-visual" style="background:linear-gradient(135deg,#0e7490,#047857)">
+        <i class="fa-solid fa-guitar"></i>
+      </div>
+
+      <div class="project-content">
         <h3>Online Guitar Tuner</h3>
-
         <p>
-          My guitar tuning project. Open the online tuner from GitHub.
+          An online guitar tuner project for exploring
+          guitar tuning through a digital interface.
         </p>
 
-        <a class="btn btn-primary"
-           href="https://github.com/jovanmugdho-stack/Jovanexperiment/blob/main/index.html"
-           target="_blank"
-           rel="noopener noreferrer">
+        <a class="project-status" href="https://jovanmugdho-stack.github.io/Jovanexperiment/" target="_blank" rel="noopener">
           Open Guitar Tuner
           <i class="fa-solid fa-arrow-up-right-from-square"></i>
         </a>
       </div>
+    </div>
 
+    <div class="glass-card project-card reveal">
+      <div class="project-visual" style="background:linear-gradient(135deg,#155e75,#047857)">
+        <i class="fa-solid fa-lightbulb"></i>
+      </div>
+
+      <div class="project-content">
+        <h3>Future Experiments</h3>
+        <p>
+          Exploring new ideas in programming, web development,
+          artificial intelligence and useful digital tools.
+        </p>
+
+        <span class="project-status">Learning & Exploration</span>
+      </div>
     </div>
 
   </div>
+
+</div>
 </section>
 
 <!-- FUTURE -->
 
 <section class="section">
-  <div class="container">
+<div class="container">
 
-    <div class="glass-card future-box reveal">
-      <i class="fa-solid fa-rocket"></i>
+  <div class="glass-card future-box reveal">
 
-      <h3>
-        Looking Towards the <span class="gradient-text">Future</span>
-      </h3>
+    <i class="fa-solid fa-rocket"></i>
 
-      <p>
-        My goal is to continue learning computer science, explore
-        artificial intelligence and build technology that can make
-        a meaningful difference. I am especially interested in
-        discovering how technology can help address real-world
-        challenges in Bangladesh and beyond.
-      </p>
-    </div>
+    <h3>Looking Towards the <span class="gradient-text">Future</span></h3>
+
+    <p>
+      My goal is to continue learning computer science, explore
+      artificial intelligence and build technology that can make
+      a meaningful difference. I am especially interested in
+      discovering how technology can help address real-world
+      challenges in Bangladesh and beyond.
+    </p>
 
   </div>
+
+</div>
 </section>
 
 <!-- CONTACT -->
 
 <section class="section" id="contact">
-  <div class="container">
+<div class="container">
 
-    <div class="section-heading reveal">
-      <div class="section-label">07 / GET IN TOUCH</div>
-      <h2>Let's <span class="gradient-text">Connect</span></h2>
-      <p>Have an idea, a project or just want to say hello?</p>
-    </div>
-
-    <div class="contact-grid">
-
-      <div class="contact-info reveal">
-
-        <a class="contact-item" href="mailto:mugdho601@gmail.com">
-          <i class="fa-solid fa-envelope"></i>
-          <div>
-            <small>EMAIL ADDRESS</small>
-            <strong>mugdho601@gmail.com</strong>
-          </div>
-        </a>
-
-        <a class="contact-item" href="tel:+916302893745">
-          <i class="fa-solid fa-phone"></i>
-          <div>
-            <small>PHONE NUMBER</small>
-            <strong>+91 63028 93745</strong>
-          </div>
-        </a>
-
-        <a class="contact-item"
-           href="https://jovanmugdho.wuaze.com/"
-           target="_blank"
-           rel="noopener noreferrer">
-
-          <i class="fa-solid fa-globe"></i>
-
-          <div>
-            <small>MUSIC WEBSITE</small>
-            <strong>jovanmugdho.wuaze.com</strong>
-          </div>
-        </a>
-
-        <a class="contact-item"
-           href="https://github.com/jovanmugdho-stack"
-           target="_blank"
-           rel="noopener noreferrer">
-
-          <i class="fa-brands fa-github"></i>
-
-          <div>
-            <small>GITHUB</small>
-            <strong>github.com/jovanmugdho-stack</strong>
-          </div>
-        </a>
-
-        <div class="contact-item">
-          <i class="fa-solid fa-location-dot"></i>
-          <div>
-            <small>LOCATION</small>
-            <strong>Visakhapatnam, Andhra Pradesh, India</strong>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="glass-card contact-message reveal">
-
-        <h3>Have something in mind?</h3>
-
-        <p>
-          I would be glad to connect, exchange ideas and learn about
-          interesting opportunities. Feel free to reach out through email.
-        </p>
-
-        <div>
-
-          <a href="mailto:mugdho601@gmail.com?subject=Hello%20JOVAN"
-             class="btn btn-primary">
-            Send Me an Email
-            <i class="fa-solid fa-paper-plane"></i>
-          </a>
-
-          <button class="btn btn-outline" id="copyEmail" style="margin-top:12px">
-            <i class="fa-regular fa-copy"></i>
-            Copy Email
-          </button>
-
-          <p id="copyStatus" aria-live="polite" style="margin-top:12px;font-size:11px"></p>
-
-        </div>
-
-      </div>
-
-    </div>
+  <div class="section-heading reveal">
+    <div class="section-label">06 / GET IN TOUCH</div>
+    <h2>Let's <span class="gradient-text">Connect</span></h2>
+    <p>Have an idea, a project or just want to say hello?</p>
   </div>
+
+  <div class="contact-grid">
+
+    <div class="contact-info reveal">
+
+      <a class="contact-item" href="mailto:mugdho601@gmail.com">
+        <i class="fa-solid fa-envelope"></i>
+        <div>
+          <small>EMAIL ADDRESS</small>
+          <strong>mugdho601@gmail.com</strong>
+        </div>
+      </a>
+
+      <a class="contact-item" href="tel:+916302893745">
+        <i class="fa-solid fa-phone"></i>
+        <div>
+          <small>PHONE NUMBER</small>
+          <strong>+91 63028 93745</strong>
+        </div>
+      </a>
+
+      <a class="contact-item" href="https://jovanmugdho.wuaze.com/" target="_blank" rel="noopener">
+        <i class="fa-solid fa-music"></i>
+        <div>
+          <small>MUSIC WEBSITE</small>
+          <strong>jovanmugdho.wuaze.com</strong>
+        </div>
+      </a>
+
+      <a class="contact-item" href="https://github.com/jovanmugdho-stack" target="_blank" rel="noopener">
+        <i class="fa-brands fa-github"></i>
+        <div>
+          <small>GITHUB</small>
+          <strong>github.com/jovanmugdho-stack</strong>
+        </div>
+      </a>
+
+      <div class="contact-item">
+        <i class="fa-solid fa-location-dot"></i>
+        <div>
+          <small>LOCATION</small>
+          <strong>Visakhapatnam, Andhra Pradesh, India</strong>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="glass-card contact-message reveal">
+
+      <h3>Have something in mind?</h3>
+
+      <p>
+        I would be glad to connect, exchange ideas and learn about
+        interesting opportunities. Feel free to reach out through email.
+      </p>
+
+      <div>
+
+        <a href="mailto:mugdho601@gmail.com?subject=Hello%20JOVAN" class="btn btn-primary">
+          Send Me an Email
+          <i class="fa-solid fa-paper-plane"></i>
+        </a>
+
+        <br>
+
+        <button class="btn btn-outline" id="copyEmail" style="margin-top:14px">
+          <i class="fa-regular fa-copy"></i>
+          Copy Email
+        </button>
+
+        <p id="copyStatus" aria-live="polite" style="margin-top:13px"></p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 </section>
 
 </main>
@@ -2047,7 +1944,7 @@ footer {
 
     <p>
       Designed with
-      <i class="fa-solid fa-heart" style="color:var(--accent)"></i>
+      <i class="fa-solid fa-heart" style="color:var(--green)"></i>
       and creativity.
     </p>
 
@@ -2062,27 +1959,22 @@ footer {
 
 <script>
 
-/* ==========================================
-   1. THEME SWITCHER
-========================================== */
+/* =====================================
+   THEME SWITCHER
+===================================== */
 
 const themeToggle = document.getElementById("themeToggle");
 
-let savedTheme = null;
-
-try {
-  savedTheme = localStorage.getItem("jovan-theme");
-} catch(error) {}
+const savedTheme = localStorage.getItem("jovan-theme");
 
 if(savedTheme === "light") {
   document.body.classList.add("light");
 }
 
 function updateThemeIcon() {
-  themeToggle.innerHTML =
-    document.body.classList.contains("light")
-      ? '<i class="fa-solid fa-sun"></i>'
-      : '<i class="fa-solid fa-moon"></i>';
+  themeToggle.innerHTML = document.body.classList.contains("light")
+    ? '<i class="fa-solid fa-sun"></i>'
+    : '<i class="fa-solid fa-moon"></i>';
 }
 
 updateThemeIcon();
@@ -2091,23 +1983,20 @@ themeToggle.addEventListener("click", () => {
 
   document.body.classList.toggle("light");
 
-  const theme =
-    document.body.classList.contains("light")
-      ? "light"
-      : "dark";
+  const theme = document.body.classList.contains("light")
+    ? "light"
+    : "dark";
 
-  try {
-    localStorage.setItem("jovan-theme",theme);
-  } catch(error) {}
+  localStorage.setItem("jovan-theme",theme);
 
   updateThemeIcon();
 
 });
 
 
-/* ==========================================
-   2. MOBILE NAVIGATION
-========================================== */
+/* =====================================
+   MOBILE NAVIGATION
+===================================== */
 
 const menuBtn = document.getElementById("menuBtn");
 const navLinks = document.getElementById("navLinks");
@@ -2116,10 +2005,9 @@ menuBtn.addEventListener("click", () => {
 
   navLinks.classList.toggle("open");
 
-  menuBtn.innerHTML =
-    navLinks.classList.contains("open")
-      ? '<i class="fa-solid fa-xmark"></i>'
-      : '<i class="fa-solid fa-bars"></i>';
+  menuBtn.innerHTML = navLinks.classList.contains("open")
+    ? '<i class="fa-solid fa-xmark"></i>'
+    : '<i class="fa-solid fa-bars"></i>';
 
 });
 
@@ -2129,25 +2017,23 @@ document.querySelectorAll(".nav-links a").forEach(link => {
 
     navLinks.classList.remove("open");
 
-    menuBtn.innerHTML =
-      '<i class="fa-solid fa-bars"></i>';
+    menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
 
   });
 
 });
 
 
-/* ==========================================
-   3. TYPING ANIMATION
-========================================== */
+/* =====================================
+   TYPING ANIMATION
+===================================== */
 
 const words = [
   "CSE Student",
   "Technology Enthusiast",
   "Music Lover",
   "Creative Thinker",
-  "Future Developer",
-  "Guitar Enthusiast"
+  "Future Developer"
 ];
 
 let wordIndex = 0;
@@ -2156,8 +2042,9 @@ let deleting = false;
 
 const typingElement = document.getElementById("typing");
 
-const reducedMotion =
-  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const reduceMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
 
 function typeEffect() {
 
@@ -2172,7 +2059,7 @@ function typeEffect() {
   typingElement.textContent =
     currentWord.substring(0,charIndex);
 
-  let delay = deleting ? 40 : 85;
+  let delay = deleting ? 45 : 90;
 
   if(!deleting && charIndex === currentWord.length) {
 
@@ -2191,78 +2078,259 @@ function typeEffect() {
 
 }
 
-if(!reducedMotion) {
+if(!reduceMotion) {
   typeEffect();
 }
 
 
-/* ==========================================
-   4. SCROLL PROGRESS
-========================================== */
+/* =====================================
+   3D PROFILE CARD
+   AUTO ROTATION + MANUAL TOUCH CONTROL
+===================================== */
 
-const progress = document.getElementById("progress");
-const backTop = document.getElementById("backTop");
+const profileCard = document.getElementById("profileCard");
 
-let scrollScheduled = false;
+const pauseRotate = document.getElementById("pauseRotate");
+const rotateCard = document.getElementById("rotateCard");
+const resetCard = document.getElementById("resetCard");
 
-function handleScroll() {
+let rotationX = 0;
+let rotationY = 0;
 
-  if(scrollScheduled) return;
+let targetX = 0;
+let targetY = 0;
 
-  scrollScheduled = true;
+let autoRotate = !reduceMotion;
+let dragging = false;
 
-  requestAnimationFrame(() => {
+let lastPointerX = 0;
+let lastPointerY = 0;
 
-    const scrollTop = window.scrollY;
+let idleTimer = null;
 
-    const maxScroll =
-      document.documentElement.scrollHeight -
-      window.innerHeight;
+function renderCard() {
 
-    const percentage =
-      maxScroll > 0
-        ? (scrollTop / maxScroll) * 100
-        : 0;
+  rotationX += (targetX - rotationX) * 0.09;
+  rotationY += (targetY - rotationY) * 0.09;
 
-    progress.style.width = percentage + "%";
+  profileCard.style.transform =
+    `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
 
-    if(scrollTop > 450) {
-      backTop.classList.add("show");
-    } else {
-      backTop.classList.remove("show");
-    }
+  requestAnimationFrame(renderCard);
 
-    scrollScheduled = false;
+}
+
+if(!reduceMotion) {
+  renderCard();
+}
+
+function animateAutoRotation() {
+
+  if(autoRotate && !dragging) {
+
+    targetY += 0.035;
+
+    targetX =
+      Math.sin(Date.now() * 0.00045) * 3;
+
+  }
+
+  requestAnimationFrame(animateAutoRotation);
+
+}
+
+if(!reduceMotion) {
+  animateAutoRotation();
+}
+
+function stopAutoRotation() {
+
+  autoRotate = false;
+
+  pauseRotate.innerHTML =
+    '<i class="fa-solid fa-play"></i>';
+
+}
+
+function startAutoRotation() {
+
+  autoRotate = true;
+
+  pauseRotate.innerHTML =
+    '<i class="fa-solid fa-pause"></i>';
+
+}
+
+pauseRotate.addEventListener("click",() => {
+
+  if(autoRotate) {
+    stopAutoRotation();
+  } else {
+    startAutoRotation();
+  }
+
+});
+
+rotateCard.addEventListener("click",() => {
+  startAutoRotation();
+});
+
+resetCard.addEventListener("click",() => {
+
+  targetX = 0;
+  targetY = 0;
+
+  startAutoRotation();
+
+});
+
+profileCard.addEventListener("pointerdown",event => {
+
+  dragging = true;
+
+  stopAutoRotation();
+
+  lastPointerX = event.clientX;
+  lastPointerY = event.clientY;
+
+  if(profileCard.setPointerCapture) {
+    profileCard.setPointerCapture(event.pointerId);
+  }
+
+});
+
+profileCard.addEventListener("pointermove",event => {
+
+  if(!dragging) return;
+
+  const deltaX = event.clientX - lastPointerX;
+  const deltaY = event.clientY - lastPointerY;
+
+  targetY += deltaX * 0.65;
+  targetX -= deltaY * 0.55;
+
+  targetX = Math.max(-35,Math.min(35,targetX));
+
+  lastPointerX = event.clientX;
+  lastPointerY = event.clientY;
+
+});
+
+function endDragging() {
+
+  if(!dragging) return;
+
+  dragging = false;
+
+  clearTimeout(idleTimer);
+
+  idleTimer = setTimeout(() => {
+    startAutoRotation();
+  },3500);
+
+}
+
+profileCard.addEventListener("pointerup",endDragging);
+profileCard.addEventListener("pointercancel",endDragging);
+profileCard.addEventListener("lostpointercapture",endDragging);
+
+
+/* =====================================
+   3D CARD TILT FOR OTHER BOXES
+===================================== */
+
+const tiltCards = document.querySelectorAll(
+  ".glass-card,.stat,.contact-item"
+);
+
+if(
+  window.matchMedia("(hover:hover) and (pointer:fine)").matches &&
+  !reduceMotion
+) {
+
+  tiltCards.forEach(card => {
+
+    card.addEventListener("mousemove",event => {
+
+      const rect = card.getBoundingClientRect();
+
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+
+      const rotateY = ((x / rect.width) - 0.5) * 5;
+      const rotateX = ((y / rect.height) - 0.5) * -5;
+
+      card.style.transform =
+        `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+
+    });
+
+    card.addEventListener("mouseleave",() => {
+
+      card.style.transform = "";
+
+    });
 
   });
 
 }
 
-window.addEventListener("scroll",handleScroll,{passive:true});
+
+/* =====================================
+   SCROLL PROGRESS
+===================================== */
+
+const progress = document.getElementById("progress");
+const backTop = document.getElementById("backTop");
+
+function handleScroll() {
+
+  const scrollTop = window.scrollY;
+
+  const maxScroll =
+    document.documentElement.scrollHeight - window.innerHeight;
+
+  const percentage =
+    maxScroll > 0 ? (scrollTop / maxScroll) * 100 : 0;
+
+  progress.style.width = percentage + "%";
+
+  if(scrollTop > 450) {
+    backTop.classList.add("show");
+  } else {
+    backTop.classList.remove("show");
+  }
+
+}
+
+window.addEventListener("scroll",handleScroll,{
+  passive:true
+});
 
 backTop.addEventListener("click",() => {
 
   window.scrollTo({
     top:0,
-    behavior:reducedMotion ? "auto" : "smooth"
+    behavior:"smooth"
   });
 
 });
 
 
-/* ==========================================
-   5. SCROLL REVEAL ANIMATIONS
-========================================== */
+/* =====================================
+   SCROLL REVEAL ANIMATION
+===================================== */
 
 const revealElements =
-  document.querySelectorAll(
-    ".reveal,.reveal-left,.reveal-right"
-  );
+  document.querySelectorAll(".reveal");
 
-if("IntersectionObserver" in window && !reducedMotion) {
+if(
+  "IntersectionObserver" in window &&
+  !reduceMotion
+) {
 
-  const revealObserver = new IntersectionObserver(
-    (entries,observer) => {
+  const observer = new IntersectionObserver(
+    (entries,obs) => {
 
       entries.forEach(entry => {
 
@@ -2270,7 +2338,7 @@ if("IntersectionObserver" in window && !reducedMotion) {
 
           entry.target.classList.add("visible");
 
-          observer.unobserve(entry.target);
+          obs.unobserve(entry.target);
 
         }
 
@@ -2278,13 +2346,12 @@ if("IntersectionObserver" in window && !reducedMotion) {
 
     },
     {
-      threshold:0.12,
-      rootMargin:"0px 0px -35px 0px"
+      threshold:0.12
     }
   );
 
   revealElements.forEach(element => {
-    revealObserver.observe(element);
+    observer.observe(element);
   });
 
 } else {
@@ -2296,16 +2363,17 @@ if("IntersectionObserver" in window && !reducedMotion) {
 }
 
 
-/* ==========================================
-   6. INTEREST CARDS
-========================================== */
+/* =====================================
+   INTEREST CARDS
+===================================== */
 
 const interestCards =
   document.querySelectorAll(".interest-card");
 
 function toggleInterest(card) {
 
-  const wasOpen = card.classList.contains("open");
+  const wasOpen =
+    card.classList.contains("open");
 
   interestCards.forEach(item => {
 
@@ -2316,7 +2384,7 @@ function toggleInterest(card) {
     const hint = item.querySelector(".expand-hint");
 
     if(hint) {
-      hint.textContent = "+ Click to explore";
+      hint.textContent = "+ Tap to explore";
     }
 
   });
@@ -2330,7 +2398,7 @@ function toggleInterest(card) {
     const hint = card.querySelector(".expand-hint");
 
     if(hint) {
-      hint.textContent = "− Click to close";
+      hint.textContent = "− Tap to close";
     }
 
   }
@@ -2362,23 +2430,20 @@ interestCards.forEach(card => {
 });
 
 
-/* ==========================================
-   7. COPY EMAIL
-========================================== */
+/* =====================================
+   COPY EMAIL
+===================================== */
 
-const copyEmail =
-  document.getElementById("copyEmail");
-
-const copyStatus =
-  document.getElementById("copyStatus");
+const copyEmail = document.getElementById("copyEmail");
+const copyStatus = document.getElementById("copyStatus");
 
 copyEmail.addEventListener("click",async () => {
 
-  const email = "mugdho601@gmail.com";
-
   try {
 
-    await navigator.clipboard.writeText(email);
+    await navigator.clipboard.writeText(
+      "mugdho601@gmail.com"
+    );
 
     copyStatus.textContent =
       "Email copied successfully!";
@@ -2386,16 +2451,16 @@ copyEmail.addEventListener("click",async () => {
   } catch(error) {
 
     copyStatus.textContent =
-      "Please copy manually: " + email;
+      "Please copy manually: mugdho601@gmail.com";
 
   }
 
 });
 
 
-/* ==========================================
-   8. ACTIVE NAVIGATION
-========================================== */
+/* =====================================
+   ACTIVE NAVIGATION
+===================================== */
 
 const sections =
   document.querySelectorAll("main section[id]");
@@ -2437,371 +2502,118 @@ if("IntersectionObserver" in window) {
 }
 
 
-/* ==========================================
-   9. FULLY INTERACTIVE 3D PROFILE CARD
-   Mouse + Touch + Drag Controls
-========================================== */
-
-const profileCard =
-  document.getElementById("profileCard");
-
-const resetCard =
-  document.getElementById("resetCard");
-
-let rotateX = 0;
-let rotateY = 0;
-
-let startX = 0;
-let startY = 0;
-
-let initialX = 0;
-let initialY = 0;
-
-let dragging = false;
-
-let pointerId = null;
-
-let animationFrame = null;
-
-function updateCardTransform() {
-
-  if(reducedMotion) return;
-
-  profileCard.style.transform =
-    `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-
-}
-
-function animateReset() {
-
-  rotateX = 0;
-  rotateY = 0;
-
-  profileCard.style.transition =
-    "transform .7s cubic-bezier(.2,.8,.2,1)";
-
-  updateCardTransform();
-
-  setTimeout(() => {
-
-    profileCard.style.transition =
-      "transform .12s ease-out, box-shadow .4s";
-
-  },750);
-
-}
-
-profileCard.addEventListener("pointerdown",event => {
-
-  if(event.target.closest(".reset-card")) return;
-
-  dragging = true;
-
-  pointerId = event.pointerId;
-
-  startX = event.clientX;
-  startY = event.clientY;
-
-  initialX = rotateX;
-  initialY = rotateY;
-
-  profileCard.setPointerCapture(pointerId);
-
-});
-
-profileCard.addEventListener("pointermove",event => {
-
-  if(!dragging || event.pointerId !== pointerId) return;
-
-  const deltaX = event.clientX - startX;
-  const deltaY = event.clientY - startY;
-
-  rotateY = Math.max(
-    -35,
-    Math.min(35,initialY + deltaX * .45)
-  );
-
-  rotateX = Math.max(
-    -25,
-    Math.min(25,initialX - deltaY * .35)
-  );
-
-  if(animationFrame) {
-    cancelAnimationFrame(animationFrame);
-  }
-
-  animationFrame =
-    requestAnimationFrame(updateCardTransform);
-
-});
-
-function stopDragging(event) {
-
-  if(event.pointerId !== pointerId) return;
-
-  dragging = false;
-
-  pointerId = null;
-
-}
-
-profileCard.addEventListener("pointerup",stopDragging);
-
-profileCard.addEventListener("pointercancel",stopDragging);
-
-profileCard.addEventListener("lostpointercapture",() => {
-  dragging = false;
-  pointerId = null;
-});
-
-resetCard.addEventListener("click",event => {
-
-  event.stopPropagation();
-
-  animateReset();
-
-});
-
-
-/* ==========================================
-   10. SUBTLE MOUSE TILT
-========================================== */
-
-const desktopPointer =
-  window.matchMedia("(hover:hover) and (pointer:fine)");
-
-if(desktopPointer.matches && !reducedMotion) {
-
-  profileCard.addEventListener("mousemove",event => {
-
-    if(dragging) return;
-
-    const rect = profileCard.getBoundingClientRect();
-
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-
-    const targetY =
-      ((x / rect.width) - .5) * 8;
-
-    const targetX =
-      ((y / rect.height) - .5) * -8;
-
-    rotateY = targetY;
-    rotateX = targetX;
-
-    updateCardTransform();
-
-  });
-
-  profileCard.addEventListener("mouseleave",() => {
-
-    if(!dragging) {
-      animateReset();
-    }
-
-  });
-
-}
-
-
-/* ==========================================
-   11. ANIMATED BACKGROUND PARTICLES
-========================================== */
-
-const canvas =
-  document.getElementById("particles");
-
+/* =====================================
+   BACKGROUND PARTICLES
+===================================== */
+
+const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
 
 let particles = [];
 
-let canvasWidth = 0;
-let canvasHeight = 0;
-
-let particleAnimation = null;
-
 function resizeCanvas() {
 
-  const ratio =
-    Math.min(window.devicePixelRatio || 1,2);
+  const dpr = Math.min(window.devicePixelRatio || 1,2);
 
-  canvasWidth = window.innerWidth;
-  canvasHeight = window.innerHeight;
+  canvas.width = window.innerWidth * dpr;
+  canvas.height = window.innerHeight * dpr;
 
-  canvas.width = canvasWidth * ratio;
-  canvas.height = canvasHeight * ratio;
+  canvas.style.width = window.innerWidth + "px";
+  canvas.style.height = window.innerHeight + "px";
 
-  canvas.style.width = canvasWidth + "px";
-  canvas.style.height = canvasHeight + "px";
-
-  ctx.setTransform(ratio,0,0,ratio,0,0);
+  ctx.setTransform(dpr,0,0,dpr,0,0);
 
   createParticles();
 
 }
 
-class Particle {
-
-  constructor() {
-    this.reset(true);
-  }
-
-  reset(randomY = false) {
-
-    this.x = Math.random() * canvasWidth;
-
-    this.y = randomY
-      ? Math.random() * canvasHeight
-      : canvasHeight + 10;
-
-    this.size = Math.random() * 2 + .5;
-
-    this.speedX =
-      (Math.random() - .5) * .35;
-
-    this.speedY =
-      Math.random() * .35 + .1;
-
-    this.opacity =
-      Math.random() * .5 + .1;
-
-  }
-
-  update() {
-
-    this.x += this.speedX;
-    this.y -= this.speedY;
-
-    if(this.y < -10) {
-      this.reset();
-    }
-
-    if(this.x < -10) {
-      this.x = canvasWidth + 10;
-    }
-
-    if(this.x > canvasWidth + 10) {
-      this.x = -10;
-    }
-
-  }
-
-  draw() {
-
-    ctx.beginPath();
-
-    ctx.arc(
-      this.x,
-      this.y,
-      this.size,
-      0,
-      Math.PI * 2
-    );
-
-    ctx.fillStyle =
-      `rgba(167,139,250,${this.opacity})`;
-
-    ctx.fill();
-
-  }
-
-}
-
 function createParticles() {
-
-  const count =
-    Math.min(
-      75,
-      Math.floor((canvasWidth * canvasHeight) / 18000)
-    );
 
   particles = [];
 
+  const count = Math.min(
+    Math.floor(window.innerWidth / 13),
+    85
+  );
+
   for(let i = 0;i < count;i++) {
-    particles.push(new Particle());
+
+    particles.push({
+
+      x:Math.random() * window.innerWidth,
+
+      y:Math.random() * window.innerHeight,
+
+      radius:Math.random() * 2 + .5,
+
+      speedX:(Math.random() - .5) * .35,
+
+      speedY:(Math.random() - .5) * .35,
+
+      alpha:Math.random() * .55 + .15
+
+    });
+
   }
 
 }
 
-function animateParticles() {
-
-  if(reducedMotion) return;
+function drawParticles() {
 
   ctx.clearRect(
     0,
     0,
-    canvasWidth,
-    canvasHeight
+    window.innerWidth,
+    window.innerHeight
   );
 
-  particles.forEach(particle => {
+  const light =
+    document.body.classList.contains("light");
 
-    particle.update();
-    particle.draw();
+  particles.forEach(p => {
+
+    p.x += p.speedX;
+    p.y += p.speedY;
+
+    if(p.x < 0) p.x = window.innerWidth;
+    if(p.x > window.innerWidth) p.x = 0;
+
+    if(p.y < 0) p.y = window.innerHeight;
+    if(p.y > window.innerHeight) p.y = 0;
+
+    ctx.beginPath();
+
+    ctx.arc(p.x,p.y,p.radius,0,Math.PI * 2);
+
+    ctx.fillStyle = light
+      ? `rgba(2,132,199,${p.alpha})`
+      : `rgba(53,224,173,${p.alpha})`;
+
+    ctx.fill();
 
   });
 
-  particleAnimation =
-    requestAnimationFrame(animateParticles);
+  if(!reduceMotion) {
+    requestAnimationFrame(drawParticles);
+  }
 
 }
 
 resizeCanvas();
 
-if(!reducedMotion) {
-  animateParticles();
+window.addEventListener("resize",resizeCanvas);
+
+if(!reduceMotion) {
+  drawParticles();
 }
 
-window.addEventListener("resize",() => {
 
-  resizeCanvas();
-
-});
-
-
-/* ==========================================
-   12. FOOTER YEAR
-========================================== */
+/* =====================================
+   FOOTER YEAR
+===================================== */
 
 document.getElementById("year").textContent =
   new Date().getFullYear();
-
-
-/* ==========================================
-   13. PAGE LOAD EFFECT
-========================================== */
-
-window.addEventListener("load",() => {
-
-  document.body.classList.add("loaded");
-
-  handleScroll();
-
-});
-
-
-/* ==========================================
-   14. STOP ANIMATION WHEN TAB IS HIDDEN
-========================================== */
-
-document.addEventListener("visibilitychange",() => {
-
-  if(document.hidden && particleAnimation) {
-
-    cancelAnimationFrame(particleAnimation);
-
-    particleAnimation = null;
-
-  } else if(!document.hidden && !reducedMotion) {
-
-    if(!particleAnimation) {
-      animateParticles();
-    }
-
-  }
-
-});
 
 </script>
 
